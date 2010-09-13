@@ -1,0 +1,27 @@
+<?php
+/**
+ *
+ *
+ * @author Ashley Schroder (aschroder.com)
+ * @copyright  Copyright (c) 2010 Ashley Schroder
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php if($email = $this->getEmailData()): ?>
+    <div class="page-head">
+        <h3><?php echo $this->__('Email Details') ?></h3>
+    </div>
+    <div class="email-detail">
+	    <p><strong><?php echo $this->__('To:') ?></strong> <?php echo $email->getTo(); ?></p>
+	    <p><strong><?php echo $this->__('Subject:') ?></strong> <?php echo $email->getSubject(); ?></p>
+	    <p><strong><?php echo $this->__('Template:') ?></strong> <?php echo $email->getTemplate(); ?></p>
+	    <p><strong><?php echo $this->__('Sent:') ?></strong> <?php echo $email->getLogAt(); ?></p>
+	    <p><strong><?php echo $this->__('Message:') ?></strong></p>
+	    <div>
+	    <?php echo $email->getEmailBody(); ?>
+	    </div>
+	      
+    </div>
+    <br/>
+    <div class="button-set"><a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back to Email Log') ?></a></div><br />
+<?php endif; ?>

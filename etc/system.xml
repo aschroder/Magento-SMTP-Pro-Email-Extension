@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<system>
+			<groups>
+				<smtppro translate="label" module="smtppro">
+					<label>SMTP Pro Email General Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>995</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>0</show_in_store>
+					<comment>If you are experiencing problems with this extension please run the self diagnosing test by clicking the button below. The module will log what it is doing if you enable logging, this can be useful to determine problems aswell. If you have any questions or would like any help please visit &lt;a href='http://aschroder.com' target='_blank'&gt;ASchroder.com&lt;/a&gt;. </comment>
+						<fields>
+							   <option translate="label">
+	                                <label>Choose extension option</label>
+	                                <comment>This will determine if the extension uses the simple Google Apps/Gmail configuration, The advanced SMTP configuration or disables the extension completely.</comment>
+	                                <frontend_type>select</frontend_type>
+	                                <source_model>smtppro/system_config_source_smtp_option</source_model>
+	                                <sort_order>1</sort_order>
+	                                <show_in_default>1</show_in_default>
+	                                <show_in_website>0</show_in_website>
+	                                <show_in_store>0</show_in_store>
+	                            </option>
+						        <store_addresses translate="label">
+	                                       <label>Use Store Email Addresses for Reply-to</label>
+	                                       <frontend_type>select</frontend_type>
+	                                       <source_model>adminhtml/system_config_source_yesno</source_model>
+	                                       <sort_order>2</sort_order>
+	                                       <show_in_default>1</show_in_default>
+	                                       <show_in_website>0</show_in_website>
+	                                       <show_in_store>0</show_in_store>
+	                            </store_addresses>
+	                            <development translate="label">
+	                               <label>Development Mode options</label>
+	                               <comment>These options can be used during development and testing to control the destination of all emails, or to stop Magento emails sending. (Note: if extensions do not send emails 'the magento way' then they will not be supressed)</comment>
+                                   <frontend_type>select</frontend_type>
+                                    <source_model>smtppro/system_config_source_smtp_development</source_model>
+                                   <sort_order>10</sort_order>
+                                   <show_in_default>1</show_in_default>
+                                   <show_in_website>0</show_in_website>
+                                   <show_in_store>0</show_in_store>
+	                            </development>
+	                            <logenabled translate="label">
+	                               <label>Log all messages</label>
+	                               <comment>This will log all outbound emails to the table smtppro_email_log and allow viewing within the admin interface from System->Tools->Email Log.</comment>
+                                    <frontend_type>select</frontend_type>
+                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                    <sort_order>16</sort_order>
+                                   <show_in_default>1</show_in_default>
+                                   <show_in_website>0</show_in_website>
+                                   <show_in_store>0</show_in_store>
+	                            </logenabled>
+	                             <test translate="label">
+                                        <comment>This test will ensure the configuration in your Google Apps/ Gmail OR SMTP section are working. You have to save the settings from either of these sections before running this test.</comment>
+		                                <frontend_type>select</frontend_type>
+		                                <frontend_model>Aschroder_SMTPPro_Block_Adminhtml_Test</frontend_model>
+		                                <sort_order>20</sort_order>
+		                                <show_in_default>1</show_in_default>
+		                                <show_in_website>0</show_in_website>
+		                                <show_in_store>0</show_in_store>
+	                             </test>
+                               </fields>
+                               </smtppro>
+                               <googlesettings translate="label" module="smtppro">
+			                    <label>SMTP Pro Email Google Apps/Gmail Settings</label>
+			                    <frontend_type>text</frontend_type>
+			                    <sort_order>996</sort_order>
+			                    <show_in_default>1</show_in_default>
+			                    <show_in_website>1</show_in_website>
+			                    <show_in_store>0</show_in_store>
+			                    <comment></comment>
+			                    <fields>
+		                               <email translate="label">
+		                                <label>Email Address</label>
+		                                <frontend_type>text</frontend_type>
+		                                <sort_order>5</sort_order>
+		                                <show_in_default>1</show_in_default>
+		                                <show_in_website>1</show_in_website>
+		                                <show_in_store>0</show_in_store>
+		                            </email>
+		                            <gpassword translate="label">
+		                                <label>Password</label>
+		                                <frontend_type>password</frontend_type>
+		                                <sort_order>10</sort_order>
+		                                <show_in_default>1</show_in_default>
+		                                <show_in_website>1</show_in_website>
+		                                <show_in_store>0</show_in_store>
+		                            </gpassword>
+                                </fields>
+                               </googlesettings>
+                               <smtpsettings translate="label" module="smtppro">
+                                <label>SMTP Pro Email SMTP Settings</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>997</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>0</show_in_store>
+                                <comment></comment>
+                                <fields>
+	                             <authentication translate="label">
+	                                <label>Authentication</label>
+	                                <comment>This will determine if and how you authenticate with your SMTP server. If you choose no authentication then the username and password below are not used.</comment>
+	                                <frontend_type>select</frontend_type>
+	                                <source_model>smtppro/system_config_source_smtp_authentication</source_model>
+	                                <sort_order>4</sort_order>
+	                                <show_in_default>1</show_in_default>
+	                                <show_in_website>1</show_in_website>
+	                                <show_in_store>0</show_in_store>
+	                            </authentication>
+								<username translate="label">
+								    <comment>If you use Authentication for your SMTP server this is the username used to authenticate.</comment>
+									<label>Username</label>
+									<frontend_type>text</frontend_type>
+									<sort_order>5</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>0</show_in_store>
+								</username>
+								<password translate="label">
+								    <comment>If you use Authentication for your SMTP server this is the password used to authenticate.</comment>
+									<label>Password</label>
+									<frontend_type>password</frontend_type>
+									<sort_order>10</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>0</show_in_store>
+								</password>
+								<host translate="label">
+								    <comment>This is the SMTP server hostname you would like to send your emails through. This is required.</comment>
+	                                <label>Host</label>
+	                                <frontend_type>text</frontend_type>
+	                                <sort_order>14</sort_order>
+	                                <show_in_default>1</show_in_default>
+	                                <show_in_website>1</show_in_website>
+	                                <show_in_store>0</show_in_store>
+	                            </host>
+	                            <port translate="label">
+								    <comment>This is the port on the SMTP server you connect to. The value is optional, it defaults to 25 for none and TLS or 465 for SSL.</comment>
+	                                <label>Port</label>
+	                                <frontend_type>text</frontend_type>
+	                                <sort_order>16</sort_order>
+	                                <show_in_default>1</show_in_default>
+	                                <show_in_website>1</show_in_website>
+	                                <show_in_store>0</show_in_store>
+	                            </port>
+	                             <ssl translate="label">
+	                                <label>SSL Security</label>
+	                                <comment>This will determine if any SSL security should be used to connect to your SMTP server.</comment>
+	                                <frontend_type>select</frontend_type>
+	                                <source_model>smtppro/system_config_source_smtp_ssl</source_model>
+	                                <sort_order>19</sort_order>
+	                                <show_in_default>1</show_in_default>
+	                                <show_in_website>1</show_in_website>
+	                                <show_in_store>0</show_in_store>
+	                            </ssl>
+						  </fields>
+					</smtpsettings>
+			</groups>
+		</system>
+	</sections>
+</config>
