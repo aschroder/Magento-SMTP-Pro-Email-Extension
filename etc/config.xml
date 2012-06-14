@@ -119,7 +119,7 @@
                                 </config>
                                 <tools>
                                     <children>
-                                        <smtppro translate="title" module="backup">
+                                        <smtppro translate="title" module="smtppro">
                                             <title>Email Log</title>
                                         </smtppro>
                                     </children>
