@@ -104,25 +104,32 @@
                 </children>
             </system>
         </menu>
-		<acl>
-			<resources>
-				<admin>
-					<children>
-						<system>
-							<children>
-								<config>
-									<children>
-										<smtppro>
-											<title>SMTP Pro Email Settings</title>
-										</smtppro>
-									</children>
-								</config>
-							</children>
-						</system>
-					</children>
-				</admin>
-			</resources>
-		</acl>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <smtppro  translate="title" module="smtppro">
+                                            <title>SMTP Pro Email Settings</title>
+                                        </smtppro>
+                                    </children>
+                                </config>
+                                <tools>
+                                    <children>
+                                        <smtppro translate="title" module="backup">
+                                            <title>Email Log</title>
+                                        </smtppro>
+                                    </children>
+                                </tools>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
 	</adminhtml>
 	<default>
 		<smtppro>
