@@ -23,8 +23,9 @@ class Aschroder_SMTPPro_Model_Observer {
 		}
 		
 		// For the self test, if we're sending the contact form notify the self test class
+		Mage::log("template=" . $event->getTemplate());
 		if($event->getTemplate() == "contacts_email_email_template") {
-			include_once "app/code/community/Aschroder/SMTPPro/controllers/IndexController.php";
+			include_once Mage::getBaseDir() . "/app/code/community/Aschroder/SMTPPro/controllers/IndexController.php";
 			Aschroder_SMTPPro_IndexController::$CONTACTFORM_SENT = true;
 		}
 		

@@ -86,7 +86,12 @@ class Aschroder_SMTPPro_Model_Newsletter_Template
         
          // If we are using store emails as reply-to's set the header
         if (Mage::helper('smtppro')->isReplyToStoreEmail()) {
-        	$mail->addHeader('Reply-To', $this->getTemplateSenderEmail());
+        	// Later versions of Zend have a method for this, and disallow direct header setting...
+			if (method_exists($mail, "setReplyTo")) {
+				$mail->setReplyTo($this->getTemplateSenderEmail(), $this->getTemplateSenderName());
+			} else {
+	        	$mail->addHeader('Reply-To', $this->getTemplateSenderEmail());
+			}
 			Mage::log('ReplyToStoreEmail is enabled, just set Reply-To header: ' . $this->getTemplateSenderEmail());
         }
 

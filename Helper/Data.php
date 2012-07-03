@@ -30,6 +30,9 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 	public function getGoogleApps() {
 		return Mage::getStoreConfig('system/smtppro/option') == "google";
 	}
+	public function getSES() {
+		return Mage::getStoreConfig('system/smtppro/option') == "ses";
+	}
 	
 	public function getSMTP() {
 		return Mage::getStoreConfig('system/smtppro/option') == "smtp";
@@ -88,7 +91,7 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 			
 			$transport = new Zend_Mail_Transport_Smtp($host, $config);
 			
-		} else {
+		} else if($this->getGoogleApps()) {
 			
 			$email = explode(",", Mage::getStoreConfig('system/googlesettings/email', $id));
 
@@ -112,6 +115,22 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 			$config = array('ssl' => 'tls', 'port' => 587, 'auth' => 'login', 'username' => $email, 'password' => $password);
 			$transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
 
+		} else if($this->getSES()) {
+			
+			// Big thanks to Christopher Valles
+			// https://github.com/christophervalles/Amazon-SES-Zend-Mail-Transport
+			include_once Mage::getBaseDir() . '/app/code/community/Aschroder/SMTPPro/lib/AmazonSES.php';
+			
+			$transport = new App_Mail_Transport_AmazonSES(
+			    array(
+			        'accessKey' => Mage::getStoreConfig('system/sessettings/aws_access_key', $id),
+			        'privateKey' => Mage::getStoreConfig('system/sessettings/aws_private_key', $id) 
+			    )
+			);
+			
+		} else {
+			Mage::log("Disabled, or no matching transport");
+			return null;
 		}
 		
 		Mage::log("Returning transport");
