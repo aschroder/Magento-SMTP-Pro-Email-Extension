@@ -1,0 +1,19 @@
+Magento SMTP Pro Extension
+by Ashley Schroder (aschroder.com)
+
+- Free and Opensource email extension for Magento
+- Easily send Magento transactional emails via Google Apps, Gmail, Amazon SES or your own SMTP server.
+- Test your conifguration from the Magento admin
+- View a log of all emails
+- Improve deliverability with an external SMTP server
+
+FAQ
+
+Q: It's not working
+A: Check for extension conflicts, and check that your host allows outbound SMTP traffic
+
+Q: Does it work with the Mailchimp extension
+A: yes, see: http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/
+
+Q: How do I install it manually
+A: See: http://www.aschroder.com/2010/05/installing-a-magento-extension-manually-via-ftp-or-ssh/ or use modman.
