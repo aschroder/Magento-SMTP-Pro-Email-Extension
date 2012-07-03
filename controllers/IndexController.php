@@ -14,6 +14,7 @@ class Aschroder_SMTPPro_IndexController
 	extends Mage_Adminhtml_Controller_Action {
 		
 	public static $CONTACTFORM_SENT;
+	private $TEST_EMAIL = "hello.default@example.com";
 
 	public function indexAction() {
 
@@ -25,6 +26,7 @@ class Aschroder_SMTPPro_IndexController
 		
 		$success = true;
 		$websiteModel = Mage::app()->getWebsite($this->getRequest()->getParam('website'));
+		$this->TEST_EMAIL = Mage::getStoreConfig('trans_email/ident_general/email', $websiteModel->getId());
 
 		$msg = "ASchroder.com SMTP Pro Self-test results";
 		
@@ -88,7 +90,7 @@ class Aschroder_SMTPPro_IndexController
 			"Regards,\nAshley";
 
 	        $mail->addTo($to)
-	        	->setFrom("ashley.schroder@gmail.com")
+	        	->setFrom($this->TEST_EMAIL)
         		->setSubject($sub)
 	            ->setBodyText($body);
 
@@ -159,7 +161,7 @@ class Aschroder_SMTPPro_IndexController
 		$postObject = new Varien_Object();
 		$postObject->setName("SMTPPro Tester");
 		$postObject->setComment("If you get this email then everything seems to be in order.");
-		$postObject->setEmail("ashley.schroder@gmail.com");
+		$postObject->setEmail($this->TEST_EMAIL);
 		
 		$mailTemplate = Mage::getModel('core/email_template');
 		/* @var $mailTemplate Mage_Core_Model_Email_Template */
