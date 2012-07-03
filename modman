@@ -1,0 +1,7 @@
+# modman module description
+# see https://github.com/colinmollenhour/modman/ for more info
+# author: Ashley
+
+#SMTP Pro
+*	app/code/community/Aschroder/SMTPPro/
+modules/Aschroder_SMTPPro.xml	app/etc/modules/Aschroder_SMTPPro.xml
