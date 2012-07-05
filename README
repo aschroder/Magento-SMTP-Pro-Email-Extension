@@ -17,3 +17,6 @@ A: yes, see: http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailc
 
 Q: How do I install it manually
 A: See: http://www.aschroder.com/2010/05/installing-a-magento-extension-manually-via-ftp-or-ssh/ or use modman.
+
+Q: Self test is failing with "Exception message was: Unable to connect via TLS"
+A: Check that you have OpenSSL installed for your PHP environment.
