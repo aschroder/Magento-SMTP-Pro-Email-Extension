@@ -21,6 +21,9 @@ A: See: http://www.aschroder.com/2010/05/installing-a-magento-extension-manually
 Q: Self test is failing with "Exception message was: Unable to connect via TLS"
 A: Check that you have OpenSSL installed for your PHP environment.
 
+Q: Self test is failing with messages like: "can not open connection to the host, on port 587" or "Connection timed out".
+A: Check that you have the SMTP server host and port correct, if you do - then check with your webhost, many block SMTP connections due to spam. If that's the case, there are plenty of expert Magento hosts on display at magespeedtest.com.
+
 Q: Self test is failing with "Exception message was: 5.7.1 Username and Password not accepted. Learn more at 5.7.1..."
 A: It's actually good advice to learn more here:  http://support.google.com/mail/bin/answer.py?answer=14257. But two things to check: 
 1) that you are really 110% sure you have the right username and password (test it on gmail.com)
