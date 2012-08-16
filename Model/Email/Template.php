@@ -32,13 +32,18 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             return false;
         }
 
-        if (is_null($name)) {
-            $name = substr($email, 0, strpos($email, '@'));
+		$emails = array_values((array)$email);
+        $names = is_array($name) ? $name : (array)$name;
+        $names = array_values($names);
+        foreach ($emails as $key => $email) {
+            if (!isset($names[$key])) {
+                $names[$key] = substr($email, 0, strpos($email, '@'));
+            }
         }
 
-        $variables['email'] = $email;
-        $variables['name'] = $name;
-
+        $variables['email'] = reset($emails);
+        $variables['name'] = reset($names);
+        
         $mail = $this->getMail();
         
        	$dev = Mage::helper('smtppro')->getDevelopmentMode();
@@ -55,12 +60,11 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         	return true;
         }
         
-        if (is_array($email)) {
-            foreach ($email as $emailOne) {
-                $mail->addTo($emailOne, $name);
-            }
-        } else {
-            $mail->addTo($email, '=?utf-8?B?'.base64_encode($name).'?=');
+        // In Magento core they set the Return-Path here, for the sendmail command.
+        // we assume our outbound SMTP server (or Gmail) will set that.
+        
+        foreach ($emails as $key => $email) {
+            $mail->addTo($email, '=?utf-8?B?' . base64_encode($names[$key]) . '?=');
         }
         
 
@@ -84,8 +88,15 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         if (Mage::helper('smtppro')->isReplyToStoreEmail()
 			&& !array_key_exists('Reply-To', $mail->getHeaders())) {
 
-        	$mail->addHeader('Reply-To', $this->getSenderEmail());
+			// Patch for Zend upgrade
+			// Later versions of Zend have a method for this, and disallow direct header setting...
+			if (method_exists($mail, "setReplyTo")) {
+				$mail->setReplyTo($this->getSenderEmail(), $this->getSenderName());
+			} else {
+	        	$mail->addHeader('Reply-To', $this->getSenderEmail());
+			}
 			Mage::log('ReplyToStoreEmail is enabled, just set Reply-To header: ' . $this->getSenderEmail());
+				
         }
 
 		$transport = Mage::helper('smtppro')->getTransport($this->getDesignConfig()->getStore());
@@ -96,16 +107,21 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
 	        $mail->send($transport); // Zend_Mail warning..
 		    Mage::log('Finished sending email');
 		    
-			Mage::dispatchEvent('smtppro_email_after_send', 
-				 array('to' => $email,
-					 'template' => $this->getTemplateId(),
-					 'subject' => $this->getProcessedTemplateSubject($variables),
-					 'html' => !$this->isPlain(),
-					 'email_body' => $text));
-			 	
+		    // Record one email for each receipient
+         	foreach ($emails as $key => $email) {
+				Mage::dispatchEvent('smtppro_email_after_send', 
+					 array('to' => $email,
+						 'template' => $this->getTemplateId(),
+						 'subject' => $this->getProcessedTemplateSubject($variables),
+						 'html' => !$this->isPlain(),
+						 'email_body' => $text));
+				 	
+        	}
+        	
 	        $this->_mail = null;
         }
         catch (Exception $e) {
+        	Mage::logException($e);
             return false;
         }
 

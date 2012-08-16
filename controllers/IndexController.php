@@ -33,35 +33,46 @@ class Aschroder_SMTPPro_IndexController
 		
 		
 		$googleapps = Mage::helper('smtppro')->getGoogleApps();
+		$smtpEnabled = Mage::helper('smtppro')->getSMTP();
+		$sesEnabled = Mage::helper('smtppro')->getSES();
 		
 		if($googleapps) {
 			$msg = $msg . "<br/>Using Google Apps/Gmail configuration options";
 			$host = "smtp.gmail.com";
 			$port = 587;
-		} else {
+		} else if ($smtpEnabled) {
 			$msg = $msg . "<br/>Using SMTP configuration options";
 			$host = Mage::getStoreConfig('system/smtpsettings/host', $websiteModel->getId());
 			$port = Mage::getStoreConfig('system/smtpsettings/port', $websiteModel->getId());
-		}
-		
-
-		$fp = false;
-		
-		try {
-			$fp = fsockopen($host, $port, $errno, $errstr, 15);
-		} catch ( Exception $e) {
-			// An error will be reported below.
-		}
-
-		Mage::log("Complete");
-
-		if (!$fp) {
-			$success = false;
-			$msg = $msg . "<br/>Failed to connect to SMTP server. Reason: " . $errstr . "(" . $errno . ")";
-		 	$msg = $msg . "<br/> This extension requires an outbound SMTP connection on port: " . $port;
+		} else if ($sesEnabled) {
+			// no connectivity test - either disabled or SES...
+			$msg = $msg . "<br/> Connection to Amazon SES server not tested (...yet)";
+			Mage::log("skipped, SES.");
 		} else {
-			$msg = $msg . "<br/> Connection to Host SMTP server successful.";
-			fclose($fp);
+			$msg = $msg . "<br/> extension disabled, cannot test outbound connectivity";
+			Mage::log("skipped, disabled.");
+		}
+		
+
+		if ($googleapps || $smtpEnabled) {
+			$fp = false;
+			
+			try {
+				$fp = fsockopen($host, $port, $errno, $errstr, 15);
+			} catch ( Exception $e) {
+				// An error will be reported below.
+			}
+	
+			Mage::log("Complete");
+	
+			if (!$fp) {
+				$success = false;
+				$msg = $msg . "<br/>Failed to connect to SMTP server. Reason: " . $errstr . "(" . $errno . ")";
+			 	$msg = $msg . "<br/> This extension requires an outbound SMTP connection on port: " . $port;
+			} else {
+				$msg = $msg . "<br/> Connection to Host SMTP server successful.";
+				fclose($fp);
+			}
 		}
 
 		$to = Mage::getStoreConfig('contacts/email/recipient_email', $websiteModel->getId());
@@ -115,8 +126,10 @@ class Aschroder_SMTPPro_IndexController
 		}
 		
 		// Now we test that the actual core overrides are occuring as expected.
-		// We trigger the password forgot email, as though a user had done so.
+		// We trigger the contact form email, as though a user had done so.
 
+		Mage::log("Actual contact form submit test...");
+		
 		self::$CONTACTFORM_SENT = false;
 		$this->_sendTestContactFormEmail();
 		
@@ -151,7 +164,7 @@ class Aschroder_SMTPPro_IndexController
 		$mailTemplate = Mage::getModel('core/email_template');
 		/* @var $mailTemplate Mage_Core_Model_Email_Template */
 		
-		include 'app/code/core/Mage/Contacts/controllers/IndexController.php';
+		include Mage::getBaseDir() . '/app/code/core/Mage/Contacts/controllers/IndexController.php';
 		
 		$mailTemplate->setDesignConfig(array('area' => 'frontend'))
 			->setReplyTo($postObject->getEmail())
