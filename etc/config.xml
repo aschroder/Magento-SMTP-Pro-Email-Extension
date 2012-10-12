@@ -1,72 +1,73 @@
 <?xml version="1.0"?>
 <!--
-	/**
-	* SMTP Pro integration.
-	*
-	* @package    Aschroder_SMTPPro
-	* @author     Ashley Schroder (aschroder.com)
-	*/
+    /**
+    * SMTP Pro integration.
+    *
+    * @package    Aschroder_SMTPPro
+    * @author     Ashley Schroder (aschroder.com)
+    */
 -->
 <config>
-	<modules>
-		<Aschroder_SMTPPro>
-			<version>1.4.3</version>
-		</Aschroder_SMTPPro>
-	</modules>
-	<frontend>
-    		<routers>
-      			<smtppro>
-      				  <use>standard</use>
-       				 <args>
-       				   <module>Aschroder_SMTPPro</module>
-       				   <frontName>smtppro</frontName>
-       				 </args>
-      			</smtppro>
-    		</routers>
-  	</frontend>
-	<global>
-		<helpers>
-			<smtppro><class>Aschroder_SMTPPro_Helper</class></smtppro>
-		</helpers>
-		<blocks>
-			<smtppro>
-				<class>Aschroder_SMTPPro_Block</class>
-			</smtppro>
-		</blocks>
-		<models>
+    <modules>
+        <Aschroder_SMTPPro>
+            <version>1.4.4</version>
+        </Aschroder_SMTPPro>
+    </modules>
+    <frontend>
+            <routers>
+                  <smtppro>
+                        <use>standard</use>
+                        <args>
+                          <module>Aschroder_SMTPPro</module>
+                          <frontName>smtppro</frontName>
+                        </args>
+                  </smtppro>
+            </routers>
+      </frontend>
+    <global>
+        <helpers>
+            <smtppro><class>Aschroder_SMTPPro_Helper</class></smtppro>
+        </helpers>
+        <blocks>
+            <smtppro>
+                <class>Aschroder_SMTPPro_Block</class>
+            </smtppro>
+        </blocks>
+        <models>
             <smtppro>
                 <class>Aschroder_SMTPPro_Model</class>
-				<resourceModel>smtppro_mysql4</resourceModel>
+                <resourceModel>smtppro_mysql4</resourceModel>
             </smtppro>
              <smtppro_mysql4>
                 <class>Aschroder_SMTPPro_Model_Mysql4</class>
                 <entities>
+                    <queue><table>smtppro_async_queue</table></queue>
                     <email_log><table>smtppro_email_log</table></email_log>
                 </entities>
             </smtppro_mysql4>
-			<newsletter>
-				<rewrite>
-					<template>Aschroder_SMTPPro_Model_Newsletter_Template</template>
-				</rewrite>
-			</newsletter>
-			<core>
-				<rewrite>
-					<email>Aschroder_SMTPPro_Model_Email</email>
-					<email_template>Aschroder_SMTPPro_Model_Email_Template</email_template>
-				</rewrite>
-			</core>
-		</models>
-		<resources>
-			<smtppro_setup>
-				<setup>
-					<module>Aschroder_SMTPPro</module>
-					<class>Aschroder_SMTPPro_Model_Mysql4_Setup</class>
-				</setup>
-				<connection>
-					<use>core_setup</use>
-				</connection>
-			</smtppro_setup>
-			<smtppro_write>
+            <newsletter>
+                <rewrite>
+                    <template>Aschroder_SMTPPro_Model_Newsletter_Template</template>
+                </rewrite>
+            </newsletter>
+            <core>
+                <rewrite>
+                    <email>Aschroder_SMTPPro_Model_Email</email>
+                    <email_template>Aschroder_SMTPPro_Model_Email_Template</email_template>
+                </rewrite>
+            </core>
+        </models>
+        <resources>
+            <smtppro_setup>
+                <setup>
+                    <module>Aschroder_SMTPPro</module>
+                    <class>Aschroder_SMTPPro_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </smtppro_setup>
+            <smtppro_write>
                 <connection>
                     <use>core_write</use>
                 </connection>
@@ -76,21 +77,21 @@
                     <use>core_read</use>
                 </connection>
             </smtppro_read>
-		</resources> 
-		<events>
-		  <smtppro_email_after_send>
-		    <observers>
-		      <smtppro_email_after_send_observer>
-		        <type>singleton</type>
-		        <class>smtppro/observer</class>
-		        <method>log</method>
-		      </smtppro_email_after_send_observer>
-		    </observers>
-		  </smtppro_email_after_send>
-		</events>
-	</global>
-	<adminhtml>
-	 <menu>
+        </resources>
+        <events>
+          <smtppro_email_after_send>
+            <observers>
+              <smtppro_email_after_send_observer>
+                <type>singleton</type>
+                <class>smtppro/observer</class>
+                <method>log</method>
+              </smtppro_email_after_send_observer>
+            </observers>
+          </smtppro_email_after_send>
+        </events>
+    </global>
+    <adminhtml>
+     <menu>
             <system>
                 <children>
                     <tools>
@@ -104,32 +105,25 @@
                 </children>
             </system>
         </menu>
-		<acl>
-			<resources>
-				<admin>
-					<children>
-						<system>
-							<children>
-								<config>
-									<children>
-										<smtppro>
-											<title>SMTP Pro Email Settings</title>
-										</smtppro>
-									</children>
-								</config>
-					            <tools>
-					              <children>
-					                <smtppro>
-					                  <title>Email Log</title>
-					                </smtppro>
-					              </children>
-					            </tools>
-							</children>
-						</system>
-					</children>
-				</admin>
-			</resources>
-		</acl>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <smtppro>
+                                            <title>SMTP Pro Email Settings</title>
+                                        </smtppro>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
         <translate>
             <modules>
                 <Aschroder_SMTPPro>
@@ -139,15 +133,15 @@
                 </Aschroder_SMTPPro>
             </modules>
         </translate>
-	</adminhtml>
-	<default>
-		<smtppro>
-			<settings>
-				<enabled>0</enabled>
-				<store_addresses>0</store_addresses>
-				<username></username>
-				<password></password>
-			</settings>
-		</smtppro>
-	</default>
+    </adminhtml>
+    <default>
+        <smtppro>
+            <settings>
+                <enabled>0</enabled>
+                <store_addresses>0</store_addresses>
+                <username></username>
+                <password></password>
+            </settings>
+        </smtppro>
+    </default>
 </config>
