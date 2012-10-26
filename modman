@@ -4,4 +4,4 @@
 
 #SMTP Pro
 *	app/code/community/Aschroder/SMTPPro/
-modules/Aschroder_SMTPPro.xml	app/etc/modules/Aschroder_SMTPPro.xml
+modules/Aschroder_SMTPPro.xml	app/etc/modules/xxAschroder_SMTPPro.xml
