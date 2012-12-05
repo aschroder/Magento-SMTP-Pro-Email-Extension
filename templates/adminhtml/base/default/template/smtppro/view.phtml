@@ -12,7 +12,7 @@
         <h3><?php echo $this->__('Email Details') ?></h3>
     </div>
     <div class="email-detail">
-	    <p><strong><?php echo $this->__('To:') ?></strong> <?php echo $email->getTo(); ?></p>
+	    <p><strong><?php echo $this->__('To:') ?></strong> <?php echo $email->getEmailTo(); ?></p>
 	    <p><strong><?php echo $this->__('Subject:') ?></strong> <?php echo $email->getSubject(); ?></p>
 	    <p><strong><?php echo $this->__('Template:') ?></strong> <?php echo $email->getTemplate(); ?></p>
 	    <p><strong><?php echo $this->__('Sent:') ?></strong> <?php echo $email->getLogAt(); ?></p>

@@ -141,7 +141,7 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
     public function log($to, $template, $subject, $email, $isHtml) {
     	
         $log = Mage::getModel('smtppro/email_log')
-            ->setTo($to)
+            ->setEmailTo($to)
             ->setTemplate($template)
             ->setSubject($subject)
             ->setEmailBody($isHtml?$email:nl2br($email))
