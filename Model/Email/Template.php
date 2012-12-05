@@ -102,15 +102,15 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
 		$transport = Mage::helper('smtppro')->getTransport($this->getDesignConfig()->getStore());
 		
         try {
-		    
-                // adding new Event dispatch in case anyone wants to interrogate an email before being sent
-                // throwing an Exception in the Event Observer will prevent the mail being sent, 
-                // and will return false to the calling function
-                Mage::dispatchEvent('smtppro_email_before_send', array(
+
+        	// adding new Event dispatch in case anyone wants to interrogate an email before being sent
+        	// throwing an Exception in the Event Observer will prevent the mail being sent,
+        	// and will return false to the calling function
+        	Mage::dispatchEvent('smtppro_email_before_send', array(
                     'mail' => $mail,
                     'template' => $this->getTemplateId(),
                      'subject' => $this->getProcessedTemplateSubject($variables),
-                    ));
+        	));
                 
         	Mage::log('About to send email');
 	        $mail->send($transport); // Zend_Mail warning..
@@ -128,8 +128,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         	}
         	
 	        $this->_mail = null;
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
         	Mage::logException($e);
             return false;
         }
