@@ -14,7 +14,7 @@ class Aschroder_SMTPPro_Block_Log_Grid extends Mage_Adminhtml_Block_Widget_Grid
         parent::__construct();
         $this->setId('emailLogGrid');
         $this->setDefaultSort('email_id');
-        $this->setDefaultDir('ASC');
+		$this->setDefaultDir('DESC');
     }
 
     protected function _prepareCollection()
@@ -44,10 +44,10 @@ class Aschroder_SMTPPro_Block_Log_Grid extends Mage_Adminhtml_Block_Widget_Grid
         	'width'     => '160px',
             'index'     => 'subject',
         ));
-        $this->addColumn('to', array(
+        $this->addColumn('email_to', array(
             'header'    => Mage::helper('adminhtml')->__('To'),
         	'width'     => '160px',
-            'index'     => 'to',
+            'index'     => 'email_to',
         ));
 
 
