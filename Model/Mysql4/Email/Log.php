@@ -14,4 +14,49 @@ class Aschroder_SMTPPro_Model_Mysql4_Email_Log extends Mage_Core_Model_Mysql4_Ab
     protected function _construct() {
         $this->_init('smtppro/email_log', 'email_id');
     }
+
+    /**
+     * Clean up log table.
+     * 
+     * @param int|null $lifetime Lifetime of entries in days
+     * @return Aschroder_SMTPPro_Model_Mysql4_Email_Log
+     */
+    public function clean($lifetime = null) {
+        if (!Mage::getStoreConfig(Aschroder_SMTPPro_Model_Email_Log::XML_PATH_CLEANLOG)) {
+            return $this;
+        }
+        if (is_null($lifetime)) {
+            $lifetime = Mage::getStoreConfig(
+                Aschroder_SMTPPro_Model_Email_Log::XML_PATH_CLEANLOG_AFTER_DAYS
+            );
+        }
+        $cleanTime = $this->formatDate(time() - $lifetime * 3600 * 24, false);
+
+        $readAdapter    = $this->_getReadAdapter();
+        $writeAdapter   = $this->_getWriteAdapter();
+
+        while (true) {
+            $select = $readAdapter->select()
+                ->from(
+                    $this->getMainTable(),
+                    $this->getIdFieldName()
+                )
+                ->where('log_at < ?', $cleanTime)
+                ->order('log_at ASC')
+                ->limit(100);
+
+            $logIds = $readAdapter->fetchCol($select);
+            
+            if (!$logIds) {
+                break;
+            }
+
+            $condition = array($this->getIdFieldName() . ' IN (?)' => $logIds);
+
+            // remove email log entries
+            $writeAdapter->delete($this->getMainTable(), $condition);
+        }
+        
+        return $this;
+    }
 }

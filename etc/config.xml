@@ -87,6 +87,15 @@
 		      </smtppro_email_after_send_observer>
 		    </observers>
 		  </smtppro_email_after_send>
+            <log_log_clean_after>
+                <observers>
+                    <smtppro_email_log_clean>
+                        <type>singleton</type>
+                        <class>smtppro/observer</class>
+                        <method>cleanOldLogs</method>
+                    </smtppro_email_log_clean>
+                </observers>
+            </log_log_clean_after>
 		</events>
 	</global>
 	<adminhtml>
@@ -149,5 +158,11 @@
 				<password></password>
 			</settings>
 		</smtppro>
+		<system>
+			<smtppro>
+				<cleanlog>1</cleanlog>
+				<cleanlog_after_days>90</cleanlog_after_days>
+			</smtppro>
+		</system>
 	</default>
 </config>
