@@ -1,5 +1,5 @@
 {
-  "name": "ashroder/smtp_pro",
+  "name": "aschroder/smtp_pro",
   "type": "magento-module",
   "description": "sending Magento mail through an external smtp-server",
   "homepage":"https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension",
