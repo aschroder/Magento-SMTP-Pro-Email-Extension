@@ -130,6 +130,13 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
 	        $this->_mail = null;
         } catch (Exception $e) {
         	Mage::logException($e);
+			Mage::dispatchEvent('smtppro_email_after_send', array(
+				'mail'  => $mail,
+				'template'  => $this,
+				'email_body'    => $text,
+				'variables'     => $variables,
+			));
+
             return false;
         }
 
