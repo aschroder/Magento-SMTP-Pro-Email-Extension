@@ -30,4 +30,8 @@ class Aschroder_SMTPPro_Model_Observer {
 		
 	}
 	
+	public function cleanOldLogs(Varien_Event_Observer $observer) {
+	    $log = Mage::getModel('smtppro/email_log')->clean();
+	}
+	
 }
