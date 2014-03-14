@@ -3,17 +3,9 @@
 # author: Ashley
 
 #SMTP Pro
-modules/Aschroder_SMTPPro.xml  app/etc/modules/Aschroder_SMTPPro.xml
+app/etc/modules/Aschroder_SMTPPro.xml  app/etc/modules/Aschroder_SMTPPro.xml
 
-Block                                     app/code/community/Aschroder/SMTPPro/Block
-controllers                               app/code/community/Aschroder/SMTPPro/controllers
-etc                                       app/code/community/Aschroder/SMTPPro/etc
-Helper                                    app/code/community/Aschroder/SMTPPro/Helper
-Model                                     app/code/community/Aschroder/SMTPPro/Model
-sql                                       app/code/community/Aschroder/SMTPPro/sql
-
-locale/de_DE/*                            app/locale/de_DE/
-
-lib/*                                     lib/
-
-templates/adminhtml/base/default/template/smtppro/  app/design/adminhtml/default/default/template/smtppro/
+app/code/local/Aschroder/SMTPPro/               app/code/local/Aschroder/SMTPPro/
+app/adminhtml/base/default/template/smtppro/    app/design/adminhtml/default/default/template/smtppro/
+app/locale/de_DE/Aschroder_SMTPPro.csv          app/locale/de_DE/Aschroder_SMTPPro.csv
+lib/AmazonSES.php                               lib/AmazonSES.php

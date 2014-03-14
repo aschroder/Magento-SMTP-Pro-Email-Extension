@@ -3,7 +3,7 @@
     <modules>
         <Aschroder_SMTPPro>
             <active>true</active>
-           <codePool>community</codePool>
+           <codePool>local</codePool>
        </Aschroder_SMTPPro>
     </modules>
 </config>

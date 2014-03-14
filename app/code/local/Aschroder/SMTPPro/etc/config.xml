@@ -99,13 +99,13 @@
 		</events>
 	</global>
 	<adminhtml>
-	 <menu>
+	   <menu>
             <system>
                 <children>
                     <tools>
                         <children>
                             <smtppro translate="title" module="smtppro">
-                                <title>Email Log</title>
+                                <title>SMTPPro - Email Log</title>
                                 <action>smtppro/log</action>
                             </smtppro>
                         </children>

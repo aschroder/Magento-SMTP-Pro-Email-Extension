@@ -15,7 +15,7 @@ $installer->startSetup();
 Mage::log("Running installer");
 
 $installer->run("
-CREATE TABLE `{$this->getTable('smtppro_email_log')}` (
+CREATE TABLE IF NOT EXISTS `{$this->getTable('smtppro_email_log')}` (
   `email_id` int(10) unsigned NOT NULL auto_increment,
   `log_at` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `to` varchar(255) NOT NULL default '',
