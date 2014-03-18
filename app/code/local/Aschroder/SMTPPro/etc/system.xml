@@ -31,6 +31,7 @@
                            <show_in_website>0</show_in_website>
                            <show_in_store>0</show_in_store>
                         </store_addresses>
+                        <!-- //TODO BY @NELKAAKE: temporarily disabling this functionality because it is confusing. We will reintroduce developer tools later.
                         <development translate="label comment">
                            <label>Development Mode options</label>
                            <comment>These options can be used during development and testing to control the destination of all emails, or to stop Magento emails sending. (Note: if extensions do not send emails 'the magento way' then they will not be supressed)</comment>
@@ -41,6 +42,7 @@
                            <show_in_website>0</show_in_website>
                            <show_in_store>0</show_in_store>
                         </development>
+                        -->
                         <logenabled translate="label comment">
                            <label>Log all messages</label>
                            <comment>This will log all outbound emails to the table smtppro_email_log and allow viewing within the admin interface from System->Tools->Email Log.</comment>

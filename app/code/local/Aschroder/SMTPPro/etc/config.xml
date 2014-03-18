@@ -88,26 +88,48 @@
                 </observers>
             </log_log_clean_after>
 
-            <!-- SMTP Modules: -->
+
+
+            <!-- // SMTP Modules BEGIN // -->
             <aschroder_smtppro_template_before_send>
                 <observers>
                     <amazonses_before_send_template_observer>
                         <type>singleton</type>
                         <class>smtppro/amazonses_observer</class>
-                        <method>beforeSendTemplate</method>
+                        <method>beforeSend</method>
                     </amazonses_before_send_template_observer>
                     <googleapps_before_send_template_observer>
                         <type>singleton</type>
                         <class>smtppro/googleapps_observer</class>
-                        <method>beforeSendTemplate</method>
+                        <method>beforeSend</method>
                     </googleapps_before_send_template_observer>
                     <smtp_before_send_template_observer>
                         <type>singleton</type>
                         <class>smtppro/smtp_observer</class>
-                        <method>beforeSendTemplate</method>
+                        <method>beforeSend</method>
                     </smtp_before_send_template_observer>
                 </observers>
             </aschroder_smtppro_template_before_send>
+            <aschroder_smtppro_before_send>
+                <observers>
+                    <amazonses_before_send_template_observer>
+                        <type>singleton</type>
+                        <class>smtppro/amazonses_observer</class>
+                        <method>beforeSend</method>
+                    </amazonses_before_send_template_observer>
+                    <googleapps_before_send_template_observer>
+                        <type>singleton</type>
+                        <class>smtppro/googleapps_observer</class>
+                        <method>beforeSend</method>
+                    </googleapps_before_send_template_observer>
+                    <smtp_before_send_template_observer>
+                        <type>singleton</type>
+                        <class>smtppro/smtp_observer</class>
+                        <method>beforeSend</method>
+                    </smtp_before_send_template_observer>
+                </observers>
+            </aschroder_smtppro_before_send>
+            <!-- // SMTP Modules END // -->
 
 		</events>
 	</global>

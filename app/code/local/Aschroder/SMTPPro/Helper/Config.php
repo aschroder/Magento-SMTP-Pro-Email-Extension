@@ -57,5 +57,10 @@ class Aschroder_SMTPPro_Helper_Config extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfigFlag('system/smtppro/log_debug', $storeId);
     }
+
+    public function isSystemSMTPDisabled($storeId = null)
+    {
+        return Mage::getStoreConfigFlag('system/smtp/disable', $storeId);
+    }
     
 }

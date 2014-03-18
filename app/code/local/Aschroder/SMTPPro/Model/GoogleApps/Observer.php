@@ -12,7 +12,7 @@ class Aschroder_SMTPPro_Model_GoogleApps_Observer extends Varien_Object
     /**
      * Expects observer with:
      * 'mail', the mail about to be sent
-     * 'template', template model for email being sent
+     * ['template', template model for email being sent] - only if being sent from a template
      * 'email', the email object initiating the send
      * 'transport', an initially empty transport Object, will be used if set.
      *
@@ -21,7 +21,7 @@ class Aschroder_SMTPPro_Model_GoogleApps_Observer extends Varien_Object
     public function beforeSend($observer) 
     {
         $event = $observer->getEvent();
-        $storeId = $event->getTemplate()->getStoreId();
+        $storeId = $event->getTemplate() ? $event->getTemplate()->getStoreId() : null;
 
         if(!Mage::helper('smtppro/config')->isGoogleAppsEnabled($storeId)) {
             return $this;
@@ -59,33 +59,5 @@ class Aschroder_SMTPPro_Model_GoogleApps_Observer extends Varien_Object
 
         return $this;
     }
-
-    /**
-     * Expects observer with:
-     * 'mail', the mail about to be sent
-     * 'template', the template being used
-     * 'variables', the variables used in the template
-     * 'transport', an initially empty transport Object, will be used if set.
-     * @todo this needs to be used after I update the Email.php model
-     * @param $observer
-     */
-    // public function beforeSendTemplate($observer) 
-    // {
-    //     $e = $observer->getEvent();
-    //     $storeId = $e->getTemplate()->getStoreId();
-
-    //     $transport = new App_Mail_Transport_GoogleApps(
-    //         array(
-    //             'accessKey' => Mage::getStoreConfig('system/sessettings/aws_access_key', $storeId),
-    //             'privateKey' => Mage::getStoreConfig('system/sessettings/aws_private_key', $storeId) 
-    //         )
-    //     );
-        
-    //     $transport = $e->getTransport();
-    //     $transport->setTransport($transport);
-
-    //     return $this;
-    // }
-
 	
 }

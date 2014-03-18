@@ -15,63 +15,66 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
     {
         $_helper = Mage::helper('smtppro');
 
-        // If it's not enabled, just return the parent result.
-        if (!$_helper->isEnabled()) {
-            $_helper->log('SMTP Pro is not enabled, fall back to parent class'); // commenting this because we don't want to flood the log if the store is not using the extension any more.
-            return parent::send($email, $name, $variables);
-        }
-
-        $_helper->log("SMTP Pro is sending an email to recipients...");
-
-        // As per parent class - except addition of before and after send events
-        if (!$this->isValidForSend()) {
-            $_helper->log('Email is not valid for sending, this is a core error that often means there\'s a problem with your email templates.');
-            Mage::logException(new Exception('This letter cannot be sent.')); // translation is intentionally omitted
-            return false;
-        }
-
-        $emails = array_values((array)$email);
-        $names = $this->_buildNames($emails, $name);
-
-        $variables['email'] = reset($emails);
-        $variables['name'] = reset($names);
-
-        $_helper->log("Sending variables: ". print_r($variables['email'], true));
-        $_helper->log("Sending variables: ". print_r($variables['name'], true));
-
-        $this->_updateTemplateStoreId($variables);
-
-        $this->_updateSMTPSettings();
-
-        $mail = $this->getMail();
-
-        $this->_updateReturnPath();
-
-        foreach ($emails as $key => $email) {
-            $mail->addTo($email, '=?utf-8?B?' . base64_encode($names[$key]) . '?=');
-        }
-
-        $this->setUseAbsoluteLinks(true);
-        $text = $this->getProcessedTemplate($variables, true);
-
-        if($this->isPlain()) {
-            $mail->setBodyText($text);
-        } else {
-            $mail->setBodyHTML($text);
-        }
-
-        $mail->setSubject('=?utf-8?B?' . base64_encode($this->getProcessedTemplateSubject($variables)) . '?=');
-        $mail->setFrom($this->getSenderEmail(), $this->getSenderName());
-
         try {
+            // If it's not enabled, just return the parent result.
+            if (!$_helper->isEnabled()) {
+                $_helper->log('SMTP Pro is not enabled, fall back to parent class'); // commenting this because we don't want to flood the log if the store is not using the extension any more.
+                return parent::send($email, $name, $variables);
+            }
+
+            $_helper->log("SMTP Pro is sending an email to recipients...");
+
+            // As per parent class - except addition of before and after send events
+            if (!$this->isValidForSend()) {
+                $_helper->log('Email is not valid for sending, this is a core error that often means there\'s a problem with your email templates.');
+                Mage::logException(new Exception('This letter cannot be sent.')); // translation is intentionally omitted
+                return false;
+            }
+
+            $emails = array_values((array)$email);
+            $names = $this->_buildNames($emails, $name);
+
+            $variables['email'] = reset($emails);
+            $variables['name'] = reset($names);
+
+            $_helper->log("Sending variables: ". print_r($variables['email'], true));
+            $_helper->log("Sending variables: ". print_r($variables['name'], true));
+
+            $this->_updateTemplateStoreId($variables);
+
+            $this->_updateSMTPSettings();
+
+            $mail = $this->getMail();
+
+            $this->_updateReturnPath();
+
+            foreach ($emails as $key => $email) {
+                $mail->addTo($email, '=?utf-8?B?' . base64_encode($names[$key]) . '?=');
+            }
+
+            $this->setUseAbsoluteLinks(true);
+            $text = $this->getProcessedTemplate($variables, true);
+
+            if($this->isPlain()) {
+                $mail->setBodyText($text);
+            } else {
+                $mail->setBodyHTML($text);
+            }
+
+            $mail->setSubject('=?utf-8?B?' . base64_encode($this->getProcessedTemplateSubject($variables)) . '?=');
+            $mail->setFrom($this->getSenderEmail(), $this->getSenderName());
+
+
             $this->_transportEmail($emails, $mail, $variables, $text);
+
+            $_helper->log("SMTP Pro email sending process complete.");
+            
         } catch (Exception $e) {
             $this->_mail = null;
-            $_helper->log($e);
+            $_helper->log("EXCEPTION OCCURRED: " . $e->getMessage());
+            Mage::logException($e);
             return false;
         }
-
-        $_helper->log("SMTP Pro email sending process complete.");
 
         return true;
     }
@@ -142,7 +145,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             'transport' => $transport
         ));
 
-        $emailTransport = $tranport->getEmailTransport();
+        $emailTransport = $transport->getEmailTransport();
         if (!empty($emailTransport)) {
             $mail->send($emailTransport);
         } else {
