@@ -61,7 +61,7 @@ class Aschroder_SMTPPro_Model_Email extends Mage_Core_Model_Email
             ));
 
 	    } catch(Exception $e) {
-            Mage::helper('smtppro/debug')->log("WARNING: " . $e->getMessage());
+            Mage::helper('smtppro/debug')->log("EXCEPTION OCCURRED: " . $e->getMessage());
             Mage::logException($e);
             return false;
 	    }

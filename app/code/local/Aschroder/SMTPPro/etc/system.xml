@@ -22,7 +22,8 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </option>
-				        <store_addresses translate="label">
+                        <!-- //TODO BY @NELKAAKE: temporarily disabling this functionality because it is confusing. We will reintroduce developer tools later.
+				                <store_addresses translate="label">
                            <label>Use Store Email Addresses for Reply-to</label>
                            <frontend_type>select</frontend_type>
                            <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -31,7 +32,6 @@
                            <show_in_website>0</show_in_website>
                            <show_in_store>0</show_in_store>
                         </store_addresses>
-                        <!-- //TODO BY @NELKAAKE: temporarily disabling this functionality because it is confusing. We will reintroduce developer tools later.
                         <development translate="label comment">
                            <label>Development Mode options</label>
                            <comment>These options can be used during development and testing to control the destination of all emails, or to stop Magento emails sending. (Note: if extensions do not send emails 'the magento way' then they will not be supressed)</comment>
