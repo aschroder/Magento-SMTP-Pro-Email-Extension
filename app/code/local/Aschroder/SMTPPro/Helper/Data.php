@@ -9,45 +9,8 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
-	
-	public function isEnabled()
-	{
-		return Mage::getStoreConfig('system/smtppro/option') != "disabled";
-	}
-	
-	/**
-	 * @deprecated use debug helper instead.
-	 * @return boolean
-	 */
-	public function isLogEnabled()
-	{
-		return Mage::helper('smtppro/debug')->isLogEnabled();
-	}
-
-	public function isReplyToStoreEmail()
-	{
-		return Mage::getStoreConfig('system/smtppro/store_addresses');
-	}
-	
-	public function getDevelopmentMode()
-	{
-		return Mage::helper('smtppro/debug')->getDevelopmentMode();
-	}
-	
-	public function getGoogleApps()
-	{
-		return Mage::getStoreConfig('system/smtppro/option') == "google";
-	}
-	public function getSES()
-	{
-		return Mage::getStoreConfig('system/smtppro/option') == "ses";
-	}
-	
-	public function getSMTP()
-	{
-		return Mage::getStoreConfig('system/smtppro/option') == "smtp";
-	}
+class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract 
+{
 	
 	// Keeping this function for backward compatibility 
 	// It will be dropped eventually so call getTransport() from now on!
@@ -64,8 +27,6 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 	
 	public function getTransport($id = null) 
 	{
-		
-		
 		if($this->getSMTP()){
 			
 			$username = Mage::getStoreConfig('system/smtpsettings/username', $id);
@@ -75,23 +36,23 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 			$ssl = Mage::getStoreConfig('system/smtpsettings/ssl', $id);
 			$auth = Mage::getStoreConfig('system/smtpsettings/authentication', $id);
 	
-			Mage::log('Preparing the SMTP Email transport, details are: \n '
+			$this->log('Preparing the SMTP Email transport, details are: \n '
 			 . "  username=" . $username . "\n"
 			 . "  password=" . "MASKED"  /*. $password  */ . "\n" 
 			 . "  host=" . $host . "\n"
 			 . "  port=" . $port . "\n"
 			 . "  ssl=" . $ssl . "\n"
 			 . "  auth=" . $auth . "\n"
-			 );
+			);
 			 
 			 // Set up the config array
 			 
 			 $config = array();
 			 
 			 if ($auth != "none") {
-					$config['auth'] = $auth;
-					$config['username'] = $username;
-	                $config['password'] = $password;
+				$config['auth'] = $auth;
+				$config['username'] = $username;
+                $config['password'] = $password;
 			 }
 			 
 			 if ($port) {
@@ -116,7 +77,7 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 				$email = $email[array_rand($email)];
 			} else {
 				
-				Mage::log(
+				$this->log(
 					"No email configured - 
 					you need to specify one in the magento configuration, 
 					otherwise your connection will fail");
@@ -124,7 +85,7 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 			
 			$password = Mage::getStoreConfig('system/googlesettings/gpassword', $id);
 			
-			Mage::log('Preparing the Google Apps/Gmail Email transport, email to send with is: ' . $email);
+			$this->log('Preparing the Google Apps/Gmail Email transport, email to send with is: ' . $email);
 			$config = array('ssl' => 'tls', 'port' => 587, 'auth' => 'login', 'username' => $email, 'password' => $password);
 			$transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
 
@@ -142,15 +103,26 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 			);
 			
 		} else {
-			Mage::log("Disabled, or no matching transport");
+			$this->log("Disabled, or no matching transport");
 			return null;
 		}
 		
-		Mage::log("Returning transport");
+		$this->log("Returning transport");
 		
 		return $transport;
 	}
 	
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * @deprecated please use the debug helper emailLog() function with the same parameters.
 	 * @param  [type] $to       [description]
@@ -168,4 +140,62 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
         return Mage::helper('smtppro/debug')->emailLog($to, $template, $subject, $email, $isHtml);
     }
 	
+	public function isEnabled()
+	{
+		return Mage::helper('smtppro/config')->isEnabled();
+	}
+	
+	/**
+	 * @deprecated use debug helper instead.
+	 * @return boolean
+	 */
+	public function isLogEnabled()
+	{
+		return Mage::helper('smtppro/config')->isLogEnabled();
+	}
+
+	/**
+	 * @deprecated use config helper instead
+	 * @return boolean
+	 */
+	public function isReplyToStoreEmail()
+	{
+		return Mage::helper('smtppro/config')->isReplyToStoreEmail();
+	}
+	
+	/**
+	 * @deprecated use config helper instead
+	 * @return boolean
+	 */
+	public function getDevelopmentMode()
+	{
+		return Mage::helper('smtppro/config')->getDevelopmentMode();
+	}
+	
+	/**
+	 * @deprecated use config helper instead
+	 * @return boolean
+	 */
+	public function getGoogleApps()
+	{
+		return Mage::helper('smtppro/config')->getGoogleApps();
+	}
+	/**
+	 * @deprecated use config helper instead
+	 * @return boolean
+	 */
+	public function getSES()
+	{
+		return Mage::helper('smtppro/config')->getSES();
+	}
+	
+	/**
+	 * @deprecated use config helper instead
+	 * @return boolean
+	 */
+	public function getSMTP()
+	{
+		return Mage::helper('smtppro/config')->getSMTP();
+	}
+
 }
