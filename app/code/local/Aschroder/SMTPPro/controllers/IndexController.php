@@ -10,19 +10,23 @@
  */
 
 
-class Aschroder_SMTPPro_IndexController
-	extends Mage_Adminhtml_Controller_Action {
+class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action 
+{
 		
-	public static $CONTACTFORM_SENT;
+	/**
+	 * @deprecated DO NOT USE.
+	 */
+	public static $CONTACTFORM_SENT = true;
 	private $TEST_EMAIL = "hello.default@example.com";
 
-	public function indexAction() {
+	public function indexAction() 
+	{
 
-		Mage::log("Running SMTP Pro Self Test");
+		Mage::helper('smtppro')->log("Running SMTP Pro Self Test");
 		
 		#report development mode for debugging
 		$dev = Mage::helper('smtppro')->getDevelopmentMode();
-		Mage::log("Development mode: " . $dev);
+		Mage::helper('smtppro')->log("Development mode: " . $dev);
 		
 		$success = true;
 		$websiteModel = Mage::app()->getWebsite($this->getRequest()->getParam('website'));
@@ -31,7 +35,7 @@ class Aschroder_SMTPPro_IndexController
 		$msg = "ASchroder.com SMTP Pro Self-test results";
 		
 		$msg = $msg . "<br/>Testing outbound connectivity to Server:";
-		Mage::log("Raw connection test....");
+		Mage::helper('smtppro')->log("Raw connection test....");
 		
 		
 		$googleapps = Mage::helper('smtppro')->getGoogleApps();
@@ -49,10 +53,10 @@ class Aschroder_SMTPPro_IndexController
 		} else if ($sesEnabled) {
 			// no connectivity test - either disabled or SES...
 			$msg = $msg . "<br/> Connection to Amazon SES server not tested (...yet)";
-			Mage::log("skipped, SES.");
+			Mage::helper('smtppro')->log("skipped, SES.");
 		} else {
 			$msg = $msg . "<br/> extension disabled, cannot test outbound connectivity";
-			Mage::log("skipped, disabled.");
+			Mage::helper('smtppro')->log("skipped, disabled.");
 		}
 		
 
@@ -65,7 +69,7 @@ class Aschroder_SMTPPro_IndexController
 				// An error will be reported below.
 			}
 	
-			Mage::log("Complete");
+			Mage::helper('smtppro')->log("Complete");
 	
 			if (!$fp) {
 				$success = false;
@@ -96,7 +100,7 @@ class Aschroder_SMTPPro_IndexController
 
 		if ($dev != "supress") {
 			
-			Mage::log("Actual email sending test....");
+			Mage::helper('smtppro')->log("Actual email sending test....");
 			$msg = $msg . "<br/> Sending test email to your contact form address " . $to . ":";
 			
 	        try {
@@ -113,37 +117,36 @@ class Aschroder_SMTPPro_IndexController
 			 			'email_body' => $body));
 				
 				$msg = $msg . "<br/> Test email was sent successfully.";
-				Mage::log("Test email was sent successfully");
+				Mage::helper('smtppro')->log("Test email was sent successfully");
 				
 				
 	    	} catch (Exception $e) {
 				$success = false;
 				$msg = $msg . "<br/> Unable to send test email. Exception message was: " . $e->getMessage() . "...";
 			 	$msg = $msg . "<br/> Please check and double check your username and password.";
-				Mage::log("Test email was not sent successfully: " . $e->getMessage());
+				Mage::helper('smtppro')->log("Test email was not sent successfully: " . $e->getMessage());
 	    	}
 		} else {
-			Mage::log("Not sending test email - all mails currently supressed");
+			Mage::helper('smtppro')->log("Not sending test email - all mails currently supressed");
 			$msg = $msg . "<br/> No test email sent, development mode is set to supress all emails.";
 		}
 		
 		// Now we test that the actual core overrides are occuring as expected.
 		// We trigger the contact form email, as though a user had done so.
 
-		Mage::log("Actual contact form submit test...");
+		Mage::helper('smtppro')->log("Actual contact form submit test...");
 		
-		self::$CONTACTFORM_SENT = false;
 		$this->_sendTestContactFormEmail();
 		
 		// If everything worked as expected, the observer will have set this value to true.
-		if (self::$CONTACTFORM_SENT) {
+		if (Mage::registry('smtppro_email_sent')) {
 			$msg = $msg . "<br/> Contact Form test email used SMTPPro to send correctly.";
 		} else {
 			$success = false;
 			$msg = $msg . "<br/> Contact Form test email did not use SMTPPro to send.";
 		}
 		
-		Mage::log("Complete");
+		Mage::helper('smtppro')->log("Complete");
 
 		if($success) {
 			$msg = $msg . "<br/> Testing complete, if you are still experiencing difficulties please visit  <a target='_blank' href='http://aschroder.com'>ASchroder.com</a> to contact me.";
@@ -154,9 +157,12 @@ class Aschroder_SMTPPro_IndexController
 		}
  
 		$this->_redirectReferer();
+
+		return $this;
 	}
 
-	private function _sendTestContactFormEmail() {
+	private function _sendTestContactFormEmail() 
+	{
 		
 		$postObject = new Varien_Object();
 		$postObject->setName("SMTPPro Tester");
@@ -178,6 +184,7 @@ class Aschroder_SMTPPro_IndexController
 				array('data' => $postObject)
 			);
 
+		return $this;
 	}
 
 } 

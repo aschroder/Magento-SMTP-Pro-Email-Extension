@@ -7,27 +7,31 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Aschroder_SMTPPro_Model_Observer {
+class Aschroder_SMTPPro_Model_Observer extends Varien_Object
+{
 	
-	public function log($observer) {
+	public function log($observer)
+	{
 		
 		$event = $observer->getEvent();
 		if (Mage::helper('smtppro')->isLogEnabled()) {
-			
-				Mage::helper('smtppro')->log(
+			Mage::helper('smtppro')->log(
 				$event->getTo(),
 				$event->getTemplate(),
 				$event->getSubject(),
 				$event->getEmailBody(),
-				$event->getHtml());
+				$event->getHtml()
+			);
 		}
-		
+
+		Mage::helper('smtppro')->log("*Observer was triggered: ");
+
 		// For the self test, if we're sending the contact form notify the self test class
-		if($event->getTemplate() == Mage::getStoreConfig("contacts/email/email_template")){
-			include_once Mage::getBaseDir() . "/app/code/community/Aschroder/SMTPPro/controllers/IndexController.php";
-			Aschroder_SMTPPro_IndexController::$CONTACTFORM_SENT = true;
+		if(!Mage::registry('smtppro_email_sent')) {
+			Mage::register('smtppro_email_sent', true);
 		}
 		
+		return $this;
 	}
 	
 	public function cleanOldLogs(Varien_Event_Observer $observer) {

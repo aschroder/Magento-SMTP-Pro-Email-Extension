@@ -25,16 +25,18 @@ class Aschroder_SMTPPro_Block_Adminhtml_Test
 
 	$buttonBlock = $this->getElement()->getForm()->getParent()->getLayout()->createBlock('adminhtml/widget_button');
 	
-	$_websiteCode = $buttonBlock->getRequest()->getParam('website');
-	$params = array(
-        'website' => $_websiteCode,
-		// We add _store for the base url function, otherwise it will not correctly add the store code if configured
-		'_store' => $_websiteCode ? $_websiteCode : Mage::app()->getDefaultStoreView()->getId()
-    );
-        
+    $_websiteCode = $buttonBlock->getRequest()->getParam('website', null);
+
+    $params = array();
+
+    if(!empty($_websiteCode)) {
+        $params['website'] = $_websiteCode;
+    }
+
+
     // TODO: for real multi-store self-testing, the test button (and other configuration options) 
     // should probably be set to show in website. Currently they are not.
-	$url = Mage::helper('adminhtml')->getUrl("smtppro", $params);
+	$url = $this->getUrl("smtppro/index/index", $params);
 
 	return $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setType('button')

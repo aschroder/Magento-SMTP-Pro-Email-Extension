@@ -160,8 +160,11 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 	 * @param  [type] $isHtml   [description]
 	 * @return [type]           [description]
 	 */
-    public function log($to, $template, $subject, $email, $isHtml)
+    public function log($to, $template=null, $subject=null, $email=null, $isHtml=null)
     {
+    	if($template == null && $subject == null && $email == null && $isHtml == null) {
+    		return Mage::helper('smtppro/debug')->log($to);
+    	}
         return Mage::helper('smtppro/debug')->emailLog($to, $template, $subject, $email, $isHtml);
     }
 	

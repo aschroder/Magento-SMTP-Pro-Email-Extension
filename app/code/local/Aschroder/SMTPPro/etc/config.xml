@@ -14,15 +14,15 @@
 		</Aschroder_SMTPPro>
 	</modules>
 	<frontend>
-    		<routers>
-      			<smtppro>
-      				  <use>standard</use>
-       				 <args>
-       				   <module>Aschroder_SMTPPro</module>
-       				   <frontName>smtppro</frontName>
-       				 </args>
-      			</smtppro>
-    		</routers>
+		<routers>
+  			<smtppro>
+  				  <use>standard</use>
+   				 <args>
+   				   <module>Aschroder_SMTPPro</module>
+   				   <frontName>smtppro</frontName>
+   				 </args>
+  			</smtppro>
+		</routers>
   	</frontend>
 	<global>
 		<helpers>
@@ -161,7 +161,7 @@
 		<system>
 			<smtppro>
                 <cleanlog>1</cleanlog>
-				<log_debug>1</log_debug>
+				<log_debug>0</log_debug>
 				<cleanlog_after_days>90</cleanlog_after_days>
 			</smtppro>
 		</system>

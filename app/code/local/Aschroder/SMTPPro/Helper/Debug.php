@@ -37,11 +37,11 @@ class Aschroder_SMTPPro_Helper_Debug extends Mage_Core_Helper_Abstract {
     
     /**
      * Write to the email log table with an email's details provided.
-     * @param  [type] $to       [description]
-     * @param  [type] $template [description]
-     * @param  [type] $subject  [description]
-     * @param  [type] $email    [description]
-     * @param  [type] $isHtml   [description]
+     * @param  [type] $to       
+     * @param  [type] $template 
+     * @param  [type] $subject  
+     * @param  [type] $email    
+     * @param  [type] $isHtml   
      * @return $this
      */
     public function emailLog($to, $template, $subject, $email, $isHtml)
@@ -63,17 +63,22 @@ class Aschroder_SMTPPro_Helper_Debug extends Mage_Core_Helper_Abstract {
 
     /**
      * Log to the file log (smtppro.log)
-     * @param  [type] $m [description]
-     * @return [type]    [description]
+     * @param  [type] $m 
+     * @return [type]    
      */
-    public function fileLog($m) {
+    public function fileLog($m)
+    {
         if ($this->isDebugLoggingEnabled()) {
             Mage::log($m, null, self::LOG_FILE);
         }
         return $this;
     }
-    public function log($m) {
-        return $this->fileLog($m);
-    }
+
+    /**
+     * @alias fileLog();
+     * @param  $m)    $m 
+     * @return [type]    
+     */
+    public function log($m) { return $this->fileLog($m); }
     
 }
