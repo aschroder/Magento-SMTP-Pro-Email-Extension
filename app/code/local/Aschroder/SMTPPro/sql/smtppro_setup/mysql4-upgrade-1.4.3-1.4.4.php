@@ -13,8 +13,9 @@ $installer = $this;
 
 $installer->startSetup();
 
-Mage::log("Running installer");
-
-$installer->run("ALTER TABLE `{$this->getTable('smtppro_email_log')}` CHANGE `to` `email_to` VARCHAR(255)  NOT NULL  DEFAULT '';");
+Mage::helper('smtppro/mysql4_install')->attemptQuery($installer, "
+    ALTER TABLE `{$this->getTable('smtppro_email_log')}` 
+        CHANGE `to` `email_to` VARCHAR(255)  NOT NULL  DEFAULT '';
+");
 
 $installer->endSetup();
