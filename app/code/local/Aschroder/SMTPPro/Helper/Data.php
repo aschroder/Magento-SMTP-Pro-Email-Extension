@@ -11,36 +11,48 @@
 
 class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 	
-	public function isEnabled() {
+	public function isEnabled()
+	{
 		return Mage::getStoreConfig('system/smtppro/option') != "disabled";
 	}
 	
-	public function isLogEnabled() {
-		return Mage::getStoreConfig('system/smtppro/logenabled');
+	/**
+	 * @deprecated use debug helper instead.
+	 * @return boolean
+	 */
+	public function isLogEnabled()
+	{
+		return Mage::helper('smtppro/debug')->isLogEnabled();
 	}
 
-	public function isReplyToStoreEmail() {
+	public function isReplyToStoreEmail()
+	{
 		return Mage::getStoreConfig('system/smtppro/store_addresses');
 	}
 	
-	public function getDevelopmentMode() {
-		return Mage::getStoreConfig('system/smtppro/development');
+	public function getDevelopmentMode()
+	{
+		return Mage::helper('smtppro/debug')->getDevelopmentMode();
 	}
 	
-	public function getGoogleApps() {
+	public function getGoogleApps()
+	{
 		return Mage::getStoreConfig('system/smtppro/option') == "google";
 	}
-	public function getSES() {
+	public function getSES()
+	{
 		return Mage::getStoreConfig('system/smtppro/option') == "ses";
 	}
 	
-	public function getSMTP() {
+	public function getSMTP()
+	{
 		return Mage::getStoreConfig('system/smtppro/option') == "smtp";
 	}
 	
 	// Keeping this function for backward compatibility 
 	// It will be dropped eventually so call getTransport() from now on!
-	public function getSMTPProTransport($id = null) {
+	public function getSMTPProTransport($id = null)
+	{
 		return $this->getTransport($id);
 	}
 	
@@ -50,7 +62,8 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 		return $this->getTransport($id);
 	}
 	
-	public function getTransport($id = null) {
+	public function getTransport($id = null) 
+	{
 		
 		
 		if($this->getSMTP()){
@@ -138,15 +151,18 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract {
 		return $transport;
 	}
 	
-    public function log($to, $template, $subject, $email, $isHtml) {
-    	
-        $log = Mage::getModel('smtppro/email_log')
-            ->setEmailTo($to)
-            ->setTemplate($template)
-            ->setSubject($subject)
-            ->setEmailBody($isHtml?$email:nl2br($email))
-            ->save();
-        return $this;
+	/**
+	 * @deprecated please use the debug helper emailLog() function with the same parameters.
+	 * @param  [type] $to       [description]
+	 * @param  [type] $template [description]
+	 * @param  [type] $subject  [description]
+	 * @param  [type] $email    [description]
+	 * @param  [type] $isHtml   [description]
+	 * @return [type]           [description]
+	 */
+    public function log($to, $template, $subject, $email, $isHtml)
+    {
+        return Mage::helper('smtppro/debug')->emailLog($to, $template, $subject, $email, $isHtml);
     }
 	
 }

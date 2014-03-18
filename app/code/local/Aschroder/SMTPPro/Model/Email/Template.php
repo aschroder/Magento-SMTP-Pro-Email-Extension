@@ -8,9 +8,11 @@
  * @author Ashley Schroder (aschroder.com)
  */
  
-class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Template {
+class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Template
+{
 	
-    public function send($email, $name=null, array $variables = array()) {
+    public function send($email, $name=null, array $variables = array())
+    {
         $_helper = Mage::helper('smtppro');
         // If it's not enabled, just return the parent result.
         if (!$_helper->isEnabled()) {
