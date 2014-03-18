@@ -15,7 +15,6 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
     {
         $_helper = Mage::helper('smtppro');
 
-
         // If it's not enabled, just return the parent result.
         if (!$_helper->isEnabled()) {
             $_helper->log('SMTP Pro is not enabled, fall back to parent class'); // commenting this because we don't want to flood the log if the store is not using the extension any more.
@@ -39,6 +38,8 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
 
         $_helper->log("Sending variables: ". print_r($variables['email'], true));
         $_helper->log("Sending variables: ". print_r($variables['name'], true));
+
+        $this->_updateTemplateStoreId($variables);
 
         $this->_updateSMTPSettings();
 
@@ -73,6 +74,22 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         $_helper->log("SMTP Pro email sending process complete.");
 
         return true;
+    }
+
+    /**
+     * Updates the template local data with the store ID it's supposed to use based on the template variables or current design config.
+     * @return  $this
+     */
+    protected function _updateTemplateStoreId($variables)
+    {
+        $storeId = null;
+        if(isset($variables['store'])) {
+            $storeId = $variables['store'];
+        } else {
+            $storeId = $this->getDesignConfig()->getStore();
+        }
+        $this->setStoreId($storeId);
+        return $this;
     }
 
     /**
@@ -116,8 +133,8 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
      */
     protected function _transportEmail($emails, $mail, $variables, $text)
     {
-        $transport = Mage::helper('smtppro')->getTransport($this->getDesignConfig()->getStore());
 
+        $transport = new Varien_Object();
         Mage::dispatchEvent('aschroder_smtppro_template_before_send', array(
             'mail' => $mail,
             'template' => $this,
@@ -125,24 +142,28 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             'transport' => $transport
         ));
 
-        $mail->send($transport); // Zend_Mail warning..
+        $emailTransport = $tranport->getEmailTransport();
+        if (!empty($emailTransport)) {
+            $mail->send($emailTransport);
+        } else {
+            $mail->send();
+        }
 
         foreach ($emails as $key => $email) {
             Mage::dispatchEvent('aschroder_smtppro_after_send', array(
                 'to' => $email,
-                'template' => $this->getTemplateId(),
+                'template_id' => $this->getTemplateId(),
+                'template' => $this,
                 'subject' => $this->getProcessedTemplateSubject($variables),
                 'html' => !$this->isPlain(),
                 'email_body' => $text
             ));
         }
-
         Mage::dispatchEvent('aschroder_smtppro_template_after_send_all', array(
             'mail' => $mail,
             'template' => $this,
             'variables' => $variables,
-            'emails'    => $emails,
-            'transport' => $transport
+            'emails'    => $emails
         ));
 
         $this->_mail = null;
@@ -156,8 +177,8 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
      */
     protected function _updateSMTPSettings()
     {
-        ini_set('SMTP', Mage::getStoreConfig('system/smtp/host'));
-        ini_set('smtp_port', Mage::getStoreConfig('system/smtp/port'));
+        ini_set('SMTP', Mage::getStoreConfig('system/smtp/host', $this->getStoreId()));
+        ini_set('smtp_port', Mage::getStoreConfig('system/smtp/port', $this->getStoreId()));
 
         return $this;
     }
@@ -189,4 +210,5 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
 
         return $names;
     }
+
 }

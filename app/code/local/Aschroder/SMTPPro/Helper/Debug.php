@@ -14,24 +14,24 @@ class Aschroder_SMTPPro_Helper_Debug extends Mage_Core_Helper_Abstract {
     const LOG_FILE = "smtppro.log";
     
 
-    public function isEnabled()
+    public function isEnabled($storeId = null)
     {
-        return Mage::helper('smtppro')->isEnabled();
+        return Mage::helper('smtppro/config')->isEnabled($storeId);
     }
     
-    public function isLogEnabled()
+    public function isLogEnabled($storeId = null)
     {
-        return Mage::getStoreConfigFlag('system/smtppro/logenabled');
+        return Mage::helper('smtppro/config')->isLogEnabled($storeId);
     }
     
-    public function getDevelopmentMode()
+    public function getDevelopmentMode($storeId = null)
     {
-        return Mage::getStoreConfig('system/smtppro/development');
+        return Mage::helper('smtppro/config')->getDevelopmentMode($storeId);
     }
 
-    public function isDebugLoggingEnabled()
+    public function isDebugLoggingEnabled($storeId = null)
     {
-        return Mage::getStoreConfigFlag('system/smtppro/log_debug');
+        return Mage::helper('smtppro/config')->isDebugLoggingEnabled($storeId);
     }
 
     

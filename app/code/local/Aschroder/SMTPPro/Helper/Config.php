@@ -12,58 +12,50 @@
 class Aschroder_SMTPPro_Helper_Config extends Mage_Core_Helper_Abstract
 {
     
-    public function isEnabled()
+    public function isEnabled($storeId = null)
     {
-        return Mage::getStoreConfig('system/smtppro/option') != "disabled";
+        return Mage::getStoreConfig('system/smtppro/option', $storeId) != "disabled";
     }
     
     /**
      * @deprecated use debug helper instead.
      * @return boolean
      */
-    public function isLogEnabled()
+    public function isLogEnabled($storeId = null)
     {
-        return Mage::helper('smtppro/debug')->isLogEnabled();
+        return Mage::getStoreConfigFlag('system/smtppro/logenabled', $storeId);
     }
 
-    public function isReplyToStoreEmail()
+    public function isReplyToStoreEmail($storeId = null)
     {
-        return Mage::getStoreConfig('system/smtppro/store_addresses');
+        return Mage::getStoreConfig('system/smtppro/store_addresses', $storeId);
     }
     
-    public function getDevelopmentMode()
+
+    
+    public function isGoogleAppsEnabled($storeId = null)
     {
-        return Mage::helper('smtppro/debug')->getDevelopmentMode();
+        return Mage::getStoreConfig('system/smtppro/option', $storeId) == "google";
+    }
+    public function isAmazonSESEnabled($storeId = null)
+    {
+        return Mage::getStoreConfig('system/smtppro/option', $storeId) == "ses";
     }
     
-    public function getGoogleApps()
+    public function isSMTPEnabled($storeId = null)
     {
-        return Mage::getStoreConfig('system/smtppro/option') == "google";
-    }
-    public function getSES()
-    {
-        return Mage::getStoreConfig('system/smtppro/option') == "ses";
+        return Mage::getStoreConfig('system/smtppro/option', $storeId) == "smtp";
     }
     
-    public function getSMTP()
-    {
-        return Mage::getStoreConfig('system/smtppro/option') == "smtp";
-    }
     
-        
-    public function isLogEnabled()
+    public function getDevelopmentMode($storeId = null)
     {
-        return Mage::getStoreConfigFlag('system/smtppro/logenabled');
-    }
-    
-    public function getDevelopmentMode()
-    {
-        return Mage::getStoreConfig('system/smtppro/development');
+        return Mage::getStoreConfig('system/smtppro/development', $storeId);
     }
 
-    public function isDebugLoggingEnabled()
+    public function isDebugLoggingEnabled($storeId = null)
     {
-        return Mage::getStoreConfigFlag('system/smtppro/log_debug');
+        return Mage::getStoreConfigFlag('system/smtppro/log_debug', $storeId);
     }
     
 }

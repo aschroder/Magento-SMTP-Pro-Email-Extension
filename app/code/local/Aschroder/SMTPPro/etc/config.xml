@@ -78,15 +78,6 @@
             </smtppro_read>
 		</resources> 
 		<events>
-		  <smtppro_email_after_send>
-		    <observers>
-		      <smtppro_email_after_send_observer>
-		        <type>singleton</type>
-		        <class>smtppro/observer</class>
-		        <method>log</method>
-		      </smtppro_email_after_send_observer>
-		    </observers>
-		  </smtppro_email_after_send>
             <log_log_clean_after>
                 <observers>
                     <smtppro_email_log_clean>
@@ -96,6 +87,28 @@
                     </smtppro_email_log_clean>
                 </observers>
             </log_log_clean_after>
+
+            <!-- SMTP Modules: -->
+            <aschroder_smtppro_template_before_send>
+                <observers>
+                    <amazonses_before_send_template_observer>
+                        <type>singleton</type>
+                        <class>smtppro/amazonses_observer</class>
+                        <method>beforeSendTemplate</method>
+                    </amazonses_before_send_template_observer>
+                    <googleapps_before_send_template_observer>
+                        <type>singleton</type>
+                        <class>smtppro/googleapps_observer</class>
+                        <method>beforeSendTemplate</method>
+                    </googleapps_before_send_template_observer>
+                    <smtp_before_send_template_observer>
+                        <type>singleton</type>
+                        <class>smtppro/smtp_observer</class>
+                        <method>beforeSendTemplate</method>
+                    </smtp_before_send_template_observer>
+                </observers>
+            </aschroder_smtppro_template_before_send>
+
 		</events>
 	</global>
 	<adminhtml>
