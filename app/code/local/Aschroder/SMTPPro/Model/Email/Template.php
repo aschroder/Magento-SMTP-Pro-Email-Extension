@@ -37,6 +37,9 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         $variables['email'] = reset($emails);
         $variables['name'] = reset($names);
 
+        $_helper->log("Sending variables: ". print_r($variables['email'], true));
+        $_helper->log("Sending variables: ". print_r($variables['name'], true));
+
         $this->_updateSMTPSettings();
 
         $mail = $this->getMail();
@@ -92,9 +95,9 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         }
 
         // Don't change the return path.
-        if ($returnPathEmail == null) {
-            return $this;
-        }
+        // if ($returnPathEmail == null) {
+        //     return $this;
+        // }
 
         // Update the return path 
         $mailTransport = new Zend_Mail_Transport_Sendmail("-f".$returnPathEmail);
@@ -113,7 +116,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
      */
     protected function _transportEmail($emails, $mail, $variables, $text)
     {
-        $transport = new Varien_Object();
+        $transport = Mage::helper('smtppro')->getTransport($this->getDesignConfig()->getStore());
 
         Mage::dispatchEvent('aschroder_smtppro_template_before_send', array(
             'mail' => $mail,
@@ -122,11 +125,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             'transport' => $transport
         ));
 
-        if ($transport->getTransport()) { // if set by an observer, use it
-            $mail->send($transport->getTransport());
-        } else {
-            $mail->send();
-        }
+        $mail->send($transport); // Zend_Mail warning..
 
         foreach ($emails as $key => $email) {
             Mage::dispatchEvent('aschroder_smtppro_after_send', array(
