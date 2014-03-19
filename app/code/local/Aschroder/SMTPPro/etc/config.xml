@@ -186,17 +186,25 @@
 	</adminhtml>
 	<default>
 		<smtppro>
-			<settings>
-				<enabled>0</enabled>
-				<store_addresses>0</store_addresses>
-				<username></username>
-				<password></password>
-			</settings>
-			<general>
+            <general>
+                <option>0</option>
+                <googleapps_email></googleapps_email>
+                <googleapps_gpassword></googleapps_gpassword>
+                <ses_access_key></ses_access_key>
+                <ses_private_key></ses_private_key>
+                <smtp_authentication></smtp_authentication>
+                <smtp_username></smtp_username>
+                <smtp_password></smtp_password>
+                <smtp_host></smtp_host>
+                <smtp_port>25</smtp_port>
+                <smtp_ssl></smtp_ssl>
+            </general>
+            <debug>
+                <logenabled>0</logenabled>
                 <cleanlog>1</cleanlog>
-				<log_debug>0</log_debug>
-				<cleanlog_after_days>90</cleanlog_after_days>
-			</general>
+                <cleanlog_after_days>90</cleanlog_after_days>
+                <log_debug>0</log_debug>
+            </debug>
 		</smtppro>
 	</default>
 </config>
