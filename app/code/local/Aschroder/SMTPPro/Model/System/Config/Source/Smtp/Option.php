@@ -5,16 +5,17 @@
  * @author     Ashley Schroder
  */
 
-class Aschroder_SMTPPro_Model_System_Config_Source_Smtp_Option
+class Aschroder_SMTPPro_Model_System_Config_Source_Smtp_Option extends Varien_Object
 {
 	
-	    public function toOptionArray()
+    public function toOptionArray()
     {
-        return array(
-        	"disabled"   => Mage::helper('adminhtml')->__('Disabled'),
-            "google"   => Mage::helper('adminhtml')->__('Google Apps/Gmail'),
-            "smtp"   => Mage::helper('adminhtml')->__('SMTP'),
-            "ses"   => Mage::helper('adminhtml')->__('SES (experimental)')
+        $options = array(
+        	"disabled"   => Mage::helper('smtppro')->__('Disabled'),
+            "google"   => Mage::helper('smtppro')->__('Google Apps/Gmail'),
+            "smtp"   => Mage::helper('smtppro')->__('Advanced SMTP'),
+            "ses"   => Mage::helper('smtppro')->__('Amazon SES')
         );
+        return $options;
     }
 }
