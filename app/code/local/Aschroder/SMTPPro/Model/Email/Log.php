@@ -24,7 +24,9 @@ class Aschroder_SMTPPro_Model_Email_Log extends Mage_Core_Model_Abstract
      * 
      * @param int|null $lifetime Lifetime of entries in days
      */
-    public function clean($lifetime = null) {
+    public function clean($lifetime = null)
+    {
         $this->getResource()->clean($lifetime);
+        return $this;
     }
 }

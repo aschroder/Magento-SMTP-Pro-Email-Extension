@@ -24,18 +24,14 @@ class Aschroder_SMTPPro_Model_Observer extends Varien_Object
 			);
 		}
 
-		Mage::helper('smtppro')->log("*Observer was triggered: ");
-
-		// For the self test, if we're sending the contact form notify the self test class
-		if(!Mage::registry('smtppro_email_sent')) {
-			Mage::register('smtppro_email_sent', true);
-		}
-		
 		return $this;
 	}
 	
-	public function cleanOldLogs(Varien_Event_Observer $observer) {
-	    $log = Mage::getModel('smtppro/email_log')->clean();
+	public function cleanOldLogs(Varien_Event_Observer $observer)
+	{
+		$lifetime = Mage::helper('smtppro/config')->getLogLifetimeDays();
+	    $log = Mage::getModel('smtppro/email_log')->clean($lifetime);
+	    return $this;
 	}
 	
 }

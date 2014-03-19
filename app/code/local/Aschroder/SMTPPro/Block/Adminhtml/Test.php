@@ -13,36 +13,38 @@ class Aschroder_SMTPPro_Block_Adminhtml_Test
 {
 
 
- protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element) {
-
+    protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element) 
+    {
         $this->setElement($element);
-
-        return $this->_getAddRowButtonHtml($this->__('Run Self Test'));
+        $buttonHtml = $this->_getAddRowButtonHtml($this->__('Run Self Test'));
+        return $buttonHtml;
     }
 
 
-  protected function _getAddRowButtonHtml($title) {
+  protected function _getAddRowButtonHtml($title)
+  {
 
-	$buttonBlock = $this->getElement()->getForm()->getParent()->getLayout()->createBlock('adminhtml/widget_button');
-	
-    $_websiteCode = $buttonBlock->getRequest()->getParam('website', null);
+    	$buttonBlock = $this->getElement()->getForm()->getParent()->getLayout()->createBlock('adminhtml/widget_button');
+    	
+        $_websiteCode = $buttonBlock->getRequest()->getParam('website', null);
 
-    $params = array();
+        $params = array();
 
-    if(!empty($_websiteCode)) {
-        $params['website'] = $_websiteCode;
-    }
+        if(!empty($_websiteCode)) {
+            $params['website'] = $_websiteCode;
+        }
 
+        // TODO: for real multi-store self-testing, the test button (and other configuration options) 
+        // should probably be set to show in website. Currently they are not.
+    	$url = $this->getUrl("smtppro/test/index", $params);
 
-    // TODO: for real multi-store self-testing, the test button (and other configuration options) 
-    // should probably be set to show in website. Currently they are not.
-	$url = $this->getUrl("smtppro/index/index", $params);
+    	$buttonHtml = $this->getLayout()->createBlock('adminhtml/widget_button')
+                    ->setType('button')
+                    ->setLabel($this->__($title))
+                    ->setOnClick("window.location.href='".$url."'")
+                    ->toHtml();
 
-	return $this->getLayout()->createBlock('adminhtml/widget_button')
-                ->setType('button')
-                ->setLabel($this->__($title))
-                ->setOnClick("window.location.href='".$url."'")
-                ->toHtml();
+        return $buttonHtml;    
     }
 
 

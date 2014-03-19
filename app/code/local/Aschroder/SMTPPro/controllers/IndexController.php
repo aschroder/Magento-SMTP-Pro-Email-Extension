@@ -2,7 +2,7 @@
 
 /**
  * An SMTP self test for the SMTPPro Magento extension
- *
+ * @deprecated Use TestController instead.
  *
  * @author Ashley Schroder (aschroder.com)
  * @copyright  Copyright (c) 2010 Ashley Schroder
@@ -24,6 +24,9 @@ class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action
 	public static $CONTACTFORM_SENT = true;
 	private $TEST_EMAIL = "hello.default@example.com";
 
+	/**
+	 * @deprecated
+	 */
 	public function indexAction() 
 	{
 

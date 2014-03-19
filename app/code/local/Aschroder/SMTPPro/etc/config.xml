@@ -44,11 +44,6 @@
                     <email_log><table>smtppro_email_log</table></email_log>
                 </entities>
             </smtppro_mysql4>
-			<newsletter>
-				<rewrite>
-					<template>Aschroder_SMTPPro_Model_Newsletter_Template</template>
-				</rewrite>
-			</newsletter>
 			<core>
 				<rewrite>
 					<email>Aschroder_SMTPPro_Model_Email</email>
