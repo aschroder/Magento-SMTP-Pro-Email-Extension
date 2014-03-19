@@ -153,14 +153,19 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         }
 
         foreach ($emails as $key => $email) {
-            Mage::dispatchEvent('aschroder_smtppro_after_send', array(
-                'to' => $email,
-                'template_id' => $this->getTemplateId(),
-                'template' => $this,
-                'subject' => $this->getProcessedTemplateSubject($variables),
-                'html' => !$this->isPlain(),
-                'email_body' => $text
-            ));
+            try {
+                Mage::dispatchEvent('aschroder_smtppro_after_send', array(
+                    'to' => $email,
+                    'template_id' => $this->getTemplateId(),
+                    'template' => $this,
+                    'subject' => $this->getProcessedTemplateSubject($variables),
+                    'html' => !$this->isPlain(),
+                    'email_body' => $text
+                ));
+            } catch (Exception $e) {
+                $_helper->log("EXCEPTION OCCURRED SENDING WITH [{$key}]{$email}: " . $e->getMessage());
+                Mage::logException($e);
+            }
         }
         Mage::dispatchEvent('aschroder_smtppro_template_after_send_all', array(
             'mail' => $mail,

@@ -38,9 +38,15 @@ class Aschroder_SMTPPro_Model_GoogleApps_Observer extends Varien_Object
         if (count($email)) {
             $email = $email[array_rand($email)];
         } else {
-            Mage::helper('smtppro/debug')->log("No email configured - you need to specify one in the magento configuration, otherwise your connection will fail");
+            throw new Exception("No email configured - you need to specify one in the magento configuration, otherwise your connection will fail");
         }
-        
+
+        $fromEmail = $event->getEmail()->getFromEmail();
+        $toEmail = $event->getEmail()->getToEmail();
+        if($toEmail == $fromEmail) {
+            throw new Exception("TO address cannot be the same as the FROM address in Google Apps.");
+        }
+
         $password = Mage::helper('smtppro/config')->getGoogleAppsPassword($storeId);
         
         Mage::helper('smtppro/debug')->log("Preparing the Google Apps/Gmail Email transport, email to send with is: {$email}.");
