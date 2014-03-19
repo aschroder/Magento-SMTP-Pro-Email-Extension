@@ -10,7 +10,7 @@
 <config>
 	<modules>
 		<Aschroder_SMTPPro>
-			<version>1.4.4</version>
+			<version>2.0.0</version>
 		</Aschroder_SMTPPro>
 	</modules>
 	<frontend>
