@@ -22,13 +22,11 @@ class Aschroder_SMTPPro_Model_Mysql4_Email_Log extends Mage_Core_Model_Mysql4_Ab
      * @return Aschroder_SMTPPro_Model_Mysql4_Email_Log
      */
     public function clean($lifetime = null) {
-        if (!Mage::getStoreConfig(Aschroder_SMTPPro_Model_Email_Log::XML_PATH_CLEANLOG)) {
+        if (!Mage::helper('smtppro/config')->isLogCleaningEnabled()) {
             return $this;
         }
         if (is_null($lifetime)) {
-            $lifetime = Mage::getStoreConfig(
-                Aschroder_SMTPPro_Model_Email_Log::XML_PATH_CLEANLOG_AFTER_DAYS
-            );
+            $lifetime = Mage::helper('smtppro/config')->getLogLifetimeDays();
         }
         $cleanTime = $this->formatDate(time() - $lifetime * 3600 * 24, false);
 

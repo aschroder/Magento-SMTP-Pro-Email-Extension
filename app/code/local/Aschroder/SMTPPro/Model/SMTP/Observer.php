@@ -29,12 +29,12 @@ class Aschroder_SMTPPro_Model_SMTP_Observer extends Varien_Object
 
         Mage::helper('smtppro/debug')->log("Running SMTP sender code.");
 
-		$username = Mage::getStoreConfig('system/smtpsettings/username', $storeId);
-		$password = Mage::getStoreConfig('system/smtpsettings/password', $storeId);
-		$host = Mage::getStoreConfig('system/smtpsettings/host', $storeId);
-		$port = Mage::getStoreConfig('system/smtpsettings/port', $storeId);
-		$ssl = Mage::getStoreConfig('system/smtpsettings/ssl', $storeId);
-		$auth = Mage::getStoreConfig('system/smtpsettings/authentication', $storeId);
+		$username = Mage::helper('smtppro/config')->getSMTPSettingsUsername($storeId);
+		$password = Mage::helper('smtppro/config')->getSMTPSettingsPassword($storeId);
+		$host = Mage::helper('smtppro/config')->getSMTPSettingsHost($storeId);
+		$port = Mage::helper('smtppro/config')->getSMTPSettingsPort($storeId);
+		$ssl = Mage::helper('smtppro/config')->getSMTPSettingsSSL($storeId);
+		$auth = Mage::helper('smtppro/config')->getSMTPSettingsAuthentication($storeId);
 
 		Mage::helper('smtppro/debug')->log("Preparing the SMTP Email transport, details are: username={$username} | host={$host} | port={$port} | ssl={$ssl} | auth={$auth}");
 		 

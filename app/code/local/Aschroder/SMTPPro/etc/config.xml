@@ -192,13 +192,11 @@
 				<username></username>
 				<password></password>
 			</settings>
-		</smtppro>
-		<system>
-			<smtppro>
+			<general>
                 <cleanlog>1</cleanlog>
 				<log_debug>0</log_debug>
 				<cleanlog_after_days>90</cleanlog_after_days>
-			</smtppro>
-		</system>
+			</general>
+		</smtppro>
 	</default>
 </config>

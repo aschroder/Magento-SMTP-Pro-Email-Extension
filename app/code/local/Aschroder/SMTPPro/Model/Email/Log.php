@@ -10,9 +10,6 @@
 class Aschroder_SMTPPro_Model_Email_Log extends Mage_Core_Model_Abstract
 {
     
-    const XML_PATH_CLEANLOG = 'system/smtppro/cleanlog';
-    const XML_PATH_CLEANLOG_AFTER_DAYS = 'system/smtppro/cleanlog_after_days';
-    
     /**
      * Model initialization
      *

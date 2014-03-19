@@ -12,6 +12,11 @@
 
 class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action 
 {
+
+    const XML_PATH_EMAIL_RECIPIENT  = 'contacts/email/recipient_email';
+    const XML_PATH_EMAIL_SENDER     = 'contacts/email/sender_email_identity';
+    const XML_PATH_EMAIL_TEMPLATE   = 'contacts/email/email_template';
+    const XML_PATH_ENABLED          = 'contacts/contacts/enabled';
 		
 	/**
 	 * @deprecated DO NOT USE.
@@ -25,12 +30,13 @@ class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action
 		Mage::helper('smtppro')->log("Running SMTP Pro Self Test");
 		
 		#report development mode for debugging
-		$dev = Mage::helper('smtppro')->getDevelopmentMode();
+		$dev = Mage::helper('smtppro/config')->getDevelopmentMode();
 		Mage::helper('smtppro')->log("Development mode: " . $dev);
 		
 		$success = true;
 		$websiteModel = Mage::app()->getWebsite($this->getRequest()->getParam('website'));
-		$this->TEST_EMAIL = Mage::getStoreConfig('trans_email/ident_general/email', $websiteModel->getId());
+		$storeId = $websiteModel->getStore()->getId();
+		$this->TEST_EMAIL = Mage::helper('smtppro/config')->getTestSenderEmailAddress($storeId);
 
 		$msg = "ASchroder.com SMTP Pro Self-test results";
 		
@@ -38,9 +44,9 @@ class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action
 		Mage::helper('smtppro')->log("Raw connection test....");
 		
 		
-		$googleapps = Mage::helper('smtppro')->getGoogleApps();
-		$smtpEnabled = Mage::helper('smtppro')->getSMTP();
-		$sesEnabled = Mage::helper('smtppro')->getSES();
+		$googleapps = Mage::helper('smtppro/config')->isGoogleAppsEnabled();
+		$smtpEnabled = Mage::helper('smtppro/config')->isSMTPEnabled();
+		$sesEnabled = Mage::helper('smtppro/config')->isAmazonSESEnabled();
 		
 		if($googleapps) {
 			$msg = $msg . "<br/>Using Google Apps/Gmail configuration options";
@@ -48,8 +54,8 @@ class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action
 			$port = 587;
 		} else if ($smtpEnabled) {
 			$msg = $msg . "<br/>Using SMTP configuration options";
-			$host = Mage::getStoreConfig('system/smtpsettings/host', $websiteModel->getId());
-			$port = Mage::getStoreConfig('system/smtpsettings/port', $websiteModel->getId());
+			$host = Mage::helper('smtppro/config')->getSMTPSettingsHost($storeId);
+			$port = Mage::helper('smtppro/config')->getSMTPSettingsPort($storeId);
 		} else if ($sesEnabled) {
 			// no connectivity test - either disabled or SES...
 			$msg = $msg . "<br/> Connection to Amazon SES server not tested (...yet)";
@@ -81,7 +87,7 @@ class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action
 			}
 		}
 
-		$to = Mage::getStoreConfig('contacts/email/recipient_email', $websiteModel->getId());
+		$to = Mage::helper('smtppro/config')->getTestRecipientEmailAddress($storeId);
 
 		$mail = new Zend_Mail();
 		$sub = "Test Email From ASchroder.com SMTP Pro Module";
@@ -110,11 +116,13 @@ class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action
 				$mail->send($transport);
 				
 				Mage::dispatchEvent('smtppro_email_after_send',
-				array('to' => $to,
-			 			'template' => "SMTPPro Self Test",
-						'subject' => $sub,
-						'html' => false,
-			 			'email_body' => $body));
+				array(
+					'to' => $to,
+		 			'template' => "SMTPPro Self Test",
+					'subject' => $sub,
+					'html' => false,
+		 			'email_body' => $body
+	 			));
 				
 				$msg = $msg . "<br/> Test email was sent successfully.";
 				Mage::helper('smtppro')->log("Test email was sent successfully");
@@ -177,9 +185,9 @@ class Aschroder_SMTPPro_IndexController extends Mage_Adminhtml_Controller_Action
 		$mailTemplate->setDesignConfig(array('area' => 'frontend'))
 			->setReplyTo($postObject->getEmail())
 			->sendTransactional(
-				Mage::getStoreConfig(Mage_Contacts_IndexController::XML_PATH_EMAIL_TEMPLATE),
-				Mage::getStoreConfig(Mage_Contacts_IndexController::XML_PATH_EMAIL_SENDER),
-				Mage::getStoreConfig(Mage_Contacts_IndexController::XML_PATH_EMAIL_RECIPIENT),
+				Mage::getStoreConfig(self::XML_PATH_EMAIL_TEMPLATE),
+				Mage::getStoreConfig(self::XML_PATH_EMAIL_SENDER),
+				Mage::getStoreConfig(self::XML_PATH_EMAIL_RECIPIENT),
 				null,
 				array('data' => $postObject)
 			);

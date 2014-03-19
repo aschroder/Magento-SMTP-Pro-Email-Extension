@@ -29,7 +29,7 @@ class Aschroder_SMTPPro_Model_GoogleApps_Observer extends Varien_Object
 
         Mage::helper('smtppro/debug')->log("Running Google Apps sender code.");
 
-        $email = explode(",", Mage::getStoreConfig('system/googlesettings/email', $storeId));
+        $email = explode(",", Mage::helper('smtppro/config')->getGoogleAppsEmail($storeId));
 
         /**
          * We now allow a load balance of multiple gmail accounts to get past the 500/day limit.
@@ -41,7 +41,7 @@ class Aschroder_SMTPPro_Model_GoogleApps_Observer extends Varien_Object
             Mage::helper('smtppro/debug')->log("No email configured - you need to specify one in the magento configuration, otherwise your connection will fail");
         }
         
-        $password = Mage::getStoreConfig('system/googlesettings/gpassword', $storeId);
+        $password = Mage::helper('smtppro/config')->getGoogleAppsPassword($storeId);
         
         Mage::helper('smtppro/debug')->log("Preparing the Google Apps/Gmail Email transport, email to send with is: {$email}.");
 

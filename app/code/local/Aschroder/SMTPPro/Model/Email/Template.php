@@ -180,6 +180,8 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
      */
     protected function _updateSMTPSettings()
     {
+        // I'm not sure why we are using thew system default config settings here instead 
+        // of smtppro/smtpsettings/host, but I'll leave the old code in for now to avoid breaking anything...
         ini_set('SMTP', Mage::getStoreConfig('system/smtp/host', $this->getStoreId()));
         ini_set('smtp_port', Mage::getStoreConfig('system/smtp/port', $this->getStoreId()));
 

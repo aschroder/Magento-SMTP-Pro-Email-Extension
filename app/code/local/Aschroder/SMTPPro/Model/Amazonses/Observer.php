@@ -33,8 +33,8 @@ class Aschroder_SMTPPro_Model_AmazonSES_Observer extends Varien_Object
 
         $emailTransport = new App_Mail_Transport_AmazonSES(
             array(
-                'accessKey' => Mage::getStoreConfig('system/sessettings/aws_access_key', $storeId),
-                'privateKey' => Mage::getStoreConfig('system/sessettings/aws_private_key', $storeId) 
+                'accessKey' => Mage::helper('smtppro/config')->getAmazonSESAccessKey($storeId),
+                'privateKey' => Mage::helper('smtppro/config')->getAmazonSESPrivateKey($storeId) 
             )
         );
 
