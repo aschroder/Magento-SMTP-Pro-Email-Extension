@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!--
+	/**
+	* SMTP Pro integration.
+	*
+	* @package    Aschroder_SMTPPro
+	* @author     Ashley Schroder (aschroder.com)
+	*/
+-->
+<config>
+	<modules>
+		<Aschroder_SMTPPro>
+			<version>2.0.0</version>
+		</Aschroder_SMTPPro>
+	</modules>
+	<frontend>
+		<routers>
+  			<smtppro>
+  				  <use>standard</use>
+   				 <args>
+   				   <module>Aschroder_SMTPPro</module>
+   				   <frontName>smtppro</frontName>
+   				 </args>
+  			</smtppro>
+		</routers>
+  	</frontend>
+	<global>
+		<helpers>
+			<smtppro><class>Aschroder_SMTPPro_Helper</class></smtppro>
+		</helpers>
+		<blocks>
+			<smtppro>
+				<class>Aschroder_SMTPPro_Block</class>
+			</smtppro>
+		</blocks>
+		<models>
+            <smtppro>
+                <class>Aschroder_SMTPPro_Model</class>
+				<resourceModel>smtppro_mysql4</resourceModel>
+            </smtppro>
+             <smtppro_mysql4>
+                <class>Aschroder_SMTPPro_Model_Mysql4</class>
+                <entities>
+                    <email_log><table>smtppro_email_log</table></email_log>
+                </entities>
+            </smtppro_mysql4>
+			<core>
+				<rewrite>
+					<email>Aschroder_SMTPPro_Model_Email</email>
+					<email_template>Aschroder_SMTPPro_Model_Email_Template</email_template>
+				</rewrite>
+			</core>
+		</models>
+		<resources>
+			<smtppro_setup>
+				<setup>
+					<module>Aschroder_SMTPPro</module>
+					<class>Aschroder_SMTPPro_Model_Mysql4_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</smtppro_setup>
+			<smtppro_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </smtppro_write>
+            <smtppro_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </smtppro_read>
+		</resources> 
+		<events>
+            <log_log_clean_after>
+                <observers>
+                    <smtppro_email_log_clean>
+                        <type>singleton</type>
+                        <class>smtppro/observer</class>
+                        <method>cleanOldLogs</method>
+                    </smtppro_email_log_clean>
+                </observers>
+            </log_log_clean_after>
+
+            <aschroder_smtppro_after_send>
+                <observers>
+                    <smtppro_email_after_send_observer>
+                        <type>singleton</type>
+                        <class>smtppro/observer</class>
+                        <method>log</method>
+                    </smtppro_email_after_send_observer>
+                </observers>
+            </aschroder_smtppro_after_send>
+
+            <aschroder_smtppro_before_send>
+                <observers>
+                    <aschroder_smtppro_before_send_observer>
+                        <type>singleton</type>
+                        <class>smtppro/observer</class>
+                        <method>beforeSend</method>
+                    </aschroder_smtppro_before_send_observer>
+                </observers>
+            </aschroder_smtppro_before_send>
+            <aschroder_smtppro_template_before_send>
+                <observers>
+                    <aschroder_smtppro_template_before_send_observer>
+                        <type>singleton</type>
+                        <class>smtppro/observer</class>
+                        <method>beforeSendTemplate</method>
+                    </aschroder_smtppro_template_before_send_observer>
+                </observers>
+            </aschroder_smtppro_template_before_send>
+		</events>
+	</global>
+	<adminhtml>
+	   <menu>
+            <system>
+                <children>
+                    <tools>
+                        <children>
+                            <smtppro translate="title" module="smtppro">
+                                <title>SMTPPro - Email Log</title>
+                                <action>smtppro/log</action>
+                            </smtppro>
+                        </children>
+                    </tools>
+                </children>
+            </system>
+        </menu>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<smtppro  translate="title" module="smtppro">
+											<title>SMTP Pro Email Settings</title>
+										</smtppro>
+									</children>
+								</config>
+					            <tools>
+					              <children>
+					                <smtppro  translate="title" module="smtppro">
+					                  <title>Email Log</title>
+					                </smtppro>
+					              </children>
+					            </tools>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+        <translate>
+            <modules>
+                <Aschroder_SMTPPro>
+                    <files>
+                        <default>Aschroder_SMTPPro.csv</default>
+                    </files>
+                </Aschroder_SMTPPro>
+            </modules>
+        </translate>
+	</adminhtml>
+	<default>
+		<smtppro>
+            <general>
+                <option>0</option>
+                <googleapps_email></googleapps_email>
+                <googleapps_gpassword backend_model="adminhtml/system_config_backend_encrypted" />
+                <sendgrid_email></sendgrid_email>
+                <sendgrid_password backend_model="adminhtml/system_config_backend_encrypted" />
+                <ses_access_key></ses_access_key>
+                <ses_private_key backend_model="adminhtml/system_config_backend_encrypted" />
+                <smtp_authentication></smtp_authentication>
+                <smtp_username></smtp_username>
+                <smtp_password backend_model="adminhtml/system_config_backend_encrypted" />
+                <smtp_host></smtp_host>
+                <smtp_port>25</smtp_port>
+                <smtp_ssl></smtp_ssl>
+            </general>
+            <debug>
+                <logenabled>0</logenabled>
+                <cleanlog>1</cleanlog>
+                <cleanlog_after_days>90</cleanlog_after_days>
+                <log_debug>0</log_debug>
+            </debug>
+		</smtppro>
+	</default>
+</config>
