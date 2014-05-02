@@ -3,6 +3,6 @@
 # author: Ashley
 
 #SMTP Pro
-code/app/etc/modules/Aschroder_SMTPPro.xml           app/etc/modules/Aschroder_SMTPPro.xml
-code/app/code/local/Aschroder/SMTPPro/               app/code/local/Aschroder/SMTPPro/
-code/app/design/adminhtml/base/default/template/smtppro/    app/design/adminhtml/default/default/template/smtppro/
+app/etc/modules/Aschroder_SMTPPro.xml                 app/etc/modules/Aschroder_SMTPPro.xml
+app/code/local/Aschroder/SMTPPro/                     app/code/local/Aschroder/SMTPPro/
+app/design/adminhtml/base/default/template/smtppro/   app/design/adminhtml/default/default/template/smtppro/
