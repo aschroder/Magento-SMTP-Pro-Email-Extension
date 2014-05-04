@@ -187,7 +187,7 @@ class Aschroder_SMTPPro_TestController extends Mage_Adminhtml_Controller_Action
                 $success = false;
                 $msg = $msg . "<br/>". $_helper->__("Could not find default template, or template not valid, or email communications disabled in Advanced > System settings.");
                 $msg = $msg . "<br/>". $_helper->__("Please check that you have templates in place for your emails. These are in app/locale, or custom defined in System > Transaction Emails. Also check Advanced > System settings to ensure email communications are enabled.");
-                $_helper->log($_helper->__("Could not find default template, or template not valid, or email communications disabled in Advanced > System settings"));
+                $_helper->log($_helper->__("Could not find default template, or template not valid, or email communications disabled in Advanced > System settings."));
             }
 
         } catch (Exception $e) {
