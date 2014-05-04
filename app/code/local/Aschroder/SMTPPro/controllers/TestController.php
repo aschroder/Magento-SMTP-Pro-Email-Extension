@@ -210,7 +210,7 @@ class Aschroder_SMTPPro_TestController extends Mage_Adminhtml_Controller_Action
                 $success = false;
                 $msg = $msg . "<br/>". $_helper->__("Could not find required database tables.");
                 $msg = $msg . "<br/>". $_helper->__("Please try to manually re-run the table creation script. For assistance please contact us.");
-                $_helper->log($_helper->__("Could not find required tables."));
+                $_helper->log($_helper->__("Could not find required database tables."));
             } else {
                 $msg = $msg . "<br/>". $_helper->__("Required database tables exist.");
                 $_helper->log($_helper->__("Required database tables exist."));
@@ -222,7 +222,7 @@ class Aschroder_SMTPPro_TestController extends Mage_Adminhtml_Controller_Action
             $msg = $msg . "<br/>". $_helper->__("Could not find required database tables.");
             $msg = $msg . "<br/>". $_helper->__("Exception message was: %s", $e->getMessage());
             $msg = $msg . "<br/>". $_helper->__("Please try to manually re-run the table creation script. For assistance please contact us.");
-            $_helper->log($_helper->__("Could not find required tables: %s", $e->getMessage()));
+            $_helper->log($_helper->__("Could not find required database tables: %s", $e->getMessage()));
         }
 
 
