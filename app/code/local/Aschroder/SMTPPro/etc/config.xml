@@ -3,14 +3,15 @@
 	/**
 	* SMTP Pro integration.
 	*
-	* @package    Aschroder_SMTPPro
-	* @author     Ashley Schroder (aschroder.com)
+	* @author Ashley Schroder (aschroder.com)
+    * @copyright  Copyright (c) 2014 Ashley Schroder
+    * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 	*/
 -->
 <config>
 	<modules>
 		<Aschroder_SMTPPro>
-			<version>2.0.0</version>
+			<version>2.0.1</version>
 		</Aschroder_SMTPPro>
 	</modules>
 	<frontend>

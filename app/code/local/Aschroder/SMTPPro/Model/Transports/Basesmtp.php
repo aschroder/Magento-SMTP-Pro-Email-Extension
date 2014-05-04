@@ -25,13 +25,21 @@ class Aschroder_SMTPPro_Model_Transports_Basesmtp {
 
         $_helper->log("Using $name Transport.");
 
-        $config = array(
-            'ssl' => $ssl,
-            'port' => $port,
-            'auth' => $auth,
-            'username' => $email,
-            'password' => $password
-        );
+        $config = array();
+
+        if ($auth != "none") {
+            $config['auth'] = $auth;
+            $config['username'] = $name;
+            $config['password'] = $password;
+        }
+
+        if ($port) {
+            $config['port'] = $port;
+        }
+
+        if ($ssl != "none" ) {
+            $config['ssl'] = $ssl;
+        }
 
         $emailTransport = new Zend_Mail_Transport_Smtp($host, $config);
         return $emailTransport;

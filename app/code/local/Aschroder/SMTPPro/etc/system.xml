@@ -27,9 +27,9 @@
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
           <show_in_store>0</show_in_store>
-          <comment>&lt;div style='background-color: #efefef;margin-bottom: 10px;height: 40px;'&gt; &lt;img style='float:left;width: 150px;' src='http://www.aschroder.com/smtppro-logo.png' /&gt; &lt;span style='float:left;font-size: 20px; margin:10px;'&gt;SMTP Pro Email Extension&lt;/span&gt; &lt;/div&gt; Configure your SMTP connection below. If you have any questions or would like any help please visit &lt;a href='http://magesmtppro.com' target='_blank'&gt;magesmtppro.com&lt;/a&gt;.</comment>
+          <comment><![CDATA[<div style='background-color: #efefef;margin-bottom: 10px;height: 40px;'> <img style='float:left;width: 150px;' src='http://www.aschroder.com/smtppro-logo.png' /> <span style='float:left;font-size: 20px; margin:10px;'>SMTP Pro Email Extension</span> </div> Configure your SMTP connection below. If you have any questions or would like any help please visit <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>.]]></comment>
           <fields>
-            <option translate="label comment">
+            <option translate="label">
               <label>Email Connection</label>
               <frontend_type>select</frontend_type>
               <source_model>smtppro/system_config_source_smtp_option</source_model>
@@ -50,9 +50,9 @@
               <show_in_store>0</show_in_store>
               <depends><option>google</option></depends>
             </googleapps_email>
-            <googleapps_gpassword translate="label">
+            <googleapps_gpassword translate="label comment">
               <label>Google Apps Password</label>
-              <comment>Input your Google Apps or Gmail username and password here. For configuration recommendations please see the guide at &lt;a href='http://magesmtppro.com' target='_blank'&gt;magesmtppro.com&lt;/a&gt;</comment>
+              <comment><![CDATA[Input your Google Apps or Gmail username and password here. For configuration recommendations please see the guide at <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>]]></comment>
               <frontend_type>password</frontend_type>
               <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
               <sort_order>23</sort_order>
@@ -71,9 +71,9 @@
                   <show_in_store>0</show_in_store>
                   <depends><option>sendgrid</option></depends>
               </sendgrid_email>
-              <sendgrid_password translate="label">
+              <sendgrid_password translate="label comment">
                   <label>SendGrid Password</label>
-                  <comment>Input your SendGrid username and password here. For more information visit &lt;a href='http://sendgrid.com' target='_blank'&gt;SendGrid&lt;/a&gt;</comment>
+                  <comment><![CDATA[Input your SendGrid username and password here. For more information visit <a href='http://sendgrid.com' target='_blank'>SendGrid</a>]]></comment>
                   <frontend_type>password</frontend_type>
                   <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
                   <sort_order>23</sort_order>
@@ -94,9 +94,9 @@
               <show_in_store>0</show_in_store>
               <depends><option>ses</option></depends>
             </ses_access_key>
-            <ses_private_key translate="label">
+            <ses_private_key translate="label comment">
               <label>Amazon SES Secret Key</label>
-              <comment>Amazon SES support in SMTP Pro is limited and best suited to development and testing purposes. For a full integration with region selection, error/bounce logging and send statistics please see the premium extension: &lt;a href='http://magesend.com' target='_blank'&gt;MageSend&lt;/a&gt;</comment>
+              <comment><![CDATA[Amazon SES support in SMTP Pro is limited and best suited to development and testing purposes. For a full integration with region selection, error/bounce logging and send statistics please see the premium extension: <a href='http://magesend.com' target='_blank'>MageSend</a>]]></comment>
               <frontend_type>password</frontend_type>
               <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
               <sort_order>23</sort_order>
@@ -106,9 +106,7 @@
               <depends><option>ses</option></depends>
             </ses_private_key>
 
-
-
-            <smtp_authentication translate="label comment">
+            <smtp_authentication translate="label">
               <label>Authentication</label>
               <frontend_type>select</frontend_type>
               <source_model>smtppro/system_config_source_smtp_authentication</source_model>
@@ -118,7 +116,7 @@
               <show_in_store>0</show_in_store>
               <depends><option>smtp</option></depends>
             </smtp_authentication>
-            <smtp_username translate="label comment">
+            <smtp_username translate="label">
               <label>Username</label>
               <frontend_type>text</frontend_type>
               <sort_order>23</sort_order>
@@ -127,7 +125,7 @@
               <show_in_store>0</show_in_store>
               <depends><option>smtp</option><smtp_authentication separator=",">login,plain,crammd5</smtp_authentication></depends>
             </smtp_username>
-            <smtp_password translate="label comment">
+            <smtp_password translate="label">
               <label>Password</label>
               <frontend_type>password</frontend_type>
               <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
@@ -137,7 +135,7 @@
               <show_in_store>0</show_in_store>
               <depends><option>smtp</option><smtp_authentication separator=",">login,plain,crammd5</smtp_authentication></depends>
             </smtp_password>
-            <smtp_host translate="label comment">
+            <smtp_host translate="label">
               <label>Host</label>
               <frontend_type>text</frontend_type>
               <sort_order>29</sort_order>
@@ -146,7 +144,7 @@
               <show_in_store>0</show_in_store>
               <depends><option>smtp</option></depends>
             </smtp_host>
-            <smtp_port translate="label comment">
+            <smtp_port translate="label">
               <label>Port</label>
               <frontend_type>text</frontend_type>
               <sort_order>32</sort_order>
@@ -157,7 +155,7 @@
             </smtp_port>
             <smtp_ssl translate="label comment">
               <label>SSL Security</label>
-              <comment>Custom SMTP servers can be configured in this section. For more information about these configuration options and troubleshooting advice please see &lt;a href='http://magesmtppro.com' target='_blank'&gt;magesmtppro.com&lt;/a&gt;</comment>
+              <comment><![CDATA[Custom SMTP servers can be configured in this section. For more information about these configuration options and troubleshooting advice please see <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>]]></comment>
               <frontend_type>select</frontend_type>
               <source_model>smtppro/system_config_source_smtp_ssl</source_model>
               <sort_order>35</sort_order>
@@ -170,7 +168,7 @@
           </fields>
         </general>
 
-        <debug module="smtppro" translate="label">
+        <debug module="smtppro" translate="label comment">
           <label>Logging and Debugging</label>
           <frontend_type>text</frontend_type>
           <sort_order>50</sort_order>
@@ -181,7 +179,7 @@
           <fields>
             <logenabled translate="label comment">
               <label>Log Emails</label>
-              <comment>This will log all outbound emails. View from System-&gt;Tools-&gt;SMTPPro - Email Log.</comment>
+              <comment>This will log all outbound emails. View from System->Tools->SMTPPro - Email Log.</comment>
               <frontend_type>select</frontend_type>
               <source_model>adminhtml/system_config_source_yesno</source_model>
               <sort_order>40</sort_order>
@@ -200,7 +198,7 @@
               <show_in_store>0</show_in_store>
               <depends><logenabled>1</logenabled></depends>
             </cleanlog>
-            <cleanlog_after_days translate="label comment">
+            <cleanlog_after_days translate="label">
               <label>Email Log Days Kept</label>
               <frontend_type>text</frontend_type>
               <sort_order>60</sort_order>
@@ -209,7 +207,7 @@
               <show_in_store>0</show_in_store>
               <depends><cleanlog>1</cleanlog><logenabled>1</logenabled></depends>
             </cleanlog_after_days>
-            <log_debug translate="label comment">
+            <log_debug translate="label">
               <label>Enable Debug Logging</label>
               <comment><![CDATA[If yes, a log file will be written with debug information.]]></comment>
               <frontend_type>select</frontend_type>
@@ -238,7 +236,7 @@
               <show_in_website>1</show_in_website>
               <show_in_store>1</show_in_store>
               <fields>
-                  <logenabled translate="label comment">
+                  <logenabled translate="label">
                       <frontend_type>select</frontend_type>
                       <frontend_model>Aschroder_SMTPPro_Block_Adminhtml_Table</frontend_model>
                       <sort_order>40</sort_order>
