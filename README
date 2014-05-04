@@ -7,6 +7,10 @@ by Ashley Schroder (aschroder.com)
 - View a log of all emails
 - Improve deliverability with an external SMTP server
 
+Contributors
+nl_NL translations thanks to [Melvyn Sopacua](http://www.supportdesk.nu/) 
+
+
 FAQ
 
 Q: It's not working
