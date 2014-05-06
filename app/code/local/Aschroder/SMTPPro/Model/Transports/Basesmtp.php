@@ -29,7 +29,7 @@ class Aschroder_SMTPPro_Model_Transports_Basesmtp {
 
         if ($auth != "none") {
             $config['auth'] = $auth;
-            $config['username'] = $name;
+            $config['username'] = $email;
             $config['password'] = $password;
         }
 
