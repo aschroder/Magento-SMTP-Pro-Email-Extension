@@ -36,7 +36,7 @@ class Aschroder_SMTPPro_Block_Adminhtml_Test
 
         // TODO: for real multi-store self-testing, the test button (and other configuration options) 
         // should probably be set to show in website. Currently they are not.
-    	$url = $this->getUrl("smtppro/test/index", $params);
+    	$url = Mage::helper('adminhtml')->getUrl("*/smtp_test/index", $params);
 
     	$buttonHtml = $this->getLayout()->createBlock('adminhtml/widget_button')
                     ->setType('button')

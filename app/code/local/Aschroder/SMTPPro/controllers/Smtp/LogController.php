@@ -10,7 +10,7 @@
  */
 
 
-class Aschroder_SMTPPro_LogController
+class Aschroder_SMTPPro_Smtp_LogController
 	extends Mage_Adminhtml_Controller_Action {
 
     protected function _initAction() {

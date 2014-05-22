@@ -7,7 +7,7 @@
  * @copyright  Copyright (c) 2014 Ashley Schroder
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Aschroder_SMTPPro_TestController extends Mage_Adminhtml_Controller_Action 
+class Aschroder_SMTPPro_Smtp_TestController extends Mage_Adminhtml_Controller_Action
 {
 
     // We use the contacts form template as a test template
@@ -28,7 +28,9 @@ class Aschroder_SMTPPro_TestController extends Mage_Adminhtml_Controller_Action
     protected $KNOWN_ERRORS = array(
         "/Email address is not verified/" => "Either your sending or receiving email address is not verified.<br/>Please check your Amazon SES console and confirm the email addresses are verified and the region matches.",
         "/RequestExpired/" => "Check the date and time on your server is set correctly.<br/>Amazon's servers think your server time is more than 5 minutes different to their time and are rejecting the request.",
-        "/Request is missing Authentication Token/" => "Check that you have an access key and secret key."
+        "/Request is missing Authentication Token/" => "Check that you have an access key and secret key.",
+        "/Network is unreachable/" => "There seems to be a problem with the connectivity on your server. Please check with your host that outbound SMTP connections are allowed. This is probably not a bug, please do not email extension support until you have checked with your server admin or host.",
+        "/Connection timed out/" => "Your connection to the SMTP server timed out. Please check with your host that outbound SMTP connections are allowed as this error is most commonly caused when a host blocks outbound connections. This is probably not a bug, please do not email extension support until you have checked with your server admin or host."
     );
 
     public function indexAction()

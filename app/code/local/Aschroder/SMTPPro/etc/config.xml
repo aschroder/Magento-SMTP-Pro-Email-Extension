@@ -11,7 +11,7 @@
 <config>
 	<modules>
 		<Aschroder_SMTPPro>
-			<version>2.0.2</version>
+			<version>2.0.3</version>
 		</Aschroder_SMTPPro>
 	</modules>
 	<frontend>
@@ -25,6 +25,17 @@
   			</smtppro>
 		</routers>
   	</frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <smtppro after="Mage_Adminhtml">Aschroder_SMTPPro</smtppro>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 	<global>
 		<helpers>
 			<smtppro><class>Aschroder_SMTPPro_Helper</class></smtppro>
@@ -122,7 +133,7 @@
                         <children>
                             <smtppro translate="title" module="smtppro">
                                 <title>SMTPPro - Email Log</title>
-                                <action>smtppro/log</action>
+                                <action>adminhtml/smtp_log</action>
                             </smtppro>
                         </children>
                     </tools>
