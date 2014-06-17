@@ -179,7 +179,7 @@
 	<default>
 		<smtppro>
             <general>
-                <option>0</option>
+                <option>disabled</option>
                 <googleapps_email></googleapps_email>
                 <googleapps_gpassword backend_model="adminhtml/system_config_backend_encrypted" />
                 <sendgrid_email></sendgrid_email>
