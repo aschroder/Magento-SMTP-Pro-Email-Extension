@@ -66,7 +66,7 @@ class Aschroder_SMTPPro_Smtp_TestController extends Mage_Adminhtml_Controller_Ac
         }
         if ($this->checkRewrite($this->EXPECTED_REWRITE_CLASSES["email_template_rewrite"], $email_template_rewrite)) {
             $success = false;
-            $msg = $msg . "<br/>". $_helper->__("<Detected overwrite conflict: %s", $email_template_rewrite);
+            $msg = $msg . "<br/>". $_helper->__("Detected overwrite conflict: %s", $email_template_rewrite);
             $_helper->log($_helper->__("Detected overwrite conflict: %s", $email_template_rewrite));
         }
 
