@@ -35,6 +35,7 @@ class Aschroder_SMTPPro_Model_Email extends Mage_Core_Model_Email {
 
         $mail->setFrom($this->getFromEmail(), $this->getFromName())
             ->addTo($this->getToEmail(), $this->getToName())
+            ->clearSubject()
             ->setSubject($this->getSubject());
 
         $transport = new Varien_Object(); // for observers to set if required
