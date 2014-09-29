@@ -11,7 +11,7 @@
 <config>
 	<modules>
 		<Aschroder_SMTPPro>
-			<version>2.0.3</version>
+			<version>2.0.4</version>
 		</Aschroder_SMTPPro>
 	</modules>
 	<frontend>
@@ -83,7 +83,7 @@
                     <use>core_read</use>
                 </connection>
             </smtppro_read>
-		</resources> 
+		</resources>
 		<events>
             <log_log_clean_after>
                 <observers>
