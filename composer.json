@@ -1,13 +1,15 @@
 {
-  "name": "aschroder/smtp_pro",
-  "type": "magento-module",
-  "description": "sending Magento mail through an external smtp-server",
-  "homepage":"https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension",
-  "require": {
-    "magento-hackathon/magento-composer-installer": "*"
-  }, 
-  "authors":[
-    {"name": "aschroder"
-    }
-  ]
+    "name": "aschroder/smtp_pro",
+    "type": "magento-module",
+    "license": "OSL-3.0",
+    "description": "sending Magento mail through an external smtp-server",
+    "homepage": "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors": [
+        {
+            "name": "aschroder"
+        }
+    ]
 }
