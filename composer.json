@@ -5,7 +5,7 @@
     "description": "sending Magento mail through an external smtp-server",
     "homepage": "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension",
     "require": {
-        "magento-hackathon/magento-composer-installer": "*"
+        "magento-hackathon/magento-composer-installer": "2.*"
     },
     "authors": [
         {
