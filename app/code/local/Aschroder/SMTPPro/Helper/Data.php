@@ -122,6 +122,16 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig('smtppro/general/sendgrid_password', $storeId);
     }
 
+    public function getMailUpUsername($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/mailup_email', $storeId);
+    }
+
+    public function getMailUpPassword($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/mailup_password', $storeId);
+    }
+
     public function getSMTPSettingsHost($storeId = null)
     {
         return Mage::getStoreConfig('smtppro/general/smtp_host', $storeId);

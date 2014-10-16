@@ -83,6 +83,27 @@
                   <depends><option>sendgrid</option></depends>
               </sendgrid_password>
 
+              <mailup_email translate="label">
+                  <label>MailUp Username</label>
+                  <frontend_type>text</frontend_type>
+                  <sort_order>20</sort_order>
+                  <show_in_default>1</show_in_default>
+                  <show_in_website>1</show_in_website>
+                  <show_in_store>0</show_in_store>
+                  <depends><option>mailup</option></depends>
+              </mailup_email>
+              <mailup_password translate="label comment">
+                  <label>MailUp Password</label>
+                  <comment><![CDATA[Input your MailUp username and password here. For more information visit <a href='http://mailup.com' target='_blank'>MailUp</a>]]></comment>
+                  <frontend_type>password</frontend_type>
+                  <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                  <sort_order>23</sort_order>
+                  <show_in_default>1</show_in_default>
+                  <show_in_website>1</show_in_website>
+                  <show_in_store>0</show_in_store>
+                  <depends><option>mailup</option></depends>
+              </mailup_password>
+
 
 
             <ses_access_key translate="label">
