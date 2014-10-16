@@ -134,7 +134,7 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getSMTPSettingsHost($storeId = null)
     {
-        return Mage::getStoreConfig('smtppro/general/smtp_host', $storeId);
+        return trim(Mage::getStoreConfig('smtppro/general/smtp_host', $storeId));
     }
 
     public function getSMTPSettingsPort($storeId = null)
