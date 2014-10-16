@@ -8,8 +8,9 @@ by Ashley Schroder (aschroder.com)
 - Improve deliverability with an external SMTP server
 
 Contributors
-nl_NL translations thanks to [Melvyn Sopacua](http://www.supportdesk.nu/)
-es_ES translations thanks to [Jhoon Saravia](http://twitter.com/jsaravia)
+- nl_NL translations thanks to [Melvyn Sopacua](http://www.supportdesk.nu/)
+- es_ES translations thanks to [Jhoon Saravia](http://twitter.com/jsaravia)
+- pt_BR translations thanks to [Gabriel Zamprogna] (https://github.com/gabrielz)
 
 
 FAQ
@@ -33,3 +34,6 @@ Q: Self test is failing with "Exception message was: 5.7.1 Username and Password
 A: It's actually good advice to learn more here:  http://support.google.com/mail/bin/answer.py?answer=14257. But two things to check: 
 1) that you are really 110% sure you have the right username and password (test it on gmail.com)
 2) If that does work, then Google may have blocked your server IP due to too many wrong passwords. You need to log in to gmail.com _from_ that IP - in order to answer the captcha and allow the IP through again. There's a few ways to do that - SOCKS proxy, X forward a browser, use Lynx.
+
+Q: I am getting a Subject set twice error
+A: This happens sometimes, typically if it is happening it would also be happening in core Magento. There is a Pull Request [here] (https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension/pull/57) that includes a work around thanks to [Rafael Kassner] (https://github.com/kassner).
