@@ -37,7 +37,7 @@
 "SMTP Pro Self Test Results","Resultados de Auto-Prueba de SMTP Pro"
 "Extension disabled, cannot run test.","Extensi&oacute;n desactivada, no se pudo ejecutar la prueba."
 "Checking config re-writes have not clashed.","Verificando que los re-writes de la configuraci&oacute;n no tengan conflictos."
-""Detected overwrite conflict: %s","Detectado un conflicto de sobreescritura: %s"
+"Detected overwrite conflict: %s","Detectado un conflicto de sobreescritura: %s"
 "Raw connection test for SMTP options.","Prueba de conexi&oacute;n bruta para las opciones SMTP."
 "Complete","Completo"
 "Failed to connect to SMTP server. Reason: ","Fall&oacute; la conexi&oacute;n al servidor SMTP. Raz&oacute;n: "
