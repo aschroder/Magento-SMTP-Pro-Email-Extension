@@ -118,7 +118,7 @@ class Aschroder_SMTPPro_Smtp_TestController extends Mage_Adminhtml_Controller_Ac
                 ->setBodyText($body);
 
         $_helper->log($_helper->__("Actual email sending test..."));
-        $msg = $msg . "<br/>". $_helper->__("Sending test email to your contact form address: ") . $to . $_helper->__(" from: ") . $this->TEST_EMAIL;
+        $msg = $msg . "<br/>". $_helper->__("Sending test email to your contact form address: ") . $to . $_helper->__(" from: {$this->TEST_EMAIL}. ");
 
         try {
 
