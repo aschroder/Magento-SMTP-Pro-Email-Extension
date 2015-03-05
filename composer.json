@@ -9,5 +9,13 @@
   "authors":[
     {"name": "aschroder"
     }
-  ]
+  ],
+  "extra": {
+    "map" : [
+      ["app/etc/modules/Aschroder_SMTPPro.xml", "app/etc/modules/Aschroder_SMTPPro.xml"],
+      ["app/code/local/Aschroder/SMTPPro", "app/code/local/Aschroder/SMTPPro"],
+      ["app/design/adminhtml/base/default/template/smtppro", "app/design/adminhtml/default/default/template/smtppro"],
+      ["app/locale/en_US/Aschroder_SMTPPro.csv", "app/locale/en_US/Aschroder_SMTPPro.csv"]
+    ]
+  }
 }
