@@ -37,7 +37,7 @@
 "SMTP Pro Self Test Results","SMTP Pro Zelftest Resultaten"
 "Extension disabled, cannot run test.","Extensie is uitschakeld. Kan de test niet uitvoeren."
 "Checking config re-writes have not clashed.","Er wordt gecontroleerd of er conflicten zijn in de herschreven configuratie."
-""Detected overwrite conflict: %s","Conflict gedetecteerd in overschrijvings configuratie: %s"
+"Detected overwrite conflict: %s","Conflict gedetecteerd in overschrijvings configuratie: %s"
 "Raw connection test for SMTP options.","Ruwe connectie test voor SMTP instellingen."
 "Complete","Compleet"
 "Failed to connect to SMTP server. Reason: ","Kan geen verbinding maken met de STMP server. Reden: "
