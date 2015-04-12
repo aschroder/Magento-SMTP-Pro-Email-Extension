@@ -13,7 +13,7 @@ class Aschroder_SMTPPro_Block_Adminhtml_Table
 
    public function render(Varien_Data_Form_Element_Abstract $element) {
        // This is included dynamically so it can be updated from time to time without the need for extension updates.
-       $html = '<iframe src="http://www.aschroder.com/esptable.html" style="border: none; height: 1000px; width: 100%;"></iframe>';
+       $html = '<iframe src="//smtppro-static.appspot.com/esp/esptable.html" style="border: none; height: 1000px; width: 100%;"></iframe>';
        return '<tr>' . $html . '</tr>';
     }
 
