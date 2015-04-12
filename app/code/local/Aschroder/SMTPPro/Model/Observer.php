@@ -60,5 +60,10 @@ class Aschroder_SMTPPro_Model_Observer extends Varien_Object {
         Mage::helper('smtppro')->log($observer->getEvent()->getMail());
         $observer->getEvent()->getTransport()->setTransport(Mage::helper('smtppro')->getTransport());
     }
+
+    public function beforeSendQueue($observer) {
+        Mage::helper('smtppro')->log($observer->getEvent()->getMail());
+        $observer->getEvent()->getTransport()->setTransport(Mage::helper('smtppro')->getTransport());
+    }
 	
 }

@@ -53,10 +53,9 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         $variables['email'] = reset($emails);
         $variables['name'] = reset($names);
 
-        ini_set('SMTP', Mage::getStoreConfig('system/smtp/host'));
-        ini_set('smtp_port', Mage::getStoreConfig('system/smtp/port'));
-
-        $mail = $this->getMail();
+        $this->setUseAbsoluteLinks(true);
+        $text = $this->getProcessedTemplate($variables, true);
+        $subject = $this->getProcessedTemplateSubject($variables);
 
         $setReturnPath = Mage::getStoreConfig(self::XML_PATH_SENDING_SET_RETURN_PATH);
         switch ($setReturnPath) {
@@ -71,6 +70,36 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
                 break;
         }
 
+        // Use the queue IFF it's not bypassed and it's been set.
+        if (!$_helper->isQueueBypassed() &&
+            $this->hasQueue() && $this->getQueue() instanceof Mage_Core_Model_Email_Queue) {
+
+            /** @var $emailQueue Mage_Core_Model_Email_Queue */
+            $emailQueue = $this->getQueue();
+            $emailQueue->setMessageBody($text);
+            $emailQueue->setMessageParameters(array(
+                'subject'           => $subject,
+                'return_path_email' => $returnPathEmail,
+                'is_plain'          => $this->isPlain(),
+                'from_email'        => $this->getSenderEmail(),
+                'from_name'         => $this->getSenderName(),
+                'reply_to'          => $this->getMail()->getReplyTo(),
+                'return_to'         => $this->getMail()->getReturnPath(),
+            ))
+                ->addRecipients($emails, $names, Mage_Core_Model_Email_Queue::EMAIL_TYPE_TO)
+                ->addRecipients($this->_bccEmails, array(), Mage_Core_Model_Email_Queue::EMAIL_TYPE_BCC);
+            $emailQueue->addMessageToQueue();
+
+            $_helper->log('Email not sent immediately, queued for sending.');
+
+            return true;
+        }
+
+        ini_set('SMTP', Mage::getStoreConfig('system/smtp/host'));
+        ini_set('smtp_port', Mage::getStoreConfig('system/smtp/port'));
+
+        $mail = $this->getMail();
+
         if ($returnPathEmail !== null) {
             $mailTransport = new Zend_Mail_Transport_Sendmail("-f".$returnPathEmail);
             Zend_Mail::setDefaultTransport($mailTransport);
@@ -80,16 +109,13 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             $mail->addTo($email, '=?utf-8?B?' . base64_encode($names[$key]) . '?=');
         }
 
-        $this->setUseAbsoluteLinks(true);
-        $text = $this->getProcessedTemplate($variables, true);
-
         if($this->isPlain()) {
             $mail->setBodyText($text);
         } else {
             $mail->setBodyHTML($text);
         }
 
-        $mail->setSubject('=?utf-8?B?' . base64_encode($this->getProcessedTemplateSubject($variables)) . '?=');
+        $mail->setSubject('=?utf-8?B?' . base64_encode($subject) . '?=');
         $mail->setFrom($this->getSenderEmail(), $this->getSenderName());
 
         try {
@@ -112,7 +138,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
                 Mage::dispatchEvent('aschroder_smtppro_after_send', array(
                     'to' => $email,
                     'template' => $this->getTemplateId(),
-                    'subject' => $this->getProcessedTemplateSubject($variables),
+                    'subject' => $subject,
                     'html' => !$this->isPlain(),
                     'email_body' => $text));
             }

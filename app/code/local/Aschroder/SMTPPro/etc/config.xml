@@ -60,6 +60,7 @@
 				<rewrite>
 					<email>Aschroder_SMTPPro_Model_Email</email>
 					<email_template>Aschroder_SMTPPro_Model_Email_Template</email_template>
+                    <email_queue>Aschroder_SMTPPro_Model_Email_Queue</email_queue>
 				</rewrite>
 			</core>
 		</models>
@@ -123,6 +124,15 @@
                     </aschroder_smtppro_template_before_send_observer>
                 </observers>
             </aschroder_smtppro_template_before_send>
+            <aschroder_smtppro_queue_before_send>
+                <observers>
+                    <aschroder_smtppro_queue_before_send_observer>
+                        <type>singleton</type>
+                        <class>smtppro/observer</class>
+                        <method>beforeSendQueue</method>
+                    </aschroder_smtppro_queue_before_send_observer>
+                </observers>
+            </aschroder_smtppro_queue_before_send>
 		</events>
 	</global>
 	<adminhtml>

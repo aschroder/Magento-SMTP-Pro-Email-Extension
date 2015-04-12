@@ -162,6 +162,23 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig('smtppro/general/smtp_authentication', $storeId);
     }
 
+    public function getQueueUsage($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/queue/usage', $storeId);
+    }
+    public function isQueueBypassed($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/queue/usage', $storeId) == "never";
+    }
+    public function getQueuePerCron($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/queue/percron', $storeId);
+    }
+    public function getQueuePause($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/queue/pause', $storeId);
+    }
+
 
     // These are not the droids you're looking for...
 
