@@ -30,7 +30,7 @@
 "If this is set to yes, old entries will be deleted from email log. Cron is required and log cleaning must be enabled in system/log/enabled for this to work.","If this is set to yes, old entries will be deleted from email log. Cron is required and log cleaning must be enabled in system/log/enabled for this to work."
 "Email Log Days Kept","Email Log Days Kept"
 "Enable Debug Logging","Enable Debug Logging"
-"If yes, a log file will be written with debug information.","If yes, a log file will be written with debug information."
+"If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log.","If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log."
 "Save settings before running this test.","Save settings before running this test."
 "Compatible Email Services","Compatible Email Services"
 "Running SMTP Pro Self Test","Running SMTP Pro Self Test"

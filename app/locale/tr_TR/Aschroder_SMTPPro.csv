@@ -30,7 +30,7 @@
 "If this is set to yes, old entries will be deleted from email log. Cron is required and log cleaning must be enabled in system/log/enabled for this to work.","Bu ayar seçilirse, eposta kayıtları içerisinden eski olanlar silinecektir. Bu işlemin yapılabilmesi için Cron çalışıyor olmalı, ve Sistem->Log->Kayıt temizleme kısmında kayıt temizleme aktif olmalıdır."
 "Email Log Days Kept","Email Kayıt Tutma Süresi"
 "Enable Debug Logging","Hata Ayıklama Raporlarını Etkinleştir"
-"If yes, a log file will be written with debug information.","Eğer aktif ederseniz, hata ayıklama bilgileri bir kayıt dosyası içerisine yazılacak."
+"If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log.","Eğer aktif ederseniz, hata ayıklama bilgileri bir kayıt dosyası içerisine yazılacak."
 "Save settings before running this test.","Bu testi çalıştırmadan önce ayarları kaydedin."
 "Compatible Email Services","Uyumlu Eposta Servisleri"
 "Running SMTP Pro Self Test","SMTP Pro Self Test Çalışıyor"

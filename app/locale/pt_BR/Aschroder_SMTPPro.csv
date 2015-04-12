@@ -33,3 +33,4 @@
 "These settings are for experimental use of the Amazon AWS SES service. This should not be used on a production server yet, but please do try it out and let me know how you get on.","Essas configurações são para uso experimental do serviço Amazon AWS SES. Isso não deve ser usado em um servidor de produção ainda, mas por favor faça um teste e me informe como foi."
 "Access Key","Chave de Acesso"
 "Secret Key","Chave Secreta"
+"If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log.","If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log."

@@ -30,7 +30,7 @@
 "If this is set to yes, old entries will be deleted from email log. Cron is required and log cleaning must be enabled in system/log/enabled for this to work.","Si se ajusta esto a S&iacute;, las entradas antiguas se borrar&aacute;n del registro de correos. Se requiere Cron y que la limpieza de registros est&eacute; activada en Sistema/Registro/Activado para que esto funcione."
 "Email Log Days Kept","D&iacute;as a mantener el Registro de Correos"
 "Enable Debug Logging","Activar Registro de Depuraci&oacute;n"
-"If yes, a log file will be written with debug information.","Si s&iacute;, un archivo de registros se escribir&aacute; con informaci&oacute;n de depuraci&oacute;n."
+"If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log.","Si s&iacute;, un archivo de registros se escribir&aacute; con informaci&oacute;n de depuraci&oacute;n."
 "Save settings before running this test.","Guarda la configuraci&oacute;n antes de ejecutar esta prueba."
 "Compatible Email Services","Servicios de Correo Compatibles"
 "Running SMTP Pro Self Test","Ejecutando Auto-Prueba de SMTP Pro"

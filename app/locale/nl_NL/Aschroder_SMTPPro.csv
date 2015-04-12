@@ -30,7 +30,7 @@
 	"If this is set to yes, old entries will be deleted from email log. Cron is required and log cleaning must be enabled in system/log/enabled for this to work.","Als dit is ingeschakeld worden oude vermeldingen verwijderd uit de email log. Hiervoor is de Cron nodig en de instelling Log opschonen moet ingeschakeld zijn onder Geavanceerd->Systeem->Log opschonen."
 "Email Log Days Kept","Aantal dagen te behouden in het Email log"
 "Enable Debug Logging","Schakel debug logs in"
-"If yes, a log file will be written with debug information.","Indien ingeschakeld, zal er een file geschreven worden met debug informatie."
+"If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log.","Indien ingeschakeld, zal er een file geschreven worden met debug informatie."
 "Save settings before running this test.","Sla de instellingen op voordat deze test wordt uitgevoerd."
 "Compatible Email Services","Vergelijkbare Email Services"
 "Running SMTP Pro Self Test","De SMTP Pro Zelftest uitvoeren"
