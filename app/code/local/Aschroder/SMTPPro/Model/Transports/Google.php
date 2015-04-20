@@ -21,13 +21,13 @@ class Aschroder_SMTPPro_Model_Transports_Google extends Aschroder_SMTPPro_Model_
     }
     public function getPort($storeId) {
         if(defined('HHVM_VERSION')) return 465;
-		else return 587;
+	return 587;
     }
     public function getAuth($storeId) {
         return 'login';
     }
     public function getSsl($storeId) {
-		if(defined('HHVM_VERSION')) return 'ssl';
-		else return 'tls';
+	if(defined('HHVM_VERSION')) return 'ssl';
+	return 'tls';
     }
 }
