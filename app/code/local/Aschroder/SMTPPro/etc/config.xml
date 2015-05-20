@@ -14,17 +14,17 @@
 			<version>2.0.6</version>
 		</Aschroder_SMTPPro>
 	</modules>
-	<frontend>
+	<admin>
 		<routers>
   			<smtppro>
-  				  <use>standard</use>
+  				  <use>admin</use>
    				 <args>
    				   <module>Aschroder_SMTPPro</module>
    				   <frontName>smtppro</frontName>
    				 </args>
   			</smtppro>
 		</routers>
-  	</frontend>
+  	</admin>
     <admin>
         <routers>
             <adminhtml>
