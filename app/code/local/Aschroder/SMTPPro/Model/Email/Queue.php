@@ -91,7 +91,8 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
                     $transport = new Varien_Object();
                     Mage::dispatchEvent('aschroder_smtppro_queue_before_send', array(
                         'mail' => $mailer,
-                        'transport' => $transport
+                        'transport' => $transport,
+                        'message' => $message
                     ));
 
                     if ($transport->getTransport()) { // if set by an observer, use it
