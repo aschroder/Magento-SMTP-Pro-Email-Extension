@@ -33,6 +33,11 @@ class Aschroder_SMTPPro_Smtp_TestController extends Mage_Adminhtml_Controller_Ac
         "/Connection timed out/" => "Your connection to the SMTP server timed out. Please check with your host that outbound SMTP connections are allowed as this error is most commonly caused when a host blocks outbound connections. This is probably not a bug, please do not email extension support until you have checked with your server admin or host."
     );
 
+    protected function _isAllowed() {
+        $aclResourcePath = 'admin/system/tools/smtppro_test';
+        return Mage::getSingleton('admin/session')->isAllowed($aclResourcePath);
+    }
+
     public function indexAction()
     {
         $_helper = Mage::helper('smtppro');

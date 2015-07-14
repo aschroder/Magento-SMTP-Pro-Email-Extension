@@ -13,6 +13,11 @@
 class Aschroder_SMTPPro_Smtp_LogController
 	extends Mage_Adminhtml_Controller_Action {
 
+    protected function _isAllowed() {
+        $aclResourcePath = 'admin/system/tools/smtppro';
+        return Mage::getSingleton('admin/session')->isAllowed($aclResourcePath);
+    }
+
     protected function _initAction() {
         // load layout, set active menu and breadcrumbs
         $this->loadLayout()
