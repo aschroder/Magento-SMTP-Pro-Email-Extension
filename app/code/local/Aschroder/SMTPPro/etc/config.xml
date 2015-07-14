@@ -165,9 +165,12 @@
 								</config>
 					            <tools>
 					              <children>
-					                <smtppro  translate="title" module="smtppro">
-					                  <title>Email Log</title>
-					                </smtppro>
+                                    <smtppro  translate="title" module="smtppro">
+                                        <title>Email Log</title>
+                                    </smtppro>
+                                    <smtppro_test translate="title" module="smtppro">
+                                        <title>Smtp Email Test</title>
+                                    </smtppro_test>
 					              </children>
 					            </tools>
 							</children>
