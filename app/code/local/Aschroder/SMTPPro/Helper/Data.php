@@ -33,6 +33,7 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
     {
         if ($this->isLogEnabled()) {
             $log = Mage::getModel('smtppro/email_log')
+                ->setLogAt(Mage::getSingleton('core/date')->gmtDate())
                 ->setEmailTo($to)
                 ->setTemplate($template)
                 ->setSubject($subject)

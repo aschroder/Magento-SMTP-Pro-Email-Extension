@@ -15,7 +15,7 @@
 	    <p><strong><?php echo $this->__('To:') ?></strong> <?php echo $email->getEmailTo(); ?></p>
 	    <p><strong><?php echo $this->__('Subject:') ?></strong> <?php echo $email->getSubject(); ?></p>
 	    <p><strong><?php echo $this->__('Template:') ?></strong> <?php echo $email->getTemplate(); ?></p>
-	    <p><strong><?php echo $this->__('Sent:') ?></strong> <?php echo $email->getLogAt(); ?></p>
+	    <p><strong><?php echo $this->__('Sent:') ?></strong> <?php echo Mage::helper('core')->formatDate($email->getLogAt(), $format = 'full', $showTime = true); ?></p>
 	    <p><strong><?php echo $this->__('Message:') ?></strong></p>
 	    <div>
 	    <?php echo $email->getEmailBody(); ?>

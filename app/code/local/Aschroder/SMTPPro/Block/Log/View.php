@@ -13,7 +13,6 @@ class Aschroder_SMTPPro_Block_Log_View extends Mage_Catalog_Block_Product_Abstra
         $this->setEmailId($this->getRequest()->getParam('email_id', false));
     }
 
-
     public function getEmailData() {
         if( $this->getEmailId()) {
 	        return Mage::getModel('smtppro/email_log')
@@ -24,6 +23,6 @@ class Aschroder_SMTPPro_Block_Log_View extends Mage_Catalog_Block_Product_Abstra
     }
 
     public function getBackUrl() {
-        return Mage::helper('adminhtml')->getUrl('*/log');
+        return Mage::helper('adminhtml')->getUrl('*/smtp_log');
     }
 }
