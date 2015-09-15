@@ -41,6 +41,6 @@ A: This happens sometimes, typically if it is happening it would also be happeni
 
 ## Release Notes
 
-# 2014-08-19
+# 2.0.6
 fix log_at to use utc timestamps
 fix back link on log view
