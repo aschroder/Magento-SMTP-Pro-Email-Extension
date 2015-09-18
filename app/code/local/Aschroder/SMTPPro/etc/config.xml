@@ -26,15 +26,17 @@
 		</routers>
   	</frontend>
     <admin>
-        <routers>
-            <adminhtml>
-                <args>
-                    <modules>
-                        <smtppro after="Mage_Adminhtml">Aschroder_SMTPPro</smtppro>
-                    </modules>
-                </args>
-            </adminhtml>
-        </routers>
+        <admin>
+            <routers>
+                <smtppro>
+                    <use>admin</use>
+                    <args>
+                        <module>Aschroder_SMTPPro</module>
+                        <frontName>smtppro</frontName>
+                    </args>
+                </smtppro>
+            </routers>
+        </admin>
     </admin>
 	<global>
 		<helpers>
