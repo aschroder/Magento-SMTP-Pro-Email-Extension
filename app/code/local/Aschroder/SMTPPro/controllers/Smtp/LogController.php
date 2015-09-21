@@ -38,6 +38,15 @@ class Aschroder_SMTPPro_Smtp_LogController
             ->renderLayout();
             
 		
-	}	
-	
+	}
+
+	/**
+	 * Check is allowed access to action
+	 *
+	 * @return bool
+	 */
+	protected function _isAllowed() {
+		return Mage::getSingleton('admin/session')->isAllowed('admin/system/tools/smtppro');
+	}
+
 } 
