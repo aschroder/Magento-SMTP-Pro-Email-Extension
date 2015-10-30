@@ -9,4 +9,7 @@ app/design/adminhtml/base/default/template/smtppro/     app/design/adminhtml/def
 app/locale/de_DE/Aschroder_SMTPPro.csv                  app/locale/de_DE/Aschroder_SMTPPro.csv
 app/locale/en_US/Aschroder_SMTPPro.csv                  app/locale/en_US/Aschroder_SMTPPro.csv
 app/locale/fr_FR/Aschroder_SMTPPro.csv                  app/locale/fr_FR/Aschroder_SMTPPro.csv
-
+app/locale/es_ES/Aschroder_SMTPPro.csv                  app/locale/es_ES/Aschroder_SMTPPro.csv
+app/locale/nl_NL/Aschroder_SMTPPro.csv                  app/locale/nl_NL/Aschroder_SMTPPro.csv
+app/locale/pt_PT/Aschroder_SMTPPro.csv                  app/locale/pt_PT/Aschroder_SMTPPro.csv
+app/locale/tr_TR/Aschroder_SMTPPro.csv                  app/locale/tr_TR/Aschroder_SMTPPro.csv
