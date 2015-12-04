@@ -126,7 +126,8 @@ class Aschroder_SMTPPro_Smtp_TestController extends Mage_Adminhtml_Controller_Ac
             Mage::dispatchEvent('aschroder_smtppro_before_send', array(
                 'mail' => $mail,
                 'email' => $this,
-                'transport' => $transport
+                'transport' => $transport,
+                'store_id' => $websiteModel->getId()
             ));
 
             $emailTransport = $transport->getTransport();
