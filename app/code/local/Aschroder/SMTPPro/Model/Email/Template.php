@@ -121,8 +121,6 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         foreach(Mage::app()->getStores() as $store){
             if($this->getSenderEmail() == Mage::getStoreConfig('trans_email/ident_sales/email',$store->getStoreId())){
                 $storeid = $store->getStoreId();
-            } else {
-                $storeid = null;
             }
         }
 
@@ -134,7 +132,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
                 'template' => $this,
                 'variables' => $variables,
                 'transport' => $transport,
-                'store_id' => $storeid
+                'store_id' => isset($storeid) ? $storeid : null
             ));
 
             if ($transport->getTransport()) { // if set by an observer, use it
