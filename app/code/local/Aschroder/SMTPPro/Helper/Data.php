@@ -101,6 +101,11 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig('smtppro/general/ses_private_key', $storeId);
     }
 
+    public function getAmazonSESRegion($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/ses_region', $storeId);
+    }
+
     public function getGoogleAppsEmail($storeId = null)
     {
         return Mage::getStoreConfig('smtppro/general/googleapps_email', $storeId);
