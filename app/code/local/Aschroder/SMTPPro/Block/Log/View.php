@@ -6,7 +6,7 @@
  */
 
 class Aschroder_SMTPPro_Block_Log_View extends Mage_Catalog_Block_Product_Abstract {
-	 
+     
     public function __construct() {
         parent::__construct();
         $this->setTemplate('smtppro/view.phtml');
@@ -16,10 +16,10 @@ class Aschroder_SMTPPro_Block_Log_View extends Mage_Catalog_Block_Product_Abstra
 
     public function getEmailData() {
         if( $this->getEmailId()) {
-	        return Mage::getModel('smtppro/email_log')
-	        			->load($this->getEmailId());
+            return Mage::getModel('smtppro/email_log')
+                        ->load($this->getEmailId());
         } else {
-        	throw new Exception("No Email Id given");
+            throw new Exception("No Email Id given");
         }
     }
 
