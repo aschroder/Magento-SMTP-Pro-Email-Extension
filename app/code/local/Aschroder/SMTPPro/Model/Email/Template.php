@@ -118,6 +118,12 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         $mail->setSubject('=?utf-8?B?' . base64_encode($subject) . '?=');
         $mail->setFrom($this->getSenderEmail(), $this->getSenderName());
 
+        foreach(Mage::app()->getStores() as $store){
+            if($this->getSenderEmail() == Mage::getStoreConfig('trans_email/ident_sales/email',$store->getStoreId())){
+                $storeid = $store->getStoreId();
+            }
+        }
+
         try {
 
             $transport = new Varien_Object();
@@ -125,7 +131,8 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
                 'mail' => $mail,
                 'template' => $this,
                 'variables' => $variables,
-                'transport' => $transport
+                'transport' => $transport,
+                'store_id' => isset($storeid) ? $storeid : null
             ));
 
             if ($transport->getTransport()) { // if set by an observer, use it
