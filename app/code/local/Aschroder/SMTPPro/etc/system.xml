@@ -5,8 +5,8 @@
       <label>Aschroder Extensions</label>
       <sort_order>600</sort_order>
       <show_in_default>1</show_in_default>
-      <show_in_website>0</show_in_website>
-      <show_in_store>0</show_in_store>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
     </aschroder>
   </tabs>
   <sections>
@@ -17,8 +17,8 @@
       <frontend_type>text</frontend_type>
       <sort_order>110</sort_order>
       <show_in_default>1</show_in_default>
-      <show_in_website>0</show_in_website>
-      <show_in_store>0</show_in_store>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
       <groups>
         <general module="smtppro" translate="label comment">
           <label>General Settings</label>
@@ -26,7 +26,7 @@
           <sort_order>10</sort_order>
           <show_in_default>1</show_in_default>
           <show_in_website>1</show_in_website>
-          <show_in_store>0</show_in_store>
+          <show_in_store>1</show_in_store>
           <comment><![CDATA[<div style='background-color: #efefef;margin-bottom: 10px;height: 40px;'> <img style='float:left;width: 150px;' src='http://www.aschroder.com/smtppro-logo.png' /> <span style='float:left;font-size: 20px; margin:10px;'>SMTP Pro Email Extension</span> </div> Configure your SMTP connection below. If you have any questions or would like any help please visit <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>.]]></comment>
           <fields>
             <option translate="label">
@@ -35,8 +35,8 @@
               <source_model>smtppro/system_config_source_smtp_option</source_model>
               <sort_order>10</sort_order>
               <show_in_default>1</show_in_default>
-              <show_in_website>0</show_in_website>
-              <show_in_store>0</show_in_store>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
             </option>
 
 
@@ -47,7 +47,7 @@
               <sort_order>20</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
+              <show_in_store>1</show_in_store>
               <depends><option>google</option></depends>
             </googleapps_email>
             <googleapps_gpassword translate="label comment">
@@ -58,7 +58,7 @@
               <sort_order>23</sort_order>
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
+              <show_in_store>1</show_in_store>
               <depends><option>google</option></depends>
             </googleapps_gpassword>
 
