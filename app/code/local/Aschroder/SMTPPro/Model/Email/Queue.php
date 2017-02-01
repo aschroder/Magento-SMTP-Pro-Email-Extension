@@ -1,5 +1,5 @@
 <?php
-
+require Mage::getBaseDir().'/vendor/autoload.php';
 /**
  * This class wraps the Queue to add email sending functionality
  * If enabled it will send emails using the given configuration.
@@ -58,6 +58,9 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
                 $mailer = new Zend_Mail('utf-8');
                 foreach ($message->getRecipients() as $recipient) {
                     list($email, $name, $type) = $recipient;
+                    $idn = new Mso\IdnaConvert\IdnaConvert();
+                    $email = $idn->encode($email);
+
                     switch ($type) {
                         case self::EMAIL_TYPE_BCC:
                             $mailer->addBcc($email, '=?utf-8?B?' . base64_encode($name) . '?=');
