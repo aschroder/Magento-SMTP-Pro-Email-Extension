@@ -10,7 +10,7 @@ by Ashley Schroder (aschroder.com)
 Contributors
 - nl_NL translations thanks to [Melvyn Sopacua](http://www.supportdesk.nu/)
 - es_ES translations thanks to [Jhoon Saravia](http://twitter.com/jsaravia)
-- pt_BR translations thanks to [Gabriel Zamprogna] (https://github.com/gabrielz)
+- pt_BR translations thanks to [Gabriel Zamprogna](https://github.com/gabrielz)
 - fr_FR translations thanks to [@aymencis Aymen Hajri](https://github.com/aymencis)
 - de_DE translations thanks to [@quafzi Thomas Birke](https://github.com/quafzi)
 
@@ -38,4 +38,4 @@ A: It's actually good advice to learn more here:  http://support.google.com/mail
 2) If that does work, then Google may have blocked your server IP due to too many wrong passwords. You need to log in to gmail.com _from_ that IP - in order to answer the captcha and allow the IP through again. There's a few ways to do that - SOCKS proxy, X forward a browser, use Lynx.
 
 Q: I am getting a Subject set twice error
-A: This happens sometimes, typically if it is happening it would also be happening in core Magento. There is a Pull Request [here] (https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension/pull/57) that includes a work around thanks to [Rafael Kassner] (https://github.com/kassner).
+A: This happens sometimes, typically if it is happening it would also be happening in core Magento. There is a Pull Request [here](https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension/pull/57) that includes a work around thanks to [Rafael Kassner](https://github.com/kassner).
