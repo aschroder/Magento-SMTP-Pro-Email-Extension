@@ -52,6 +52,10 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig('smtppro/general/option', $storeId) == "google";
     }
+    public function isGoogleAppsSSLEnabled($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/option', $storeId) == "googlessl";
+    }
 
     public function isAmazonSESEnabled($storeId = null)
     {
@@ -111,6 +115,15 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig('smtppro/general/googleapps_gpassword', $storeId);
     }
 
+    public function getGoogleAppsSSLEmail($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/googleappsssl_email', $storeId);
+    }
+
+    public function getGoogleAppsSSLPassword($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/googleappsssl_gpassword', $storeId);
+    }
 
     public function getSendGridEmail($storeId = null)
     {
