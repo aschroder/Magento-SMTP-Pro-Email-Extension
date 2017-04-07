@@ -130,10 +130,12 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
                         $message->delete();
                     }
                     
-                    $oldDevMode = Mage::getIsDeveloperMode();
-                    Mage::setIsDeveloperMode(true);
-                    //Mage::logException($e);
-                    Mage::setIsDeveloperMode($oldDevMode);
+                    if ($_helper->isDebugLoggingEnabled) {
+                        $oldDevMode = Mage::getIsDeveloperMode();
+                        Mage::setIsDeveloperMode(true);
+                        Mage::logException($e);
+                        Mage::setIsDeveloperMode($oldDevMode);
+                    }
 
                     continue;
                 }
