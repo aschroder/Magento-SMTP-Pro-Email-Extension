@@ -116,8 +116,6 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
                             'html' => !$parameters->getIsPlain(),
                             'email_body' => $message->getMessageBody()));
                     }
-
-
                 }
                 catch (Exception $e) {
                     unset($mailer);
@@ -126,7 +124,25 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
                     Mage::logException($e);
                     Mage::setIsDeveloperMode($oldDevMode);
 
-                    return false;
+                    // Was the that the email was invalid? then log it into the grid.
+                    if (strpos($e->getMessage(), 'Recipient syntax error') !== false) {
+                        // loop each email to fire a failed send event
+                        foreach ($message->getRecipients() as $recipient) {
+                            list($email, $name, $type) = $recipient;
+                            Mage::dispatchEvent('aschroder_smtppro_failed_send', array(
+                                'to' => $email,
+                                'template' => "queued email",
+                                // TODO: should we preserve the template id in the queue object, in order to include it here?
+                                'subject' => $parameters->getSubject(),
+                                'html' => !$parameters->getIsPlain(),
+                                'email_body' => $message->getMessageBody()));
+                        }
+
+                        // remove the message from the queue
+                        $message->delete();
+                    }
+
+                    continue;
                 }
 
                 // after each valid message has been sent - pause if required
