@@ -20,12 +20,14 @@ class Aschroder_SMTPPro_Model_Transports_Google extends Aschroder_SMTPPro_Model_
         return "smtp.gmail.com";
     }
     public function getPort($storeId) {
-        return 587;
+        if(defined('HHVM_VERSION')) return 465;
+	return 587;
     }
     public function getAuth($storeId) {
         return 'login';
     }
     public function getSsl($storeId) {
-        return 'tls';
+	if(defined('HHVM_VERSION')) return 'ssl';
+	return 'tls';
     }
 }
