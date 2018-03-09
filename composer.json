@@ -22,7 +22,7 @@
       ["app/locale/es_ES/Aschroder_SMTPPro.csv", "app/locale/es_ES/Aschroder_SMTPPro.csv"],
       ["app/locale/nl_NL/Aschroder_SMTPPro.csv", "app/locale/nl_NL/Aschroder_SMTPPro.csv"],
       ["app/locale/pt_PT/Aschroder_SMTPPro.csv", "app/locale/pt_PT/Aschroder_SMTPPro.csv"],
-      ["app/locale/tr_TR/Aschroder_SMTPPro.csv", "app/locale/tr_TR/Aschroder_SMTPPro.csv"]
+      ["app/locale/tr_TR/Aschroder_SMTPPro.csv", "app/locale/tr_TR/Aschroder_SMTPPro.csv"],
       ["app/locale/ru_RU/Aschroder_SMTPPro.csv", "app/locale/ru_RU/Aschroder_SMTPPro.csv"]
     ]
   }
