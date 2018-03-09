@@ -25,7 +25,9 @@ class Aschroder_SMTPPro_Model_Email extends Mage_Core_Model_Email {
             return $this;
         }
 
-        $mail = new Zend_Mail();
+        $charset = Mage::getStoreConfigFlag('smtppro/charset/utf8') ? 'UTF-8' : null;
+        //set charset for the email
+        $mail = new Zend_Mail($charset);
 
         if (strtolower($this->getType()) == 'html') {
             $mail->setBodyHtml($this->getBody());
