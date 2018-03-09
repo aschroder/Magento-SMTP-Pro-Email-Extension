@@ -10,10 +10,10 @@ by Ashley Schroder (aschroder.com)
 Contributors
 - nl_NL translations thanks to [Melvyn Sopacua](http://www.supportdesk.nu/)
 - es_ES translations thanks to [Jhoon Saravia](http://twitter.com/jsaravia)
-- pt_BR translations thanks to [Gabriel Zamprogna] (https://github.com/gabrielz)
+- pt_BR translations thanks to [Gabriel Zamprogna](https://github.com/gabrielz)
 - fr_FR translations thanks to [@aymencis Aymen Hajri](https://github.com/aymencis)
 - de_DE translations thanks to [@quafzi Thomas Birke](https://github.com/quafzi)
-
+- ru_RU translations thanks to [Victor Ivanov](https://github.com/victorivanovspb)
 
 FAQ
 
