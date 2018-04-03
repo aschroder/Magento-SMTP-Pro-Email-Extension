@@ -236,6 +236,16 @@
                       <show_in_website>0</show_in_website>
                       <show_in_store>0</show_in_store>
                   </pause>
+                  <day_interval translate="label">
+                      <label>Day after delete</label>
+                      <comment>After what period of days, all the unsent emails are deleted. Format: x</comment>
+                      <frontend_type>text</frontend_type>
+                      <sort_order>40</sort_order>
+                      <show_in_default>1</show_in_default>
+                      <show_in_website>0</show_in_website>
+                      <show_in_store>0</show_in_store>
+                      <validate>validate-zero-or-greater</validate>
+                  </day_interval>
               </fields>
           </queue>
 

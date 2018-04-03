@@ -206,6 +206,9 @@
                 <smtp_port>25</smtp_port>
                 <smtp_ssl></smtp_ssl>
             </general>
+            <queue>
+                <day_interval>999</day_interval>
+            </queue>
             <debug>
                 <logenabled>0</logenabled>
                 <cleanlog>1</cleanlog>

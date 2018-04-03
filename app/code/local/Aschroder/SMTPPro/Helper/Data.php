@@ -183,6 +183,10 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig('smtppro/queue/pause', $storeId);
     }
+    public function getDayToDelete($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/queue/day_interval', $storeId);
+    }
 
 
     // These are not the droids you're looking for...
