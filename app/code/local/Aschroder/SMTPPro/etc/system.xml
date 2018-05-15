@@ -62,6 +62,27 @@
               <depends><option>google</option></depends>
             </googleapps_gpassword>
 
+            <googleappsssl_email translate="label">
+              <label>Google Apps Email Address</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends><option>google</option></depends>
+            </googleappsssl_email>
+            <googleappsssl_gpassword translate="label comment">
+              <label>Google Apps Password</label>
+              <comment><![CDATA[Input your Google Apps or Gmail username and password here. For configuration recommendations please see the guide at <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>]]></comment>
+              <frontend_type>password</frontend_type>
+              <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+              <sort_order>23</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends><option>google</option></depends>
+            </googleappsssl_gpassword>
+
               <sendgrid_email translate="label">
                   <label>SendGrid Username</label>
                   <frontend_type>text</frontend_type>

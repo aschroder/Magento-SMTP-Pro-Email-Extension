@@ -12,7 +12,8 @@ class Aschroder_SMTPPro_Model_System_Config_Source_Smtp_Option extends Varien_Ob
     {
         $options = array(
         	"disabled"   => Mage::helper('smtppro')->__('Disabled'),
-            "google"   => Mage::helper('smtppro')->__('Google Apps or Gmail'),
+            "google"   => Mage::helper('smtppro')->__('Google Apps or Gmail (TLS)'),
+            "googlessl" => Mage::helper('smtppro')->__('Google Apps or Gmail (SSL)'),
             "smtp"   => Mage::helper('smtppro')->__('Custom SMTP'),
             "sendgrid"   => Mage::helper('smtppro')->__('SendGrid'),
             "mailup"   => Mage::helper('smtppro')->__('MailUp'),
