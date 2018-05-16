@@ -38,6 +38,7 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
         /** @var $collection Mage_Core_Model_Resource_Email_Queue_Collection */
         $collection = Mage::getModel('core/email_queue')->getCollection()
             ->addOnlyForSendingFilter()
+            ->addFieldToFilter('failed', array('eq' => '0'))   //Add filter in collection. Extract only message with processetAt is null and failed is 0
             ->setPageSize($percron)
             ->setCurPage(1)
             ->load();
@@ -126,6 +127,9 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
                     Mage::logException($e);
                     Mage::setIsDeveloperMode($oldDevMode);
 
+                    $this->notifyAdmin($message, $e); //call function that notify admin user
+                    $_helper->log('Error send email with message ID: ' . $message->getMessageId() . ' Message type: '. $message->getEntityType());  //report error in log module
+
                     continue;
                 }
 
@@ -139,6 +143,77 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
         }
 
         return $this;
+    }
+
+    /**
+     * Function send notification to specific addresses in case of error in queue email
+     * @param $message
+     * @param $error
+     * @return bool
+     */
+    private function notifyAdmin($message, $error){
+
+        $_helper = Mage::helper('smtppro');
+
+        //Check to see if the notification is enabled
+        if(!$_helper->getSendEmailNotification()) {
+            return false;
+        }
+
+        //Check to see if the email address for notification not empty
+        if(!$_helper->getSendEmailNotificationAddresses()) {
+            return false;
+        }
+        $sendEmailNotificationAddress = array_map('trim', explode(',', $_helper->getSendEmailNotificationAddresses() ));
+
+        $emailRecipient = '';
+
+        //Exstract all recipients of email with error
+        foreach ($message->getRecipients() as $recipient) {
+            list($email, $name, $type) = $recipient;
+            $emailRecipient .= $name . ' (' . $email . '),';
+        }
+
+
+        //Get template email ID
+        $emailTemplateId = $_helper->getSendEmailNotificationTemplate();
+        if(!is_numeric($emailTemplateId)){
+            $emailTemplate =  Mage::getModel('core/email_template')
+                        ->loadByCode('SMTP PRO - Notification');
+            if(!$emailTemplate->getTemplateId()){
+                return false;
+            }
+
+            $emailTemplateId = $emailTemplate->getTemplateId();
+
+        }
+        $parameters = new Varien_Object($message->getMessageParameters());
+
+        try{
+            $translate = Mage::getSingleton('core/translate');
+            //Send notify with information of email has generated error
+            Mage::getModel('core/email_template')
+                ->setDesignConfig(array('area'=>'frontend'))
+                ->sendTransactional(
+                    $emailTemplateId,
+                    'support',
+                    $sendEmailNotificationAddress,
+                    array(),
+                    array(
+                        'email_recipient'     => $emailRecipient,
+                        'email_type'          => $message->getEntityType(),
+                        'email_subject'       => $parameters->getSubject(),
+                        'message_error'       => $error->getMessage()
+                    ));
+            $translate->setTranslateInline(true);
+            $message->setFailed((int)true);  //set message in queue is failed
+            $messageSaved = $message->save();
+            return true;
+        }catch(Exception $e) {
+            $_helper->log('Error in email notification admin for message_id ' . $message->getMessageId());
+            return false;
+        }
+
     }
 
 }
