@@ -11,7 +11,7 @@
 <config>
 	<modules>
 		<Aschroder_SMTPPro>
-			<version>2.0.7</version>
+			<version>2.0.8</version>
 		</Aschroder_SMTPPro>
 	</modules>
 	<frontend>
@@ -211,6 +211,7 @@
                 <cleanlog>1</cleanlog>
                 <cleanlog_after_days>90</cleanlog_after_days>
                 <log_debug>0</log_debug>
+                <sendemail_notification>0</sendemail_notification>
             </debug>
 		</smtppro>
 	</default>

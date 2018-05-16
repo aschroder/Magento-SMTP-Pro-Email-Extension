@@ -14,6 +14,10 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
 
     const LOG_FILE = 'aschroder_smtppro.log';
 
+    const SEND_EMAIL_NOTIFICATION = 'smtppro/debug/sendemail_notification';
+    const SEND_EMAIL_NOTIFICATION_ADDRESSES =  'smtppro/debug/sendemail_notification_addresses';
+    const SEND_EMAIL_NOTIFICATION_TEMPLATE = 'smtppro/debug/sendemail_notification_template';
+
     public function getTransport($storeId = null)
     {
 
@@ -182,6 +186,21 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
     public function getQueuePause($storeId = null)
     {
         return Mage::getStoreConfig('smtppro/queue/pause', $storeId);
+    }
+
+    public function getSendEmailNotification($storeId = null)
+    {
+        return Mage::getStoreConfig(self::SEND_EMAIL_NOTIFICATION, $storeId);
+    }
+
+    public function getSendEmailNotificationAddresses($storeId = null)
+    {
+        return Mage::getStoreConfig(self::SEND_EMAIL_NOTIFICATION_ADDRESSES, $storeId);
+    }
+
+    public function getSendEmailNotificationTemplate($storeId = null)
+    {
+        return Mage::getStoreConfig(self::SEND_EMAIL_NOTIFICATION_TEMPLATE, $storeId);
     }
 
 
