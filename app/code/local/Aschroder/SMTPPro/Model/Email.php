@@ -8,6 +8,7 @@
  * @copyright  Copyright (c) 2014 Ashley Schroder
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+require Mage::getBaseDir().'vendor/autoload.php';
 
 class Aschroder_SMTPPro_Model_Email extends Mage_Core_Model_Email {
 
@@ -34,9 +35,10 @@ class Aschroder_SMTPPro_Model_Email extends Mage_Core_Model_Email {
         } else {
             $mail->setBodyText($this->getBody());
         }
+        $idn = new \Mso\IdnaConvert\IdnaConvert();
 
         $mail->setFrom($this->getFromEmail(), $this->getFromName())
-            ->addTo($this->getToEmail(), $this->getToName())
+            ->addTo($idn->encode($this->getToEmail()), $idn->encode($this->getToName()))
             ->setSubject($this->getSubject());
 
         $transport = new Varien_Object(); // for observers to set if required
