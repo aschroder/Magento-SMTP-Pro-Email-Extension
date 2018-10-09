@@ -198,6 +198,7 @@
                 <mailup_password backend_model="adminhtml/system_config_backend_encrypted" />
                 <ses_access_key></ses_access_key>
                 <ses_private_key backend_model="adminhtml/system_config_backend_encrypted" />
+                <ses_region>us-east-1</ses_region>
                 <smtp_authentication></smtp_authentication>
                 <smtp_username></smtp_username>
                 <smtp_password backend_model="adminhtml/system_config_backend_encrypted" />
