@@ -3,13 +3,14 @@
 # author: Ashley
 
 #SMTP Pro
-app/etc/modules/Aschroder_SMTPPro.xml                   app/etc/modules/Aschroder_SMTPPro.xml
-app/code/local/Aschroder/SMTPPro/                       app/code/local/Aschroder/SMTPPro/
-app/design/adminhtml/base/default/template/smtppro/     app/design/adminhtml/default/default/template/smtppro/
-app/locale/de_DE/Aschroder_SMTPPro.csv                  app/locale/de_DE/Aschroder_SMTPPro.csv
-app/locale/en_US/Aschroder_SMTPPro.csv                  app/locale/en_US/Aschroder_SMTPPro.csv
-app/locale/fr_FR/Aschroder_SMTPPro.csv                  app/locale/fr_FR/Aschroder_SMTPPro.csv
-app/locale/es_ES/Aschroder_SMTPPro.csv                  app/locale/es_ES/Aschroder_SMTPPro.csv
-app/locale/nl_NL/Aschroder_SMTPPro.csv                  app/locale/nl_NL/Aschroder_SMTPPro.csv
-app/locale/pt_BR/Aschroder_SMTPPro.csv                  app/locale/pt_BR/Aschroder_SMTPPro.csv
-app/locale/tr_TR/Aschroder_SMTPPro.csv                  app/locale/tr_TR/Aschroder_SMTPPro.csv
+app/etc/modules/Aschroder_SMTPPro.xml   app/etc/modules/Aschroder_SMTPPro.xml
+app/code/local/Aschroder/SMTPPro/   app/code/local/Aschroder/SMTPPro/
+app/design/adminhtml/base/default/template/smtppro/ app/design/adminhtml/default/default/template/smtppro/
+app/locale/de_DE/Aschroder_SMTPPro.csv  app/locale/de_DE/Aschroder_SMTPPro.csv
+app/locale/en_US/Aschroder_SMTPPro.csv  app/locale/en_US/Aschroder_SMTPPro.csv
+app/locale/fr_FR/Aschroder_SMTPPro.csv  app/locale/fr_FR/Aschroder_SMTPPro.csv
+app/locale/es_ES/Aschroder_SMTPPro.csv  app/locale/es_ES/Aschroder_SMTPPro.csv
+app/locale/nl_NL/Aschroder_SMTPPro.csv  app/locale/nl_NL/Aschroder_SMTPPro.csv
+app/locale/pt_BR/Aschroder_SMTPPro.csv  app/locale/pt_BR/Aschroder_SMTPPro.csv
+app/locale/tr_TR/Aschroder_SMTPPro.csv  app/locale/tr_TR/Aschroder_SMTPPro.csv
+app/locale/ru_RU/Aschroder_SMTPPro.csv  app/locale/ru_RU/Aschroder_SMTPPro.csv
