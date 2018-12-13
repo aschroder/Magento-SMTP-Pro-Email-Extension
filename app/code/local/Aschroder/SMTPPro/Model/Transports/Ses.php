@@ -16,7 +16,7 @@ class Aschroder_SMTPPro_Model_Transports_Ses {
 
     public function getTransport($storeId) {
 
-        $_helper = Mage::helper('smtppro');
+        $_helper = Mage::helper('smtppro'); /* @var $_helper Aschroder_SMTPPro_Helper_Data */
         $_helper->log("Getting Amazon SES Transport");
 
         $path = Mage::getModuleDir('', 'Aschroder_SMTPPro');
@@ -26,7 +26,8 @@ class Aschroder_SMTPPro_Model_Transports_Ses {
             array(
                 'accessKey' => $_helper->getAmazonSESAccessKey($storeId),
                 'privateKey' => $_helper->getAmazonSESPrivateKey($storeId)
-            )
+            ),
+            'https://email.'.$_helper->getAmazonSESRegion($storeId).'.amazonaws.com'
         );
 
         return $emailTransport;

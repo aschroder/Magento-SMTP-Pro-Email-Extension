@@ -183,29 +183,32 @@ class Aschroder_SMTPPro_Helper_Mysql4_Install extends Mage_Core_Helper_Abstract
     public function createInstallNotice($msg_title, $msg_desc, $url = null, $severity = null)
     {
         $message = Mage::getModel('adminnotification/inbox');
-        $message->setDateAdded(date("c", time () ));
+        if( $message ){
+            
+            $message->setDateAdded(date("c", time () ));
         
-        if ($url == null) {
-            $url = "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension";
+            if ($url == null) {
+                $url = "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension";
+            }
+        
+            if ($severity === null) {
+                $severity = Mage_AdminNotification_Model_Inbox::SEVERITY_NOTICE;
+            }
+        
+            // If problems occured increase severity and append logged messages.
+            if (Mage::helper('smtppro/mysql4_install' )->hasProblems ()) {
+                $severity = Mage_AdminNotification_Model_Inbox::SEVERITY_MINOR;
+                $msg_title .= " Problems may have occured during installation.";
+                $msg_desc .= " " . Mage::helper('smtppro/mysql4_install' )->getProblemsString ();
+                Mage::helper('smtppro/mysql4_install' )->clearProblems ();
+            }
+        
+            $message->setTitle($msg_title);
+            $message->setDescription($msg_desc);
+            $message->setUrl($url);
+            $message->setSeverity($severity);
+            $message->save ();
         }
-        
-        if ($severity === null) {
-            $severity = Mage_AdminNotification_Model_Inbox::SEVERITY_NOTICE;
-        }
-        
-        // If problems occured increase severity and append logged messages.
-        if (Mage::helper('smtppro/mysql4_install' )->hasProblems ()) {
-            $severity = Mage_AdminNotification_Model_Inbox::SEVERITY_MINOR;
-            $msg_title .= " Problems may have occured during installation.";
-            $msg_desc .= " " . Mage::helper('smtppro/mysql4_install' )->getProblemsString ();
-            Mage::helper('smtppro/mysql4_install' )->clearProblems ();
-        }
-        
-        $message->setTitle($msg_title);
-        $message->setDescription($msg_desc);
-        $message->setUrl($url);
-        $message->setSeverity($severity);
-        $message->save ();
         
         return $this;
     }

@@ -1,25 +1,27 @@
-Magento SMTP Pro Extension
+Magento 1 SMTP Pro Extension
 by Ashley Schroder (aschroder.com)
 
-- Free and Opensource email extension for Magento
-- Easily send Magento transactional emails via Google Apps, Gmail, Amazon SES or your own SMTP server.
-- Test your conifguration from the Magento admin
+- Free and Opensource email extension for Magento 1.x
+- Easily send Magento transactional emails via Google Apps, Gmail, Amazon SES or your own SMTP server
+- Test your configuration from the Magento admin
 - View a log of all emails
 - Improve deliverability with an external SMTP server
 
 Contributors
 - nl_NL translations thanks to [Melvyn Sopacua](http://www.supportdesk.nu/)
 - es_ES translations thanks to [Jhoon Saravia](http://twitter.com/jsaravia)
-- pt_BR translations thanks to [Gabriel Zamprogna] (https://github.com/gabrielz)
-
+- pt_BR translations thanks to [Gabriel Zamprogna](https://github.com/gabrielz)
+- fr_FR translations thanks to [@aymencis Aymen Hajri](https://github.com/aymencis)
+- de_DE translations thanks to [@quafzi Thomas Birke](https://github.com/quafzi)
+- ru_RU translations thanks to [Victor Ivanov](https://github.com/victorivanovspb)
 
 FAQ
 
 Q: It's not working
-A: Check for extension conflicts, and check that your host allows outbound SMTP traffic
+A: Check for extension conflicts, and check that your host allows outbound SMTP traffic.
 
 Q: Does it work with the Mailchimp extension
-A: yes, see: http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/
+A: Yes, see: http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/.
 
 Q: How do I install it manually
 A: See: http://www.aschroder.com/2010/05/installing-a-magento-extension-manually-via-ftp-or-ssh/ or use modman.
@@ -38,8 +40,10 @@ A: It's actually good advice to learn more here:  http://support.google.com/mail
 Q: I am getting a Subject set twice error
 A: This happens sometimes, typically if it is happening it would also be happening in core Magento. There is a Pull Request [here] (https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension/pull/57) that includes a work around thanks to [Rafael Kassner] (https://github.com/kassner).
 
-
 ## Release Notes
+
+# 2.0.8
+New version with merged chnages
 
 # 2.0.7
 Fix "Access denied" after patch SUPEE-6285

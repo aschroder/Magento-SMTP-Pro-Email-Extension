@@ -267,3 +267,4 @@ class Aschroder_SMTPPro_Smtp_TestController extends Mage_Adminhtml_Controller_Ac
     }
 
 }
+
