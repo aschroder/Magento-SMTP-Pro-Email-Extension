@@ -36,7 +36,6 @@ class Aschroder_SMTPPro_Block_Log_Grid extends Mage_Adminhtml_Block_Widget_Grid
         ));
         $this->addColumn('sent', array(
             'header'    => Mage::helper('adminhtml')->__('Sent'),
-            'type'      => 'datetime',
         	'width'     => '60px',
             'index'     => 'log_at',
             'type'      => 'datetime',
