@@ -86,13 +86,18 @@ class Aschroder_SMTPPro_Model_Email_Queue extends Mage_Core_Model_Email_Queue {
                 }
 
                 try {
-
+                    
+                    $storeId = null;
+                    if ($message->getEventType() == Mage_Sales_Model_Order::EMAIL_EVENT_NAME_NEW_ORDER){
+                        $storeId = Mage::getModel('sales/order')->load($message->getEntityId())->getStore()->getId();
+                    }
 
                     $transport = new Varien_Object();
                     Mage::dispatchEvent('aschroder_smtppro_queue_before_send', array(
                         'mail' => $mailer,
                         'transport' => $transport,
-                        'message' => $message
+                        'message' => $message,
+                        'store_id' => $storeId
                     ));
 
                     if ($transport->getTransport()) { // if set by an observer, use it
