@@ -84,7 +84,7 @@
                     <use>core_read</use>
                 </connection>
             </smtppro_read>
-		</resources> 
+		</resources>
 		<events>
             <log_log_clean_after>
                 <observers>
@@ -194,6 +194,7 @@
                 <googleapps_gpassword backend_model="adminhtml/system_config_backend_encrypted" />
                 <sendgrid_email></sendgrid_email>
                 <sendgrid_password backend_model="adminhtml/system_config_backend_encrypted" />
+                <sendgrid_api_key backend_model="adminhtml/system_config_backend_encrypted" />
                 <mailup_email></mailup_email>
                 <mailup_password backend_model="adminhtml/system_config_backend_encrypted" />
                 <ses_access_key></ses_access_key>

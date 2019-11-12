@@ -7,7 +7,7 @@
 
 class Aschroder_SMTPPro_Model_System_Config_Source_Smtp_Option extends Varien_Object
 {
-	
+
     public function toOptionArray()
     {
         $options = array(
@@ -15,6 +15,7 @@ class Aschroder_SMTPPro_Model_System_Config_Source_Smtp_Option extends Varien_Ob
             "google"   => Mage::helper('smtppro')->__('Google Apps or Gmail'),
             "smtp"   => Mage::helper('smtppro')->__('Custom SMTP'),
             "sendgrid"   => Mage::helper('smtppro')->__('SendGrid'),
+            "sendgrid_api" => Mage::helper('smtppro')->__('SendGrid API'),
             "mailup"   => Mage::helper('smtppro')->__('MailUp'),
             "ses"   => Mage::helper('smtppro')->__('Amazon SES')
         );
