@@ -4,11 +4,18 @@
   "description": "sending Magento mail through an external smtp-server",
   "homepage":"https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension",
   "require": {
-    "magento-hackathon/magento-composer-installer": "*"
+    "magento-hackathon/magento-composer-installer": "*",
+    "sendgrid/sendgrid": "7.3.0"
   }, 
   "authors":[
     {
       "name": "aschroder"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/sendgrid/sendgrid-php"
     }
   ],
   "extra": {

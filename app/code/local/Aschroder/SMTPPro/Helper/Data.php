@@ -16,6 +16,8 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getTransport($storeId = null)
     {
+        $path = Mage::getModuleDir('', 'Aschroder_SMTPPro');
+        include_once $path . '/Model/Transports/Sendgrid_Api.php';
 
         $option = Mage::getStoreConfig('smtppro/general/option', $storeId);
         return Mage::getModel("smtppro/transports_$option")->getTransport($storeId);
@@ -68,6 +70,11 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig('smtppro/general/option', $storeId) == "sendgrid";
     }
 
+    public function isSendGridAPIEnabled($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/option', $storeId) == "sendgrid_api";
+    }
+
 
     // logging config
     public function isLogCleaningEnabled($storeId = null)
@@ -116,6 +123,10 @@ class Aschroder_SMTPPro_Helper_Data extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig('smtppro/general/googleapps_gpassword', $storeId);
     }
 
+    public function getSendGridAPIKey($storeId = null)
+    {
+        return Mage::getStoreConfig('smtppro/general/sendgrid_api_key', $storeId);
+    }
 
     public function getSendGridEmail($storeId = null)
     {
