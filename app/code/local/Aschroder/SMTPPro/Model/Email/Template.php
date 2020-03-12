@@ -2,7 +2,7 @@
 
 /**
  * This class wraps the Template email sending functionality
- * If SMTP Pro is enabled it will send emails using the given 
+ * If SMTP Pro is enabled it will send emails using the given
  * configuration.
  *
  * @author Ashley Schroder (aschroder.com)
@@ -24,7 +24,6 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
      **/
     public function send($email, $name = null, array $variables = array())
     {
-
         $_helper = Mage::helper('smtppro');
         // If it's not enabled, just return the parent result.
         if (!$_helper->isEnabled()) {
@@ -109,7 +108,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             $mail->addTo($email, '=?utf-8?B?' . base64_encode($names[$key]) . '?=');
         }
 
-        if($this->isPlain()) {
+        if ($this->isPlain()) {
             $mail->setBodyText($text);
         } else {
             $mail->setBodyHTML($text);
@@ -118,8 +117,12 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
         $mail->setSubject('=?utf-8?B?' . base64_encode($subject) . '?=');
         $mail->setFrom($this->getSenderEmail(), $this->getSenderName());
 
-        try {
+        $replyTo = Mage::getStoreConfig('smtppro/general/smtp_reply_to');
+        if (!empty($replyTo)) {
+            $mail->setReplyTo($replyTo, $this->getSenderName());
+        }
 
+        try {
             $transport = new Varien_Object();
             Mage::dispatchEvent('aschroder_smtppro_template_before_send', array(
                 'mail' => $mail,
@@ -144,8 +147,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             }
 
             $this->_mail = null;
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $this->_mail = null;
             Mage::logException($e);
             return false;
@@ -153,5 +155,4 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
 
         return true;
     }
-
 }

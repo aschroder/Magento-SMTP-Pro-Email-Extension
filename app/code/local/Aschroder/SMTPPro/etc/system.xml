@@ -1,344 +1,392 @@
 <?xml version="1.0"?>
 <config>
-  <tabs>
-    <aschroder module="smtppro" translate="label">
-      <label>Aschroder Extensions</label>
-      <sort_order>600</sort_order>
-      <show_in_default>1</show_in_default>
-      <show_in_website>0</show_in_website>
-      <show_in_store>0</show_in_store>
-    </aschroder>
-  </tabs>
-  <sections>
-    <smtppro module="smtppro" translate="label">
-      <class>separator-top</class>
-      <label>SMTP Pro</label>
-      <tab>aschroder</tab>
-      <frontend_type>text</frontend_type>
-      <sort_order>110</sort_order>
-      <show_in_default>1</show_in_default>
-      <show_in_website>0</show_in_website>
-      <show_in_store>0</show_in_store>
-      <groups>
-        <general module="smtppro" translate="label comment">
-          <label>General Settings</label>
-          <frontend_type>text</frontend_type>
-          <sort_order>10</sort_order>
-          <show_in_default>1</show_in_default>
-          <show_in_website>1</show_in_website>
-          <show_in_store>0</show_in_store>
-          <comment><![CDATA[<div style='background-color: #efefef;margin-bottom: 10px;height: 40px;'> <img style='float:left;width: 150px;' src='http://www.aschroder.com/smtppro-logo.png' /> <span style='float:left;font-size: 20px; margin:10px;'>SMTP Pro Email Extension</span> </div> Configure your SMTP connection below. If you have any questions or would like any help please visit <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>.]]></comment>
-          <fields>
-            <option translate="label">
-              <label>Email Connection</label>
-              <frontend_type>select</frontend_type>
-              <source_model>smtppro/system_config_source_smtp_option</source_model>
-              <sort_order>10</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>0</show_in_website>
-              <show_in_store>0</show_in_store>
-            </option>
+    <tabs>
+        <aschroder module="smtppro" translate="label">
+            <label>Aschroder Extensions</label>
+            <sort_order>600</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+        </aschroder>
+    </tabs>
+    <sections>
+        <smtppro module="smtppro" translate="label">
+            <class>separator-top</class>
+            <label>SMTP Pro</label>
+            <tab>aschroder</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>110</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <general module="smtppro" translate="label comment">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment><![CDATA[<div style='background-color: #efefef;margin-bottom: 10px;height: 40px;'><img style='float:left;width: 150px;' src='http://www.aschroder.com/smtppro-logo.png' /><span style='float:left;font-size: 20px; margin:10px;'>SMTP Pro Email Extension</span></div> Configure your SMTP connection below. If you have any questions or would like any help please visit <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>.]]></comment>
+                    <fields>
+                        <option translate="label">
+                            <label>Email Connection</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smtppro/system_config_source_smtp_option</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </option>
 
 
 
-            <googleapps_email translate="label">
-              <label>Google Apps Email Address</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>20</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>google</option></depends>
-            </googleapps_email>
-            <googleapps_gpassword translate="label comment">
-              <label>Google Apps Password</label>
-              <comment><![CDATA[Input your Google Apps or Gmail username and password here. For configuration recommendations please see the guide at <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>]]></comment>
-              <frontend_type>password</frontend_type>
-              <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
-              <sort_order>23</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>google</option></depends>
-            </googleapps_gpassword>
+                        <googleapps_email translate="label">
+                            <label>Google Apps Email Address</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>google</option>
+                            </depends>
+                        </googleapps_email>
+                        <googleapps_gpassword translate="label comment">
+                            <label>Google Apps Password</label>
+                            <comment><![CDATA[Input your Google Apps or Gmail username and password here. For configuration recommendations please see the guide at <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>]]></comment>
+                            <frontend_type>password</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>google</option>
+                            </depends>
+                        </googleapps_gpassword>
 
-              <sendgrid_email translate="label">
-                  <label>SendGrid Username</label>
-                  <frontend_type>text</frontend_type>
-                  <sort_order>20</sort_order>
-                  <show_in_default>1</show_in_default>
-                  <show_in_website>1</show_in_website>
-                  <show_in_store>0</show_in_store>
-                  <depends><option>sendgrid</option></depends>
-              </sendgrid_email>
-              <sendgrid_password translate="label comment">
-                  <label>SendGrid Password</label>
-                  <comment><![CDATA[Input your SendGrid username and password here. For more information visit <a href='http://sendgrid.com' target='_blank'>SendGrid</a>]]></comment>
-                  <frontend_type>password</frontend_type>
-                  <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
-                  <sort_order>23</sort_order>
-                  <show_in_default>1</show_in_default>
-                  <show_in_website>1</show_in_website>
-                  <show_in_store>0</show_in_store>
-                  <depends><option>sendgrid</option></depends>
-              </sendgrid_password>
+                        <sendgrid_email translate="label">
+                            <label>SendGrid Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>sendgrid</option>
+                            </depends>
+                        </sendgrid_email>
+                        <sendgrid_password translate="label comment">
+                            <label>SendGrid Password</label>
+                            <comment><![CDATA[Input your SendGrid username and password here. For more information visit <a href='http://sendgrid.com' target='_blank'>SendGrid</a>]]></comment>
+                            <frontend_type>password</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>sendgrid</option>
+                            </depends>
+                        </sendgrid_password>
 
-              <mailup_email translate="label">
-                  <label>MailUp Username</label>
-                  <frontend_type>text</frontend_type>
-                  <sort_order>20</sort_order>
-                  <show_in_default>1</show_in_default>
-                  <show_in_website>1</show_in_website>
-                  <show_in_store>0</show_in_store>
-                  <depends><option>mailup</option></depends>
-              </mailup_email>
-              <mailup_password translate="label comment">
-                  <label>MailUp Password</label>
-                  <comment><![CDATA[Input your MailUp username and password here. For more information visit <a href='http://mailup.com' target='_blank'>MailUp</a>]]></comment>
-                  <frontend_type>password</frontend_type>
-                  <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
-                  <sort_order>23</sort_order>
-                  <show_in_default>1</show_in_default>
-                  <show_in_website>1</show_in_website>
-                  <show_in_store>0</show_in_store>
-                  <depends><option>mailup</option></depends>
-              </mailup_password>
-
-
-
-            <ses_access_key translate="label">
-              <label>Amazon SES Access Key</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>20</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>ses</option></depends>
-            </ses_access_key>
-            <ses_private_key translate="label comment">
-              <label>Amazon SES Secret Key</label>
-              <comment><![CDATA[Amazon SES support in SMTP Pro is limited and best suited to development and testing purposes. For a full integration with region selection, error/bounce logging and send statistics please see the premium extension: <a href='http://magesend.com' target='_blank'>MageSend</a>]]></comment>
-              <frontend_type>password</frontend_type>
-              <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
-              <sort_order>23</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>ses</option></depends>
-            </ses_private_key>
-            <ses_region translate="label">
-              <label>Amazon SES Region</label>
-              <frontend_type>select</frontend_type>
-              <source_model>smtppro/system_config_source_smtp_awsregions</source_model>
-              <sort_order>24</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>ses</option></depends>
-            </ses_region>
-
-            <smtp_authentication translate="label">
-              <label>Authentication</label>
-              <frontend_type>select</frontend_type>
-              <source_model>smtppro/system_config_source_smtp_authentication</source_model>
-              <sort_order>20</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>smtp</option></depends>
-            </smtp_authentication>
-            <smtp_username translate="label">
-              <label>Username</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>23</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>smtp</option><smtp_authentication separator=",">login,plain,crammd5</smtp_authentication></depends>
-            </smtp_username>
-            <smtp_password translate="label">
-              <label>Password</label>
-              <frontend_type>password</frontend_type>
-              <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
-              <sort_order>26</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>smtp</option><smtp_authentication separator=",">login,plain,crammd5</smtp_authentication></depends>
-            </smtp_password>
-            <smtp_host translate="label">
-              <label>Host</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>29</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>smtp</option></depends>
-            </smtp_host>
-            <smtp_port translate="label">
-              <label>Port</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>32</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>smtp</option></depends>
-            </smtp_port>
-            <smtp_ssl translate="label comment">
-              <label>SSL Security</label>
-              <comment><![CDATA[Custom SMTP servers can be configured in this section. For more information about these configuration options and troubleshooting advice please see <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>]]></comment>
-              <frontend_type>select</frontend_type>
-              <source_model>smtppro/system_config_source_smtp_ssl</source_model>
-              <sort_order>35</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><option>smtp</option></depends>
-            </smtp_ssl>
-            
-          </fields>
-        </general>
-
-          <queue module="smtppro" translate="label comment">
-              <label>Queue Configuration</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>49</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>0</show_in_store>
-              <comment>These settings are for Magento 1.9.1 onwards. They will have no affect on versions before that. You can disable the usage of the email queue below. You can also tweak how many emails are sent with each run of cron, and how long to pause between emails.</comment>
-              <fields>
-                  <usage translate="label">
-                      <label>Queue Usage</label>
-                      <comment>Override the usage of the queue.</comment>
-                      <frontend_type>select</frontend_type>
-                      <source_model>smtppro/system_config_source_smtp_queue</source_model>
-                      <sort_order>10</sort_order>
-                      <show_in_default>1</show_in_default>
-                      <show_in_website>0</show_in_website>
-                      <show_in_store>0</show_in_store>
-                  </usage>
-                  <percron translate="label">
-                      <label>Emails to Send</label>
-                      <comment>Number of emails to send per cron invocation. Leave blank for default of 100 messages sent per cron.</comment>
-                      <frontend_type>text</frontend_type>
-                      <sort_order>20</sort_order>
-                      <show_in_default>1</show_in_default>
-                      <show_in_website>0</show_in_website>
-                      <show_in_store>0</show_in_store>
-                  </percron>
-                  <pause translate="label">
-                      <label>Pause between emails (ms)</label>
-                      <comment>Some SMTP servers restrict email sending rates as an anti-spam measure. Add a delay between each email being sent. Leave blank for default 0 ms.</comment>
-                      <frontend_type>text</frontend_type>
-                      <sort_order>30</sort_order>
-                      <show_in_default>1</show_in_default>
-                      <show_in_website>0</show_in_website>
-                      <show_in_store>0</show_in_store>
-                  </pause>
-              </fields>
-          </queue>
+                        <mailup_email translate="label">
+                            <label>MailUp Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>mailup</option>
+                            </depends>
+                        </mailup_email>
+                        <mailup_password translate="label comment">
+                            <label>MailUp Password</label>
+                            <comment><![CDATA[Input your MailUp username and password here. For more information visit <a href='http://mailup.com' target='_blank'>MailUp</a>]]></comment>
+                            <frontend_type>password</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>mailup</option>
+                            </depends>
+                        </mailup_password>
 
 
-        <debug module="smtppro" translate="label comment">
-          <label>Logging and Debugging</label>
-          <frontend_type>text</frontend_type>
-          <sort_order>50</sort_order>
-          <show_in_default>1</show_in_default>
-          <show_in_website>1</show_in_website>
-          <show_in_store>0</show_in_store>
-          <comment>Please only use these settings if you are a software developer or server admin.</comment>
-          <fields>
-            <logenabled translate="label comment">
-              <label>Log Emails</label>
-              <comment>This will log all outbound emails. View from System->Tools->SMTPPro - Email Log.</comment>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>40</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>0</show_in_website>
-              <show_in_store>0</show_in_store>
-            </logenabled>
-            <cleanlog translate="label comment">
-              <label>Clean Email Logs</label>
-              <comment><![CDATA[If this is set to yes, old entries will be deleted from email log. Cron is required and log cleaning must be enabled in system/log/enabled for this to work.]]></comment>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>50</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>0</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><logenabled>1</logenabled></depends>
-            </cleanlog>
-            <cleanlog_after_days translate="label">
-              <label>Email Log Days Kept</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>60</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>0</show_in_website>
-              <show_in_store>0</show_in_store>
-              <depends><cleanlog>1</cleanlog><logenabled>1</logenabled></depends>
-            </cleanlog_after_days>
-            <log_debug translate="label">
-              <label>Enable Debug Logging</label>
-              <comment><![CDATA[If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log.]]></comment>
-              <frontend_type>select</frontend_type>
-              <source_model>adminhtml/system_config_source_yesno</source_model>
-              <sort_order>70</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>0</show_in_website>
-              <show_in_store>0</show_in_store>
-            </log_debug>
-            <test translate="label comment">
-              <comment>Save settings before running this test.</comment>
-              <frontend_type>select</frontend_type>
-              <frontend_model>Aschroder_SMTPPro_Block_Adminhtml_Test</frontend_model>
-              <sort_order>80</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>0</show_in_website>
-              <show_in_store>0</show_in_store>
-            </test>
-          </fields>
-        </debug>
-        <esp module="smtppro" translate="label">
-              <label>Compatible Email Services</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>70</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>
-              <fields>
-                  <logenabled translate="label">
-                      <frontend_type>select</frontend_type>
-                      <frontend_model>Aschroder_SMTPPro_Block_Adminhtml_Table</frontend_model>
-                      <sort_order>40</sort_order>
-                      <show_in_default>1</show_in_default>
-                      <show_in_website>1</show_in_website>
-                      <show_in_store>1</show_in_store>
-                  </logenabled>
-              </fields>
-          </esp>
-          <charset module="smtppro" translate="label">
-              <label>Charset</label>
-              <frontend_type>text</frontend_type>
-              <sort_order>90</sort_order>
-              <show_in_default>1</show_in_default>
-              <show_in_website>1</show_in_website>
-              <show_in_store>1</show_in_store>
-              <fields>
-                  <utf8 translate="utf-8">
-                      <label>Enable UTF-8</label>
-                      <comment>Enable UTF-8 charset for the emails</comment>
-                      <frontend_type>select</frontend_type>
-                      <source_model>adminhtml/system_config_source_yesno</source_model>
-                      <sort_order>40</sort_order>
-                      <show_in_default>1</show_in_default>
-                      <show_in_website>0</show_in_website>
-                      <show_in_store>0</show_in_store>
-                  </utf8>
-              </fields>
-          </charset>
-      </groups>
-    </smtppro>
-  </sections>
+
+                        <ses_access_key translate="label">
+                            <label>Amazon SES Access Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>ses</option>
+                            </depends>
+                        </ses_access_key>
+                        <ses_private_key translate="label comment">
+                            <label>Amazon SES Secret Key</label>
+                            <comment><![CDATA[Amazon SES support in SMTP Pro is limited and best suited to development and testing purposes. For a full integration with region selection, error/bounce logging and send statistics please see the premium extension: <a href='http://magesend.com' target='_blank'>MageSend</a>]]></comment>
+                            <frontend_type>password</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>ses</option>
+                            </depends>
+                        </ses_private_key>
+                        <ses_region translate="label">
+                            <label>Amazon SES Region</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smtppro/system_config_source_smtp_awsregions</source_model>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>ses</option>
+                            </depends>
+                        </ses_region>
+
+                        <smtp_authentication translate="label">
+                            <label>Authentication</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smtppro/system_config_source_smtp_authentication</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>smtp</option>
+                            </depends>
+                        </smtp_authentication>
+                        <smtp_username translate="label">
+                            <label>Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>smtp</option>
+                                <smtp_authentication separator=",">login,plain,crammd5</smtp_authentication>
+                            </depends>
+                        </smtp_username>
+                        <smtp_password translate="label">
+                            <label>Password</label>
+                            <frontend_type>password</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>smtp</option>
+                                <smtp_authentication separator=",">login,plain,crammd5</smtp_authentication>
+                            </depends>
+                        </smtp_password>
+                        <smtp_host translate="label">
+                            <label>Host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>29</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>smtp</option>
+                            </depends>
+                        </smtp_host>
+                        <smtp_port translate="label">
+                            <label>Port</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>smtp</option>
+                            </depends>
+                        </smtp_port>
+                        <smtp_ssl translate="label comment">
+                            <label>SSL Security</label>
+                            <comment><![CDATA[Custom SMTP servers can be configured in this section. For more information about these configuration options and troubleshooting advice please see <a href='http://magesmtppro.com' target='_blank'>magesmtppro.com</a>]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smtppro/system_config_source_smtp_ssl</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>smtp</option>
+                            </depends>
+                        </smtp_ssl>
+                        <smtp_reply_to translate="label comment">
+                            <label>Reply To</label>
+                            <comment><![CDATA[Add reply-to header to submitted emails with given email address]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <source_model>smtppro/system_config_source_smtp_ssl</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <option>smtp</option>
+                            </depends>
+                        </smtp_reply_to>
+                    </fields>
+                </general>
+
+                <queue module="smtppro" translate="label comment">
+                    <label>Queue Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>49</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment>These settings are for Magento 1.9.1 onwards. They will have no affect on versions before that. You can disable the usage of the email queue below. You can also tweak how many emails are sent with each run of cron, and how long to pause between emails.</comment>
+                    <fields>
+                        <usage translate="label">
+                            <label>Queue Usage</label>
+                            <comment>Override the usage of the queue.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>smtppro/system_config_source_smtp_queue</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </usage>
+                        <percron translate="label">
+                            <label>Emails to Send</label>
+                            <comment>Number of emails to send per cron invocation. Leave blank for default of 100 messages sent per cron.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </percron>
+                        <pause translate="label">
+                            <label>Pause between emails (ms)</label>
+                            <comment>Some SMTP servers restrict email sending rates as an anti-spam measure. Add a delay between each email being sent. Leave blank for default 0 ms.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </pause>
+                    </fields>
+                </queue>
+
+                <debug module="smtppro" translate="label comment">
+                    <label>Logging and Debugging</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment>Please only use these settings if you are a software developer or server admin.</comment>
+                    <fields>
+                        <logenabled translate="label comment">
+                            <label>Log Emails</label>
+                            <comment>This will log all outbound emails. View from System->Tools->SMTPPro - Email Log.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </logenabled>
+                        <cleanlog translate="label comment">
+                            <label>Clean Email Logs</label>
+                            <comment><![CDATA[If this is set to yes, old entries will be deleted from email log. Cron is required and log cleaning must be enabled in system/log/enabled for this to work.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <logenabled>1</logenabled>
+                            </depends>
+                        </cleanlog>
+                        <cleanlog_after_days translate="label">
+                            <label>Email Log Days Kept</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <cleanlog>1</cleanlog>
+                                <logenabled>1</logenabled>
+                            </depends>
+                        </cleanlog_after_days>
+                        <log_debug translate="label">
+                            <label>Enable Debug Logging</label>
+                            <comment><![CDATA[If yes, a log file will be written with debug information to file var/log/aschroder_smtppro.log.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </log_debug>
+                        <test translate="label comment">
+                            <comment>Save settings before running this test.</comment>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>Aschroder_SMTPPro_Block_Adminhtml_Test</frontend_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </test>
+                    </fields>
+                </debug>
+                <esp module="smtppro" translate="label">
+                    <label>Compatible Email Services</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>70</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <logenabled translate="label">
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>Aschroder_SMTPPro_Block_Adminhtml_Table</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logenabled>
+                    </fields>
+                </esp>
+                <charset module="smtppro" translate="label">
+                    <label>Charset</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>90</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <utf8 translate="utf-8">
+                            <label>Enable UTF-8</label>
+                            <comment>Enable UTF-8 charset for the emails</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </utf8>
+                    </fields>
+                </charset>
+            </groups>
+        </smtppro>
+    </sections>
 </config>
