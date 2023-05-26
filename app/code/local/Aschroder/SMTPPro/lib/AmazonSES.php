@@ -95,7 +95,7 @@ class App_Mail_Transport_AmazonSES extends Zend_Mail_Transport_Abstract
         );
         
         $recipients = explode(',', $this->recipients);
-        while(list($index, $recipient) = each($recipients)){
+        foreach($recipients as $index => $recipient){
             $params[sprintf('Destinations.member.%d', $index + 1)] = $recipient;
         }
         
