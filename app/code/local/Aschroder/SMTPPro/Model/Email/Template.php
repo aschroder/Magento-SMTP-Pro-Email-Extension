@@ -76,6 +76,7 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
 
             /** @var $emailQueue Mage_Core_Model_Email_Queue */
             $emailQueue = $this->getQueue();
+            $emailQueue->clearRecipients();
             $emailQueue->setMessageBody($text);
             $emailQueue->setMessageParameters(array(
                 'subject'           => $subject,
